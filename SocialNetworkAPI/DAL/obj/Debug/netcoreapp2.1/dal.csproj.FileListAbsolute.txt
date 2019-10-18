@@ -1,0 +1,11 @@
+D:\education\SocialNetwork\socialnetworkapi\DAL\bin\Debug\netcoreapp2.1\dal.deps.json
+D:\education\SocialNetwork\socialnetworkapi\DAL\bin\Debug\netcoreapp2.1\dal.runtimeconfig.json
+D:\education\SocialNetwork\socialnetworkapi\DAL\bin\Debug\netcoreapp2.1\dal.runtimeconfig.dev.json
+D:\education\SocialNetwork\socialnetworkapi\DAL\bin\Debug\netcoreapp2.1\dal.dll
+D:\education\SocialNetwork\socialnetworkapi\DAL\bin\Debug\netcoreapp2.1\dal.pdb
+D:\education\SocialNetwork\socialnetworkapi\DAL\obj\Debug\netcoreapp2.1\dal.csprojAssemblyReference.cache
+D:\education\SocialNetwork\socialnetworkapi\DAL\obj\Debug\netcoreapp2.1\dal.csproj.CoreCompileInputs.cache
+D:\education\SocialNetwork\socialnetworkapi\DAL\obj\Debug\netcoreapp2.1\dal.AssemblyInfoInputs.cache
+D:\education\SocialNetwork\socialnetworkapi\DAL\obj\Debug\netcoreapp2.1\dal.AssemblyInfo.cs
+D:\education\SocialNetwork\socialnetworkapi\DAL\obj\Debug\netcoreapp2.1\dal.dll
+D:\education\SocialNetwork\socialnetworkapi\DAL\obj\Debug\netcoreapp2.1\dal.pdb

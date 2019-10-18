@@ -1,0 +1,14 @@
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\dal.dll
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.csprojAssemblyReference.cache
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.csproj.CoreCompileInputs.cache
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.AssemblyInfoInputs.cache
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.AssemblyInfo.cs
+D:\education\SocialNetwork\socialnetworkapi\BIL\bin\Debug\netcoreapp2.1\BIL.deps.json
+D:\education\SocialNetwork\socialnetworkapi\BIL\bin\Debug\netcoreapp2.1\BIL.runtimeconfig.json
+D:\education\SocialNetwork\socialnetworkapi\BIL\bin\Debug\netcoreapp2.1\BIL.runtimeconfig.dev.json
+D:\education\SocialNetwork\socialnetworkapi\BIL\bin\Debug\netcoreapp2.1\BIL.dll
+D:\education\SocialNetwork\socialnetworkapi\BIL\bin\Debug\netcoreapp2.1\BIL.pdb
+D:\education\SocialNetwork\socialnetworkapi\BIL\bin\Debug\netcoreapp2.1\dal.pdb
+D:\education\SocialNetwork\socialnetworkapi\BIL\obj\Debug\netcoreapp2.1\BIL.csproj.CopyComplete
+D:\education\SocialNetwork\socialnetworkapi\BIL\obj\Debug\netcoreapp2.1\BIL.dll
+D:\education\SocialNetwork\socialnetworkapi\BIL\obj\Debug\netcoreapp2.1\BIL.pdb

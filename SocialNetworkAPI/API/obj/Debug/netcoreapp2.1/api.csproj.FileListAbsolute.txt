@@ -12,3 +12,8 @@ D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.Asse
 D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.RazorTargetAssemblyInfo.cache
 D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.dll
 D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.pdb
+D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\BIL.dll
+D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\dal.dll
+D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\dal.pdb
+D:\education\SocialNetwork\socialnetworkapi\api\bin\Debug\netcoreapp2.1\BIL.pdb
+D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.csproj.CopyComplete
