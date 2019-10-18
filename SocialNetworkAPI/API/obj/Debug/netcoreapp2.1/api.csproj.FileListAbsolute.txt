@@ -1,0 +1,14 @@
+D:\education\SocialNetwork\socialnetworkapi\api\bin\Debug\netcoreapp2.1\api.deps.json
+D:\education\SocialNetwork\socialnetworkapi\api\bin\Debug\netcoreapp2.1\api.runtimeconfig.json
+D:\education\SocialNetwork\socialnetworkapi\api\bin\Debug\netcoreapp2.1\api.runtimeconfig.dev.json
+D:\education\SocialNetwork\socialnetworkapi\api\bin\Debug\netcoreapp2.1\api.dll
+D:\education\SocialNetwork\socialnetworkapi\api\bin\Debug\netcoreapp2.1\api.pdb
+D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.csprojAssemblyReference.cache
+D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.csproj.CoreCompileInputs.cache
+D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.RazorAssemblyInfo.cache
+D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.RazorAssemblyInfo.cs
+D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.AssemblyInfoInputs.cache
+D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.AssemblyInfo.cs
+D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.RazorTargetAssemblyInfo.cache
+D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.dll
+D:\education\SocialNetwork\socialnetworkapi\api\obj\Debug\netcoreapp2.1\api.pdb
