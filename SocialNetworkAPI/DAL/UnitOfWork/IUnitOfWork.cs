@@ -6,7 +6,6 @@ namespace DAL.UnitOfWork
 {
     public interface IUnitOfWork: IDisposable
     {
-        IAuthRepository AuthRepository {get;}
         IUserRepository UserRepository {get;}
         IMessageRepository MessageRepository {get;}
 

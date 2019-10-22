@@ -38,5 +38,10 @@ namespace BIL.Services
             }
             return false;
         }
+
+        public async Task<bool> UserExsist(string username)
+        {
+            return await _unitOfWork.UserRepository.UserExsist(username);
+        }
     }
 }

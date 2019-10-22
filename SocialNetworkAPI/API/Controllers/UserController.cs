@@ -23,6 +23,7 @@ namespace api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddUser(UserForListDTO user)
         {
+
             if(user == null)
             {
                 BadRequest();

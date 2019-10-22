@@ -9,7 +9,6 @@ namespace DAL.UnitOfWork
     {
 
         private readonly DataContext _context;
-        private IAuthRepository _authRepository;
         private IUserRepository _userRepository;
         private IMessageRepository _messageRepository;
         public UnitOfWork(DataContext context)
@@ -17,13 +16,6 @@ namespace DAL.UnitOfWork
             _context = context;
         }
 
-        public IAuthRepository AuthRepository
-        {
-            get
-            {
-                return _authRepository = _authRepository ?? new AuthRepository(_context);
-            }
-        }
         public IUserRepository UserRepository
         {
             get

@@ -9,5 +9,7 @@ namespace BIL.Services.Interrfaces
     public interface IUserService
     {
         Task<bool> AddUser(UserForListDTO user);
+        Task<bool> UserExsist(string username);
+
     }
 }

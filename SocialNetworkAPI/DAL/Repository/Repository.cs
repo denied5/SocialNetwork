@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DAL.Data;
 using DAL.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,5 +33,7 @@ namespace DAL.Repository
         {
             _context.Remove(value);
         }
+
+        
     }
 }

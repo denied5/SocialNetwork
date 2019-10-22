@@ -13,6 +13,7 @@ namespace BIL.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<User, UserForListDTO>().ReverseMap();
+            CreateMap<User, UserForRegisterDTO>().ReverseMap();
         }
     }
 }

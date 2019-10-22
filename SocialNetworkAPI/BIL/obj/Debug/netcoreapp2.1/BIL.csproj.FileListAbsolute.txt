@@ -26,3 +26,7 @@ C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.csproj.CopyComplete
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.dll
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.pdb
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.dll
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.dll
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.xml
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.xml
