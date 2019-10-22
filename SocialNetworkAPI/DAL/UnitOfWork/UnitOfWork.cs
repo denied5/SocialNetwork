@@ -1,6 +1,7 @@
 using DAL.Data;
 using DAL.Repository;
 using DAL.Repository.Interfaces;
+using System.Threading.Tasks;
 
 namespace DAL.UnitOfWork
 {
@@ -43,9 +44,9 @@ namespace DAL.UnitOfWork
             _context.Dispose();
         }
 
-        public int SaveChanges()
+        public async Task<bool> SaveChanges()
         {
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

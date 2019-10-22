@@ -12,25 +12,5 @@ namespace DAL.Repository
         {
             _context = context;
         }
-
-        public void Add(User value)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<User> GetAll()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public User GetById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Remove(User value)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

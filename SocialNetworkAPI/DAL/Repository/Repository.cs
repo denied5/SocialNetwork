@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DAL.Data;
 using DAL.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -16,22 +17,22 @@ namespace DAL.Repository
 
         public void Add(T value)
         {
-            
+            _context.Add(value);
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
-            throw new System.NotImplementedException();
+            return await _context.ToListAsync();
         }
 
-        public T GetById(int id)
+        public async Task<T> GetById(int id)
         {
-            throw new System.NotImplementedException();
+            return await _context.FindAsync(id);
         }
 
         public void Remove(T value)
         {
-            throw new System.NotImplementedException();
+            _context.Remove(value);
         }
     }
 }

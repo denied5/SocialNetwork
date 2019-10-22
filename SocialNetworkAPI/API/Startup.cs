@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using BIL.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,7 +28,10 @@ namespace api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.SetUpAppDependencies(Configuration.GetConnectionString("DefaultConnection"));
+            services.AddCors();
+            services.AddAutoMapper();
+            services.SetUpAppDependencies(Configuration.GetConnectionString("BloggingDatabase"));
+            services.SetUpScopes();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,7 +2,7 @@ using DAL.Models;
 
 namespace DAL.Repository.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository:IRepository<User>
     {
          
     }

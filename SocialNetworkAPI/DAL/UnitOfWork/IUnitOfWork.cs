@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using DAL.Repository.Interfaces;
 
 namespace DAL.UnitOfWork
@@ -9,6 +10,6 @@ namespace DAL.UnitOfWork
         IUserRepository UserRepository {get;}
         IMessageRepository MessageRepository {get;}
 
-        int SaveChanges();
+        Task<bool> SaveChanges();
     }
 }
