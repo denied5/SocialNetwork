@@ -12,3 +12,17 @@ D:\education\SocialNetwork\socialnetworkapi\BIL\bin\Debug\netcoreapp2.1\dal.pdb
 D:\education\SocialNetwork\socialnetworkapi\BIL\obj\Debug\netcoreapp2.1\BIL.csproj.CopyComplete
 D:\education\SocialNetwork\socialnetworkapi\BIL\obj\Debug\netcoreapp2.1\BIL.dll
 D:\education\SocialNetwork\socialnetworkapi\BIL\obj\Debug\netcoreapp2.1\BIL.pdb
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\BIL.deps.json
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\BIL.runtimeconfig.json
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\BIL.runtimeconfig.dev.json
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\BIL.dll
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\BIL.pdb
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\dal.dll
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\dal.pdb
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.csprojAssemblyReference.cache
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.csproj.CoreCompileInputs.cache
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.AssemblyInfoInputs.cache
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.AssemblyInfo.cs
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.csproj.CopyComplete
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.dll
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.pdb
