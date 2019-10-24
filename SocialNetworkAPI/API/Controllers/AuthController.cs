@@ -33,7 +33,7 @@ namespace api.Controllers
             return Ok(createdUser);
         }
 
-        [HttpGet("login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDTO user)
         {
             //check for valid

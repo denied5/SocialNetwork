@@ -39,6 +39,7 @@ namespace api
         {
             if (env.IsDevelopment())
             {
+                app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
                 app.UseDeveloperExceptionPage();
             }
             else

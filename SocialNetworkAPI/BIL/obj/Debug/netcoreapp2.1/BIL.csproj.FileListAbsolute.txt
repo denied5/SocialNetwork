@@ -30,3 +30,7 @@ D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsof
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.dll
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.xml
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\lstel\studying\SocialNetwork\socialNetworkapi\BIL\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\lstel\studying\SocialNetwork\socialNetworkapi\BIL\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\lstel\studying\SocialNetwork\socialNetworkapi\BIL\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.xml
+C:\Users\lstel\studying\SocialNetwork\socialNetworkapi\BIL\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.xml
