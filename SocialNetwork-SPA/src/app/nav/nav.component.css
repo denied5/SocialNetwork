@@ -1,0 +1,7 @@
+.dropdown-item {
+    cursor: pointer;
+    border: 0px;
+}
+.dropdown-toggle {
+    cursor: pointer;
+}

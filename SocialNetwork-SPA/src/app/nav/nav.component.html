@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Socializer</a>
+    <a class="navbar-brand" [routerLink]="['']">Socializer</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
         aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,24 +8,28 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Messages <span class="sr-only">(current)</span></a>
+                <a class="nav-link" [routerLink]="['/messages/']">Messages</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">People</a>
+                <a class="nav-link" [routerLink]="['/peoples/']" >People</a>
             </li>
         </ul>
-        <form *ngIf="!isLogin()" class="form-inline my-2 my-lg-0">
+        <form *ngIf="!loggedIn()" class="form-inline my-2 my-lg-0">
             <button class="btn btn-secondary my-2 my-sm-0 mr-2" type="button" (click)="openModal(template)">SignIn</button>
         </form>
-        <div class="btn-group" role="group" *ngIf="isLogin()">
-            <div class="btn-group" role="group">
-              <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 48px, 0px);">
-                <a class="dropdown-item" href="#">Dropdown link</a>
-                <a class="dropdown-item" href="#">Dropdown link</a>
-              </div>
-            </div>
+        <div *ngIf="loggedIn()" class="mt-2 mt-md-0 dropdown" dropdown>
+          <span>
+            
+          </span>
+          <a class="navbar-text mr-2 dropdown-toggle text-light" dropdownToggle>
+            Hello 
+          </a>
+          <div class="dropdown-menu  dropdown-menu-right" *dropdownMenu>
+            <a [routerLink]="['/member/edit']" type="button"  class="btn btn-outline-secondary dropdown-item"><i class="fa fa-user"></i>Edit Profile</a>
+            <a href="" class="dropdown-item btn btn-outline-secondary" type="button" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
           </div>
+        </div>
+        
     </div>
 </nav>
 

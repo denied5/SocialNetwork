@@ -12,6 +12,10 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './Services/Auth.service';
 import { HomeComponent } from './home/home.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { PeoplesComponent } from './peoples/peoples.component';
+import { MessagesComponent } from './messages/messages.component';
+import { PeoplesComponent } from './peoples/peoples.component';
 
 
 @NgModule({
@@ -19,7 +23,10 @@ import { HomeComponent } from './home/home.component';
       AppComponent,
       NavComponent,
       RegisterComponent,
-      HomeComponent
+      HomeComponent,
+      PeoplesComponent,
+      MessagesComponent,
+      PeoplesComponent
    ],
    imports: [
       BrowserModule,
@@ -29,7 +36,8 @@ import { HomeComponent } from './home/home.component';
       ModalModule.forRoot(),
       HttpClientModule,
       BsDatepickerModule.forRoot(),
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      BsDropdownModule.forRoot()
    ],
    providers: [
       AuthService

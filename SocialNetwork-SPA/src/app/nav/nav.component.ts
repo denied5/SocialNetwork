@@ -25,13 +25,13 @@ export class NavComponent implements OnInit {
     });
   }
 
-  isLogin()
+  loggedIn()
   {
     return this.authService.loggedIn();
   }
 
   logout(){
-    localStorage.removeItem('token');
+    this.authService.logout();
   }
 
   ngOnInit() {
