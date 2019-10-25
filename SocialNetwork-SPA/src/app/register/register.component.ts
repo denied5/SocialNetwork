@@ -3,6 +3,7 @@ import { User } from '../_model/User';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap';
 import { AuthService } from '../Services/Auth.service';
+import { AlertifyService } from '../Services/alertify.service';
 
 @Component({
   selector: 'app-register',
@@ -14,16 +15,17 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor(private authService: AuthService, private fb: FormBuilder) { }
+  constructor(private authService: AuthService, private fb: FormBuilder, 
+    private alertifyService: AlertifyService) { }
 
   register(){
     debugger;
     if (this.registerForm.valid) {
       this.user = Object.assign({}, this.registerForm.value);
       this.authService.register(this.user).subscribe(() => {
-        console.log("register ok");
+        this.alertifyService.success("register confirm");
       }, error => {
-        console.log(error);
+        this.alertifyService.error(error);
       })
     }
   }

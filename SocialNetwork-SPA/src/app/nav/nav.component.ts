@@ -1,6 +1,7 @@
 import { Component, TemplateRef, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthService } from '../Services/Auth.service';
+import { AlertifyService } from '../Services/alertify.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,8 +10,10 @@ import { AuthService } from '../Services/Auth.service';
 })
 export class NavComponent implements OnInit {
   modalRef: BsModalRef;
+  
   model: any = {};
-  constructor(private modalService: BsModalService, private authService: AuthService) {}
+  constructor(private modalService: BsModalService, public authService: AuthService,
+              private alertifyService: AlertifyService) {}
  
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
@@ -18,10 +21,10 @@ export class NavComponent implements OnInit {
 
   login(){
     this.authService.login(this.model).subscribe(next => {
-      console.log('Login succses');
+      this.alertifyService.success('Login succses');
     },
     error => {
-      console.log(error);
+      this.alertifyService.error(error);
     });
   }
 
@@ -35,6 +38,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
 }

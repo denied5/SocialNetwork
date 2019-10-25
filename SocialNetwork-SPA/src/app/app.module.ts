@@ -15,7 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PeoplesComponent } from './peoples/peoples.component';
 import { MessagesComponent } from './messages/messages.component';
-import { PeoplesComponent } from './peoples/peoples.component';
+import { AlertifyService } from './Services/alertify.service';
 
 
 @NgModule({
@@ -26,7 +26,6 @@ import { PeoplesComponent } from './peoples/peoples.component';
       HomeComponent,
       PeoplesComponent,
       MessagesComponent,
-      PeoplesComponent
    ],
    imports: [
       BrowserModule,
@@ -40,7 +39,8 @@ import { PeoplesComponent } from './peoples/peoples.component';
       BsDropdownModule.forRoot()
    ],
    providers: [
-      AuthService
+      AuthService,
+      AlertifyService,
    ],
    bootstrap: [
       AppComponent

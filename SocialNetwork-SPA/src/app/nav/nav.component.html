@@ -22,7 +22,7 @@
             
           </span>
           <a class="navbar-text mr-2 dropdown-toggle text-light" dropdownToggle>
-            Hello 
+            Hello {{authService.decodedToken?.unique_name}}
           </a>
           <div class="dropdown-menu  dropdown-menu-right" *dropdownMenu>
             <a [routerLink]="['/member/edit']" type="button"  class="btn btn-outline-secondary dropdown-item"><i class="fa fa-user"></i>Edit Profile</a>
