@@ -2,6 +2,8 @@
 using BIL.DTO;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Threading.Tasks;
 
 namespace api.Controllers
@@ -13,9 +15,12 @@ namespace api.Controllers
         private readonly IAuthService _authService;
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
+        public readonly IConfiguration _configuration;
 
-        public AuthController(IAuthService authService, IMapper mapper, IUserService userService)
+        public AuthController(IAuthService authService, IMapper mapper, 
+            IUserService userService, IConfiguration configuration)
         {
+            _configuration = configuration;
             _mapper = mapper;
             _userService = userService;
             _authService = authService;
@@ -42,7 +47,8 @@ namespace api.Controllers
                 return Unauthorized();
 
             //generate token
-            var userToken = _authService.GenerateToken(userFromDb);
+            var userToken = _authService.GenerateToken(userFromDb, 
+                _configuration.GetSection("AuthKey:Token").Value);
 
             //return MainUserDTo
             return Ok(new

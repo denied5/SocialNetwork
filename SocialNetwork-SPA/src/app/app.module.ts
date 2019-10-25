@@ -16,6 +16,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PeoplesComponent } from './peoples/peoples.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AlertifyService } from './Services/alertify.service';
+import { ErrorInterceptorProvider } from './Services/error.interceptor';
+
 
 
 @NgModule({
@@ -41,6 +43,7 @@ import { AlertifyService } from './Services/alertify.service';
    providers: [
       AuthService,
       AlertifyService,
+      ErrorInterceptorProvider
    ],
    bootstrap: [
       AppComponent

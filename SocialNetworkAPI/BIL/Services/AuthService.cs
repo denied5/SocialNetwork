@@ -25,7 +25,7 @@ namespace BIL.Services
             _mapper = mapper;
         }
 
-        public string GenerateToken(UserForListDTO user)
+        public string GenerateToken(UserForListDTO user, string keyWord)
         {
             var claims = new[]
            {
@@ -33,7 +33,7 @@ namespace BIL.Services
                 new Claim(ClaimTypes.Name, user.Username)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("very hard key for mew"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyWord));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
