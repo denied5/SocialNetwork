@@ -1,3 +1,4 @@
+using System;
 using BIL.Services;
 using BIL.Services.Interrfaces;
 using DAL.Data;
@@ -22,6 +23,14 @@ namespace BIL.Extensions
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
             return services;
+        }
+
+        public static int CalculateAge(this DateTime theDateTime)
+        {
+            var age = System.DateTime.Now.Year - theDateTime.Year;
+            if (theDateTime.AddYears(age) > DateTime.Today)
+                age--;
+            return age;
         }
     }
 }

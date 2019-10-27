@@ -17,8 +17,18 @@ import { PeoplesComponent } from './peoples/peoples.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AlertifyService } from './Services/alertify.service';
 import { ErrorInterceptorProvider } from './Services/error.interceptor';
+import { JwtModule } from '@auth0/angular-jwt';
+import { MemberCardComponent } from './member/member-card/member-card.component';
+import { MemberDetailComponent } from './member/member-detail/member-detail.component';
+import { MemberDetailResolver } from './_resolver/member-detail.resolver';
+import { TabsModule } from 'ngx-bootstrap';
+import { NgxGalleryModule } from 'ngx-gallery';
+import { MemberEditResolver } from './_resolver/member-edit.resolver';
+import { MemberEditComponent } from './member/member-edit/member-edit.component';
 
-
+export function tokenGetter() {
+   return localStorage.getItem('token');
+}
 
 @NgModule({
    declarations: [
@@ -28,6 +38,9 @@ import { ErrorInterceptorProvider } from './Services/error.interceptor';
       HomeComponent,
       PeoplesComponent,
       MessagesComponent,
+      MemberCardComponent,
+      MemberDetailComponent,
+      MemberEditComponent,
    ],
    imports: [
       BrowserModule,
@@ -38,12 +51,23 @@ import { ErrorInterceptorProvider } from './Services/error.interceptor';
       HttpClientModule,
       BsDatepickerModule.forRoot(),
       BrowserAnimationsModule,
-      BsDropdownModule.forRoot()
+      BsDropdownModule.forRoot(),
+      TabsModule.forRoot(),
+      NgxGalleryModule,
+      JwtModule.forRoot({
+         config: {
+            tokenGetter,
+            whitelistedDomains: ['localhost:5000'],
+            blacklistedRoutes: ['localhost:5000/api/auth']
+         }
+      })
    ],
    providers: [
       AuthService,
       AlertifyService,
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      MemberDetailResolver,
+      MemberEditResolver
    ],
    bootstrap: [
       AppComponent

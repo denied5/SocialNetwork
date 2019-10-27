@@ -10,6 +10,8 @@ namespace BIL.Services.Interrfaces
     {
         Task<bool> AddUser(UserForListDTO user);
         Task<bool> UserExsist(string username);
-
+        Task<UserForDetailedDTO> GetUser(int id);
+        Task<IEnumerable<UserForListDTO>> GetUsers();
+        Task<bool> UpdateUser(int id, UserForUpdateDTO userForUpdate);
     }
 }

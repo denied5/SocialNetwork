@@ -7,5 +7,6 @@ namespace DAL.Repository.Interfaces
     {
         Task<bool> UserExsist(string username);
         Task<User> GetMainUser(string username);
+        Task<User> GetUser(int id);
     }
 }
