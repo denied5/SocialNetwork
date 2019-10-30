@@ -19,7 +19,7 @@
         </form>
         <div *ngIf="loggedIn()" class="mt-2 mt-md-0 dropdown" dropdown>
           <span>
-            
+            <img src="{{photoUrl || '../../assets/user.png'}}" class="mr-2">
           </span>
           <a class="navbar-text mr-2 dropdown-toggle text-light" dropdownToggle>
             Hello {{authService.decodedToken?.unique_name}}

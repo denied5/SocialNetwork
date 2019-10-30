@@ -66,7 +66,7 @@ namespace BIL.Services
 
         public async Task<IEnumerable<UserForListDTO>> GetUsers()
         {
-            var usersFromRepo = await _unitOfWork.UserRepository.GetAll();
+            var usersFromRepo = await _unitOfWork.UserRepository.GetUsers();
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDTO>>(usersFromRepo);
             return usersToReturn;
         } 

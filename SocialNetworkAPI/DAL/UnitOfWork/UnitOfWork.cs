@@ -11,6 +11,7 @@ namespace DAL.UnitOfWork
         private readonly DataContext _context;
         private IUserRepository _userRepository;
         private IMessageRepository _messageRepository;
+        public IPhotoRepository _photoRepository;
         public UnitOfWork(DataContext context)
         {
             _context = context;
@@ -30,7 +31,15 @@ namespace DAL.UnitOfWork
                 return _messageRepository = _messageRepository ?? new MessageRepository(_context);
             }
         }
-        
+
+        public IPhotoRepository PhotoRepository
+        {
+            get
+            {
+                return _photoRepository = _photoRepository ?? new PhotoRepository(_context);
+            }
+        }
+
         public void Dispose()
         {
             _context.Dispose();

@@ -34,3 +34,5 @@ C:\Users\lstel\studying\SocialNetwork\socialNetworkapi\BIL\bin\Debug\netcoreapp2
 C:\Users\lstel\studying\SocialNetwork\socialNetworkapi\BIL\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\lstel\studying\SocialNetwork\socialNetworkapi\BIL\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.xml
 C:\Users\lstel\studying\SocialNetwork\socialNetworkapi\BIL\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.xml
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Http.Features.dll
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Http.Features.xml

@@ -1,10 +1,13 @@
-using System;
+
+using BIL.Helpers;
 using BIL.Services;
 using BIL.Services.Interrfaces;
 using DAL.Data;
 using DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace BIL.Extensions
 {
@@ -17,11 +20,12 @@ namespace BIL.Extensions
             return services;
         }
 
-        public static IServiceCollection SetUpScopes(this IServiceCollection services)
+            public static IServiceCollection SetUpScopes(this IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IPhotoService, PhotoService>();
             return services;
         }
 

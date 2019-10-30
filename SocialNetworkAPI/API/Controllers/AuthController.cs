@@ -13,15 +13,13 @@ namespace api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-        private readonly IMapper _mapper;
         private readonly IUserService _userService;
         public readonly IConfiguration _configuration;
 
-        public AuthController(IAuthService authService, IMapper mapper, 
+        public AuthController(IAuthService authService, 
             IUserService userService, IConfiguration configuration)
         {
             _configuration = configuration;
-            _mapper = mapper;
             _userService = userService;
             _authService = authService;
         }

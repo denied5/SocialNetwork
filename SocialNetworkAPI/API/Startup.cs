@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using API.Helpers;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using BIL.Helpers;
+using Microsoft.Extensions.Configuration;
+using API.Helpers;
 
 namespace api
 {
@@ -29,6 +30,7 @@ namespace api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper();
             services.SetUpAppDependencies(Configuration.GetConnectionString("BloggingDatabase"));
             services.SetUpScopes();

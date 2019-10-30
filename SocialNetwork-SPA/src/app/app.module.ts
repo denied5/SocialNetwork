@@ -23,8 +23,11 @@ import { MemberDetailComponent } from './member/member-detail/member-detail.comp
 import { MemberDetailResolver } from './_resolver/member-detail.resolver';
 import { TabsModule } from 'ngx-bootstrap';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
 import { MemberEditResolver } from './_resolver/member-edit.resolver';
 import { MemberEditComponent } from './member/member-edit/member-edit.component';
+import { PhotoEditorComponent } from './member/photo-editor/photo-editor.component';
+import { PhotoService } from './Services/photo.service';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -41,6 +44,7 @@ export function tokenGetter() {
       MemberCardComponent,
       MemberDetailComponent,
       MemberEditComponent,
+      PhotoEditorComponent,
    ],
    imports: [
       BrowserModule,
@@ -54,6 +58,7 @@ export function tokenGetter() {
       BsDropdownModule.forRoot(),
       TabsModule.forRoot(),
       NgxGalleryModule,
+      FileUploadModule,
       JwtModule.forRoot({
          config: {
             tokenGetter,
@@ -65,6 +70,7 @@ export function tokenGetter() {
    providers: [
       AuthService,
       AlertifyService,
+      PhotoService,
       ErrorInterceptorProvider,
       MemberDetailResolver,
       MemberEditResolver

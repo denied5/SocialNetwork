@@ -10,8 +10,9 @@ import { AlertifyService } from '../Services/alertify.service';
 })
 export class NavComponent implements OnInit {
   modalRef: BsModalRef;
-  
+  photoUrl: string;
   model: any = {};
+  
   constructor(private modalService: BsModalService, public authService: AuthService,
               private alertifyService: AlertifyService) {}
  
@@ -39,7 +40,9 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.authService.currentPhotoUrl.subscribe(photoUrl => {
+      this.photoUrl = photoUrl;
+    });
   }
 
 }

@@ -29,7 +29,9 @@ namespace BIL.Helpers
                     opt.ResolveUsing(d => d.DateOfBirth.CalculateAge());
                 });
             CreateMap<Photo, PhotoForDetailedDTO>();
-             CreateMap<UserForUpdateDTO, User>();
+            CreateMap<Photo, PhotoForReturnDTO>();
+            CreateMap<PhotoForCreationDTO, Photo>();
+            CreateMap<UserForUpdateDTO, User>();
         }
     }
 }

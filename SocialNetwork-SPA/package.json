@@ -24,6 +24,7 @@
     "bootstrap": "^4.3.1",
     "bootswatch": "^4.3.1",
     "core-js": "^2.5.4",
+    "ng2-file-upload": "^1.4.0",
     "ngx-bootstrap": "^5.2.0",
     "ngx-gallery": "^5.10.0",
     "ngx-tabset": "^2.1.0",

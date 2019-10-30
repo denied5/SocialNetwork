@@ -1,4 +1,5 @@
 using DAL.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DAL.Repository.Interfaces
@@ -7,6 +8,7 @@ namespace DAL.Repository.Interfaces
     {
         Task<bool> UserExsist(string username);
         Task<User> GetMainUser(string username);
+        Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
     }
 }

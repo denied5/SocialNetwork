@@ -1,7 +1,13 @@
+
 .dropdown-item {
     cursor: pointer;
-    border: 0px;
 }
 .dropdown-toggle {
     cursor: pointer;
+}
+
+img {
+    max-height: 50px;
+    border: 2px solid white;
+    display: inline;
 }
