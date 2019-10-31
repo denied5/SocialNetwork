@@ -1,5 +1,52 @@
+<!-- <form class="form-inline mt-2 ml-3" (ngSubmit)="loadUsers()">
+  
+  
+</form> -->
+
+
+<form class="" #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
+  <div class="row">
+    <div class="col-12">
+          <input type="text" [(ngModel)]="userParams.name" name="username" style=" border: 3px solid #343a40;" class="form-control form-control-lg " id="inputPassword" placeholder="Name">
+    </div>
+  </div>
+  <div class="row form-inline">
+    <div class="form-group ml-3">
+      <label for="minAge">Age From</label>
+      <input type="number" class="form-control" style="width: 100px" id="minAge" [(ngModel)]="userParams.minAge"
+        name="minAge">
+    </div>
+
+    <div class="form-group ml-3">
+      <label for="maxAge">Age To</label>
+      <input type="number" class="form-control" style="width: 100px" id="maxAge" [(ngModel)]="userParams.maxAge"
+        name="maxAge">
+    </div>
+
+    <div class="form-group ml-3">
+      <label for="gender">Show: </label>
+      <select class="form-control" style="width: 130px" id="gender" [(ngModel)]="userParams.gender" name="gender">
+        <option *ngFor="let gender of genderList" [value]="gender.value">
+          {{gender.display}}
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-left:10px">Apply Filters</button>
+    <button type="button" class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">Reset Filter</button>
+  </div>
+</form>
+<br>
+
 <div class="row">
   <div *ngFor="let user of users" class="col-sm-6 col-md-4 col-lg-4 col-xl-3">
     <app-member-card [user]="user"></app-member-card>
   </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <pagination [boundaryLinks]="true" [totalItems]="pagination.TotalItems" [itemsPerPage]="pagination.ItemsPerPage"
+    [(ngModel)]="pagination.CurrentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+    firstText="&laquo;" lastText="&raquo;">
+
+  </pagination>
 </div>

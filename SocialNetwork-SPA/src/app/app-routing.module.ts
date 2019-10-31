@@ -7,16 +7,17 @@ import { MemberDetailComponent } from './member/member-detail/member-detail.comp
 import { MemberDetailResolver } from './_resolver/member-detail.resolver';
 import { MemberEditComponent } from './member/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolver/member-edit.resolver';
+import { MemberListResolver } from './_resolver/member-list.resolver';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'members', component: PeoplesComponent},
+  {path: 'members', component: PeoplesComponent,
+      resolve: {users: MemberListResolver}},
   {path: 'members/:id', component: MemberDetailComponent,
-        resolve: {user: MemberDetailResolver}},
-  {path: 'members', component: MemberDetailComponent},
-  {path: 'messages', component: MessagesComponent},
+      resolve: {user: MemberDetailResolver}},
   {path: 'member/edit', component: MemberEditComponent,
-  resolve: {user: MemberEditResolver}},
+      resolve: {user: MemberEditResolver}},
+  {path: 'messages', component: MessagesComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'},
 ];
 

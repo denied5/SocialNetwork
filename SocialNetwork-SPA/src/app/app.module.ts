@@ -21,13 +21,14 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { MemberCardComponent } from './member/member-card/member-card.component';
 import { MemberDetailComponent } from './member/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolver/member-detail.resolver';
-import { TabsModule } from 'ngx-bootstrap';
+import { TabsModule, PaginationModule } from 'ngx-bootstrap';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MemberEditResolver } from './_resolver/member-edit.resolver';
 import { MemberEditComponent } from './member/member-edit/member-edit.component';
 import { PhotoEditorComponent } from './member/photo-editor/photo-editor.component';
 import { PhotoService } from './Services/photo.service';
+import { MemberListResolver } from './_resolver/member-list.resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -59,6 +60,7 @@ export function tokenGetter() {
       TabsModule.forRoot(),
       NgxGalleryModule,
       FileUploadModule,
+      PaginationModule.forRoot(),
       JwtModule.forRoot({
          config: {
             tokenGetter,
@@ -73,7 +75,8 @@ export function tokenGetter() {
       PhotoService,
       ErrorInterceptorProvider,
       MemberDetailResolver,
-      MemberEditResolver
+      MemberEditResolver,
+      MemberListResolver
    ],
    bootstrap: [
       AppComponent

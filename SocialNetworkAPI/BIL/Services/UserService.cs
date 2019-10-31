@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using BIL.DTO;
+using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using DAL.Models;
 using DAL.UnitOfWork;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -64,12 +66,35 @@ namespace BIL.Services
             return userToReturn;
         }
 
-        public async Task<IEnumerable<UserForListDTO>> GetUsers()
+        public async Task<PagedList<UserForListDTO>> GetUsers(UserParams userParams)
         {
             var usersFromRepo = await _unitOfWork.UserRepository.GetUsers();
+
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDTO>>(usersFromRepo);
-            return usersToReturn;
-        } 
+
+            usersToReturn = SelectUsers(usersToReturn, userParams);
+
+            return PagedList<UserForListDTO>.Create(usersToReturn, 
+                userParams.CurrentPage, userParams.PageSize);
+        }
+
+        private IEnumerable<UserForListDTO> SelectUsers(IEnumerable<UserForListDTO> users, UserParams userParams)
+        {
+            users = users.Where(u => u.Id != userParams.UserId);
+            if (!String.IsNullOrEmpty(userParams.Gender) && userParams.Gender != "any")
+            {
+                users = users.Where(u => u.Gender == userParams?.Gender);
+            }
+            if (!String.IsNullOrEmpty(userParams.Name))
+            {
+                users = users.Where(u => u.KnownAs.ToLower().Contains(userParams.Name.ToLower()));
+            }
+            if (userParams.MinAge != 14 || userParams.MaxAge != 99)
+            {
+                users = users.Where(u => u.Age >= userParams.MinAge && u.Age <= userParams.MaxAge);
+            }
+            return users;
+        }
 
         public async Task<bool> UserExsist(string username)
         {

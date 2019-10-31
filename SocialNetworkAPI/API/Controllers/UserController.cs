@@ -1,9 +1,11 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using BIL.DTO;
+using BIL.Extensions;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,14 +38,22 @@ namespace api.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetUsers()
+        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
-            var usersToReturn = await _userService.GetUsers();
-            if (usersToReturn == null)
+            var currentId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            userParams.UserId = currentId;
+           
+            var usersForPagination = await _userService.GetUsers(userParams);
+            if (usersForPagination == null)
             {
                 return BadRequest("Users don't exsist");
             }
-            return Ok(usersToReturn);
+
+            Response.AddPagination(usersForPagination.CurrentPage, usersForPagination.PageSize,
+                usersForPagination.TotalCount, usersForPagination.TotalPages);
+
+            List<UserForListDTO> usersForReturn = usersForPagination;
+            return Ok(usersForReturn);
         }
 
         [HttpGet("{id}", Name = "GetUser")]

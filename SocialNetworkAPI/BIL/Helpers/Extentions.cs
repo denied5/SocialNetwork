@@ -4,9 +4,10 @@ using BIL.Services;
 using BIL.Services.Interrfaces;
 using DAL.Data;
 using DAL.UnitOfWork;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using System;
 
 namespace BIL.Extensions
@@ -20,7 +21,15 @@ namespace BIL.Extensions
             return services;
         }
 
-            public static IServiceCollection SetUpScopes(this IServiceCollection services)
+        public static void AddPagination(this HttpResponse response, int currentPage,
+            int itemsPerPage, int totalItems, int totalPages)
+        {
+            var paginationHeader = new PaginationHeader(currentPage, itemsPerPage, totalItems, totalPages);
+            response.Headers.Add("Pagination", JsonConvert.SerializeObject(paginationHeader));
+            response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
+        }
+
+        public static IServiceCollection SetUpScopes(this IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();

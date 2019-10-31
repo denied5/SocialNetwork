@@ -4654,6 +4654,7 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "4.0.1",
           "CloudinaryDotNet": "1.3.1",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.0",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.0",
           "Microsoft.Extensions.DependencyInjection": "2.1.1",
@@ -12694,11 +12695,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\api\\api.csproj",
+      "projectUniqueName": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\API\\api.csproj",
       "projectName": "api",
-      "projectPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\api\\api.csproj",
+      "projectPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\API\\api.csproj",
       "packagesPath": "C:\\Users\\Udav 2\\.nuget\\packages\\",
-      "outputPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\api\\obj\\",
+      "outputPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
