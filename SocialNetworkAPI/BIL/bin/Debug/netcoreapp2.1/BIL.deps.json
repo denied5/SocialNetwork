@@ -10,11 +10,11 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "4.0.1",
           "CloudinaryDotNet": "1.3.1",
+          "DAL": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.0",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.0",
           "Microsoft.Extensions.DependencyInjection": "2.1.1",
-          "dal": "1.0.0",
           "Microsoft.IdentityModel.Tokens": "5.2.0.0",
           "System.IdentityModel.Tokens.Jwt": "5.2.0.0"
         },
@@ -599,12 +599,12 @@
         }
       },
       "System.ValueTuple/4.5.0": {},
-      "dal/1.0.0": {
+      "DAL/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "2.1.0"
         },
         "runtime": {
-          "dal.dll": {}
+          "DAL.dll": {}
         }
       },
       "Microsoft.IdentityModel.Tokens/5.2.0.0": {
@@ -1079,7 +1079,7 @@
       "path": "system.valuetuple/4.5.0",
       "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
     },
-    "dal/1.0.0": {
+    "DAL/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

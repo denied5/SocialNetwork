@@ -21,10 +21,10 @@ D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\BIL.runt
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\BIL.runtimeconfig.dev.json
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\BIL.dll
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\BIL.pdb
-D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\dal.dll
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\DAL.dll
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.dll
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.dll
-D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\dal.pdb
+D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\DAL.pdb
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.xml
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.xml
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.csprojAssemblyReference.cache

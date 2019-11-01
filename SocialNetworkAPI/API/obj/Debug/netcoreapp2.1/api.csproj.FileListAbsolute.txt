@@ -23,9 +23,9 @@ D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\api.runt
 D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\api.dll
 D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\api.pdb
 D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\BIL.dll
-D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\dal.dll
+D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\DAL.dll
 D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\BIL.pdb
-D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\dal.pdb
+D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\DAL.pdb
 D:\education\SocialNetwork\SocialNetworkAPI\API\obj\Debug\netcoreapp2.1\api.csprojAssemblyReference.cache
 D:\education\SocialNetwork\SocialNetworkAPI\API\obj\Debug\netcoreapp2.1\api.csproj.CoreCompileInputs.cache
 D:\education\SocialNetwork\SocialNetworkAPI\API\obj\Debug\netcoreapp2.1\api.RazorAssemblyInfo.cache

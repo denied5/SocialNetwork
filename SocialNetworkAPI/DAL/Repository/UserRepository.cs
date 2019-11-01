@@ -16,11 +16,17 @@ namespace DAL.Repository
         }
 
         public async Task<IEnumerable<User>> GetUsers(){
-            return await _context.Users.Include(p => p.Photos).ToListAsync();
+            return _context.Users.Include(p => p.Photos)
+                .Include(f => f.FriendshipsSent)
+                .Include(f => f.FriendshipsReceived);
         }
 
         public async Task<User> GetUser(int id){
-            return await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Users
+                .Include(p => p.Photos)
+                .Include(f => f.FriendshipsSent)
+                .Include(f => f.FriendshipsReceived)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<User> GetMainUser(string username)

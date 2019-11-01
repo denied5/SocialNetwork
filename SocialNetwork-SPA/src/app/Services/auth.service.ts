@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   decodedToken: any;
-currentUser: User;
+  currentUser: User;
   baseUrl = 'http://localhost:5000/api/auth/';
   jwtHelper = new JwtHelperService();
   photoUrl = new BehaviorSubject<string>('../../assets/user.png');//many to many 

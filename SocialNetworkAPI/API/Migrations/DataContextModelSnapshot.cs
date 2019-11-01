@@ -19,6 +19,19 @@ namespace api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("DAL.Models.Friendship", b =>
+                {
+                    b.Property<int>("RecipientId");
+
+                    b.Property<int>("SenderId");
+
+                    b.HasKey("RecipientId", "SenderId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Friendships");
+                });
+
             modelBuilder.Entity("DAL.Models.Message", b =>
                 {
                     b.Property<int>("Id")
@@ -110,6 +123,19 @@ namespace api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DAL.Models.Friendship", b =>
+                {
+                    b.HasOne("DAL.Models.User", "Recipient")
+                        .WithMany("FriendshipsSent")
+                        .HasForeignKey("RecipientId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DAL.Models.User", "Sender")
+                        .WithMany("FriendshipsReceived")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("DAL.Models.Message", b =>

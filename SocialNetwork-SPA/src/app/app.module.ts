@@ -29,6 +29,9 @@ import { MemberEditComponent } from './member/member-edit/member-edit.component'
 import { PhotoEditorComponent } from './member/photo-editor/photo-editor.component';
 import { PhotoService } from './Services/photo.service';
 import { MemberListResolver } from './_resolver/member-list.resolver';
+import { FriendshipService } from './Services/friendship.service';
+import { FriendsComponent } from './friends/friends.component';
+import { FriendsResolver } from './_resolver/friends.resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -46,6 +49,7 @@ export function tokenGetter() {
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
+      FriendsComponent
    ],
    imports: [
       BrowserModule,
@@ -60,23 +64,25 @@ export function tokenGetter() {
       TabsModule.forRoot(),
       NgxGalleryModule,
       FileUploadModule,
-      PaginationModule.forRoot(),
-      JwtModule.forRoot({
+      JwtModule.forRoot({// автоматически подставляет токен в хедеры всех запросов
          config: {
             tokenGetter,
             whitelistedDomains: ['localhost:5000'],
             blacklistedRoutes: ['localhost:5000/api/auth']
          }
-      })
+      }),
+      PaginationModule.forRoot(),
    ],
    providers: [
       AuthService,
       AlertifyService,
       PhotoService,
+      FriendshipService,
       ErrorInterceptorProvider,
       MemberDetailResolver,
       MemberEditResolver,
-      MemberListResolver
+      MemberListResolver,
+      FriendsResolver
    ],
    bootstrap: [
       AppComponent

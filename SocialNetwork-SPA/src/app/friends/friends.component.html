@@ -1,0 +1,6 @@
+<div class="row m-3">
+  <div *ngFor="let user of friends" class="col-sm-6 col-md-4 col-lg-4 col-xl-3">
+    <app-member-card [user]="user"></app-member-card>
+    <button type="button" class="btn btn-danger btn-sm" (click)="deleteFriend(user.id)" style="width: 100%;">Delete Friend</button>
+  </div>
+</div>

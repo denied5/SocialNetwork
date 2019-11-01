@@ -6,12 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "dal/1.0.0": {
+      "DAL/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "2.1.0"
         },
         "runtime": {
-          "dal.dll": {}
+          "DAL.dll": {}
         }
       },
       "Microsoft.CSharp/4.5.0": {},
@@ -383,7 +383,7 @@
     }
   },
   "libraries": {
-    "dal/1.0.0": {
+    "DAL/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

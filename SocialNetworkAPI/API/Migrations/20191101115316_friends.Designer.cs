@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191018205832_initilaltwo")]
-    partial class initilaltwo
+    [Migration("20191101115316_friends")]
+    partial class friends
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,19 @@ namespace api.Migrations
                 .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DAL.Models.Friendship", b =>
+                {
+                    b.Property<int>("RecipientId");
+
+                    b.Property<int>("SenderId");
+
+                    b.HasKey("RecipientId", "SenderId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Friendships");
+                });
 
             modelBuilder.Entity("DAL.Models.Message", b =>
                 {
@@ -112,6 +125,19 @@ namespace api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DAL.Models.Friendship", b =>
+                {
+                    b.HasOne("DAL.Models.User", "Recipient")
+                        .WithMany("FriendshipsSent")
+                        .HasForeignKey("RecipientId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DAL.Models.User", "Sender")
+                        .WithMany("FriendshipsReceived")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("DAL.Models.Message", b =>

@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class UserService {
   baseUrl = environment.apiURL + 'users/';
-constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getUsers(page?, itemsPerPage?, userParams?) : Observable<PaginatedResult<User[]>>{
     const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
@@ -52,5 +52,4 @@ constructor(private http: HttpClient) { }
   putUser(id: number, user: User) {
     return this.http.put(this.baseUrl + id, user);
   }
-
 }

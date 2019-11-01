@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BIL.DTO;
 using BIL.Extensions;
+using BIL.Services;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -23,21 +25,7 @@ namespace api.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddUser(UserForListDTO user)
-        {
-            if(user == null)
-            {
-                BadRequest();
-            }
-
-            if(await _userService.AddUser(user))
-                return Ok(user);
-            return BadRequest();
-        }
-
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
             var currentId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -57,7 +45,6 @@ namespace api.Controllers
         }
 
         [HttpGet("{id}", Name = "GetUser")]
-        [Authorize]
         public async Task<IActionResult> GetUser(int id)
         {
             var userToReturn = await _userService.GetUser(id);
@@ -69,7 +56,6 @@ namespace api.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
         public async Task<IActionResult> UpdateUser(int id, UserForUpdateDTO userForUpdate)
         {
             if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))//read value from token
@@ -81,5 +67,7 @@ namespace api.Controllers
            }
            return BadRequest("Some problem in Updating User");
         }
+
+        
     }
 }

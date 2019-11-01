@@ -4654,12 +4654,12 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "4.0.1",
           "CloudinaryDotNet": "1.3.1",
+          "DAL": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.0",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.0",
           "Microsoft.Extensions.DependencyInjection": "2.1.1",
-          "Microsoft.NETCore.App": "2.1.0",
-          "dal": "1.0.0"
+          "Microsoft.NETCore.App": "2.1.0"
         },
         "compile": {
           "bin/placeholder/BIL.dll": {}
@@ -4668,7 +4668,7 @@
           "bin/placeholder/BIL.dll": {}
         }
       },
-      "dal/1.0.0": {
+      "DAL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
@@ -4676,10 +4676,10 @@
           "Microsoft.NETCore.App": "2.1.0"
         },
         "compile": {
-          "bin/placeholder/dal.dll": {}
+          "bin/placeholder/DAL.dll": {}
         },
         "runtime": {
-          "bin/placeholder/dal.dll": {}
+          "bin/placeholder/DAL.dll": {}
         }
       }
     }
@@ -12672,10 +12672,10 @@
       "path": "../BIL/BIL.csproj",
       "msbuildProject": "../BIL/BIL.csproj"
     },
-    "dal/1.0.0": {
+    "DAL/1.0.0": {
       "type": "project",
-      "path": "../DAL/dal.csproj",
-      "msbuildProject": "../DAL/dal.csproj"
+      "path": "../DAL/DAL.csproj",
+      "msbuildProject": "../DAL/DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {

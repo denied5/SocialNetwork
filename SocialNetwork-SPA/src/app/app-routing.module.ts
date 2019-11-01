@@ -8,6 +8,8 @@ import { MemberDetailResolver } from './_resolver/member-detail.resolver';
 import { MemberEditComponent } from './member/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolver/member-edit.resolver';
 import { MemberListResolver } from './_resolver/member-list.resolver';
+import { FriendsComponent } from './friends/friends.component';
+import { FriendsResolver } from './_resolver/friends.resolver';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path: 'member/edit', component: MemberEditComponent,
       resolve: {user: MemberEditResolver}},
   {path: 'messages', component: MessagesComponent},
+  {path: 'friends', component: FriendsComponent,
+      resolve: {friends: FriendsResolver}},
   {path: '**', redirectTo: '', pathMatch: 'full'},
 ];
 

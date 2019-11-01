@@ -9,6 +9,7 @@ namespace DAL.UnitOfWork
         IUserRepository UserRepository {get;}
         IMessageRepository MessageRepository {get;}
         IPhotoRepository PhotoRepository {get;}
+        IFriendshipRepository FriendshipRepository { get; }
 
         Task<bool> SaveChanges();
     }

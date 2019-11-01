@@ -43,7 +43,7 @@ namespace BIL.Services
             return photoToReturn;
         }
 
-        private async Task<PhotoForCreationDTO> AddPhotoInCloudinary(PhotoForCreationDTO photoForCreationDTO)
+        private PhotoForCreationDTO AddPhotoInCloudinary(PhotoForCreationDTO photoForCreationDTO)
         {
             var file = photoForCreationDTO.File;
             var uploadResult = new ImageUploadResult();
@@ -73,7 +73,7 @@ namespace BIL.Services
         {
             var userFromRepo = await _unitOfWork.UserRepository.GetUser(userId);
 
-            var photoFromCloudinary = await AddPhotoInCloudinary(photoForCreationDTO);
+            var photoFromCloudinary = AddPhotoInCloudinary(photoForCreationDTO);
             var photoToUpload = _mapper.Map<Photo>(photoFromCloudinary);
 
             var photo = await _unitOfWork.PhotoRepository.AddPhotoForUser(photoToUpload, userFromRepo);

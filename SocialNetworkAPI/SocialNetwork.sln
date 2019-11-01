@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29306.81
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api", "API\api.csproj", "{528BE5B5-4BF1-4879-AF2C-E2BADE7E8CEF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIL", "BIL\BIL.csproj", "{2A48DD83-AF25-4272-A0E6-F34C020698F3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dal", "DAL\dal.csproj", "{EF704923-D77D-4305-A436-DEA4D924A433}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{EF704923-D77D-4305-A436-DEA4D924A433}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -12,6 +12,8 @@ namespace DAL.UnitOfWork
         private IUserRepository _userRepository;
         private IMessageRepository _messageRepository;
         public IPhotoRepository _photoRepository;
+        public IFriendshipRepository _friendshipRepository;
+
         public UnitOfWork(DataContext context)
         {
             _context = context;
@@ -39,6 +41,15 @@ namespace DAL.UnitOfWork
                 return _photoRepository = _photoRepository ?? new PhotoRepository(_context);
             }
         }
+
+        public IFriendshipRepository FriendshipRepository
+        {
+            get
+            {
+                return _friendshipRepository = _friendshipRepository ?? new FriendshipRepository(_context); 
+            }
+        }
+
 
         public void Dispose()
         {

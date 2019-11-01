@@ -22,5 +22,7 @@ namespace DAL.Models
         public ICollection<Photo> Photos { get; set; }
         public ICollection<Message> MessagesSent {get;set;}
         public ICollection<Message> MessagesReceived { get; set; }
+        public ICollection<Friendship> FriendshipsSent { get; set; }
+        public ICollection<Friendship> FriendshipsReceived { get; set; }
     }
 }
