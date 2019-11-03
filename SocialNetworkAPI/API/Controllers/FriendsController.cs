@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using BIL.DTO;
 using BIL.Services.Interrfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace api.Controllers
 {
     [Route("api/users/{userId}/friendship")]
     [ApiController]
+    [Authorize]
     public class FriendsController : ControllerBase
     {
 
