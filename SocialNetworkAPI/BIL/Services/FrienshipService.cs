@@ -66,6 +66,25 @@ namespace BIL.Services
             return friendsToReturn;
         }
 
+        public async Task<IEnumerable<UserForListDTO>> GetRequsts (int userId)
+        {
+            var friendshipsRequsted = await _unitOfWork.FriendshipRepository.GetFriendshipsRequest(userId);
+            var friendshipsSent = await _unitOfWork.FriendshipRepository.GetFriendshipsSent(userId);
+            var requstsFromRepo = await _unitOfWork.UserRepository.GetUsers();
+
+            var requstsId = friendshipsRequsted.Where(r =>
+                                friendshipsSent.Where(s => s.SenderId == r.RecipientId && s.RecipientId == r.SenderId).FirstOrDefault() == null).Select(i => i.SenderId);
+
+
+
+            requstsFromRepo = requstsFromRepo.Where(u => requstsId.Contains(u.Id));
+
+            var requstsToReturn = _mapper.Map<IEnumerable<UserForListDTO>>(requstsFromRepo);
+
+            return requstsToReturn;
+
+        }
+
         public async Task<bool> DeleteFriendship(int userId, int recipientId)
         {
             var userFromRepo = await _unitOfWork.UserRepository.GetUser(userId);

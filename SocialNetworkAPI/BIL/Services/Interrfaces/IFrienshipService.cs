@@ -11,6 +11,7 @@ namespace BIL.Services.Interrfaces
         Task<bool> IsFriendshipExsist(int senderId, int recipientId);
         Task<bool> AddFriend(int senderId, int recipientId);
         Task<IEnumerable<UserForListDTO>> GetFriends(int userId);
+        Task<IEnumerable<UserForListDTO>> GetRequsts(int userId);
         Task<bool> DeleteFriendship(int userId, int recipientId);
     }
 }

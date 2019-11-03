@@ -21,7 +21,7 @@ const routes: Routes = [
       resolve: {user: MemberEditResolver}},
   {path: 'messages', component: MessagesComponent},
   {path: 'friends', component: FriendsComponent,
-      resolve: {friends: FriendsResolver}},
+      resolve: {users: FriendsResolver}},
   {path: '**', redirectTo: '', pathMatch: 'full'},
 ];
 

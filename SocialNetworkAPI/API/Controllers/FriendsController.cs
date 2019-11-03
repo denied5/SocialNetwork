@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BIL.DTO;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -51,8 +52,13 @@ namespace api.Controllers
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))//read value from token
                 return Unauthorized();
-            var userToReturn = await _frienshipService.GetFriends(userId);
-            return Ok(userToReturn);
+
+            FriendsDTO friends = new FriendsDTO
+            {
+                Friends = await _frienshipService.GetFriends(userId),
+                Requests = await _frienshipService.GetRequsts(userId)
+            };
+            return Ok(friends);
         }
 
         [HttpDelete("{recipientId}")]

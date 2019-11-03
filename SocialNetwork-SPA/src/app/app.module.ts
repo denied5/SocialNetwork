@@ -49,7 +49,7 @@ export function tokenGetter() {
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
-      FriendsComponent
+      FriendsComponent,
    ],
    imports: [
       BrowserModule,

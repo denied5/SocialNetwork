@@ -18,6 +18,10 @@ export class FriendshipService {
     return this.http.get<User[]>(this.baseUrl + userId + '/friendship/');
   }
 
+  // getRequestedFriends(userId){
+  //   return this.http.get<User[]>()
+  // }
+
   deleteFriend(userId: number, recipientId: number){
     console.log("delete");
     return this.http.delete(this.baseUrl + userId + "/friendship/" + recipientId + '/');
