@@ -11,8 +11,10 @@ namespace DAL.UnitOfWork
         private readonly DataContext _context;
         private IUserRepository _userRepository;
         private IMessageRepository _messageRepository;
-        public IPhotoRepository _photoRepository;
-        public IFriendshipRepository _friendshipRepository;
+        private IPhotoRepository _photoRepository;
+        private IFriendshipRepository _friendshipRepository;
+        private IPostRepository _postRepository;
+
 
         public UnitOfWork(DataContext context)
         {
@@ -47,6 +49,14 @@ namespace DAL.UnitOfWork
             get
             {
                 return _friendshipRepository = _friendshipRepository ?? new FriendshipRepository(_context); 
+            }
+        }
+
+        public IPostRepository PostRepository
+        {
+            get
+            {
+                return _postRepository = _postRepository ?? new PostRepository(_context);
             }
         }
 
