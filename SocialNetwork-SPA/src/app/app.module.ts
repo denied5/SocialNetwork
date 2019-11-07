@@ -32,6 +32,10 @@ import { MemberListResolver } from './_resolver/member-list.resolver';
 import { FriendshipService } from './Services/friendship.service';
 import { FriendsComponent } from './friends/friends.component';
 import { FriendsResolver } from './_resolver/friends.resolver';
+import { MessagesResolver } from './_resolver/messages.resolver';
+import { MessageService } from './Services/message.service';
+import { MemberMessagesComponent } from './member/member-messages/member-messages.component';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -50,6 +54,8 @@ export function tokenGetter() {
       MemberEditComponent,
       PhotoEditorComponent,
       FriendsComponent,
+      MemberMessagesComponent,
+      TimeAgoPipe,
    ],
    imports: [
       BrowserModule,
@@ -78,11 +84,13 @@ export function tokenGetter() {
       AlertifyService,
       PhotoService,
       FriendshipService,
+      MessageService,
       ErrorInterceptorProvider,
       MemberDetailResolver,
       MemberEditResolver,
       MemberListResolver,
-      FriendsResolver
+      FriendsResolver,
+      MessagesResolver
    ],
    bootstrap: [
       AppComponent

@@ -16,6 +16,5 @@ namespace BIL.DTO
         }
 
         public int UserId { get; set; }
-        public string MessageContainer { get; set; } = "Unread";
     }
 }

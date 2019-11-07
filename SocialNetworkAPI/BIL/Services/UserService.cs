@@ -66,6 +66,14 @@ namespace BIL.Services
             return userToReturn;
         }
 
+        public async Task<bool> UpdateUserActivity(int userId)
+        {
+            var userFromRepo = await _unitOfWork.UserRepository.GetById(userId);
+            userFromRepo.LastActive = DateTime.Now;
+
+            return await _unitOfWork.SaveChanges();
+        }
+
         public async Task<PagedList<UserForListDTO>> GetUsers(UserParams userParams)
         {
             var usersFromRepo = await _unitOfWork.UserRepository.GetUsers();

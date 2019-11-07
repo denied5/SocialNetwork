@@ -26,6 +26,7 @@ namespace BIL.Services
         public async Task<MessageToReturnDTO> AddMessage(int userId, MessageForCreationDTO messageForCreationDTO)
         {
             var recipient = await _unitOfWork.UserRepository.GetUser(messageForCreationDTO.RecipientId);
+            var sernder = await _unitOfWork.UserRepository.GetUser(userId);
             messageForCreationDTO.SenderId = userId;
 
             if (recipient == null)
@@ -48,26 +49,16 @@ namespace BIL.Services
             return messageToReturn;
         }
 
-        public async Task<PagedList<MessageToReturnDTO>> GetMessagesForUser(MessageParams messageParams)
+        public async Task<PagedList<MessageToReturnDTO>> GetLastMessagesForUser(MessageParams messageParams)
         {
             var messages = await _unitOfWork.MessageRepository.GetMessages(messageParams.UserId);
 
-            switch(messageParams.MessageContainer)
-            {
-                case "Inbox":
-                    messages = messages.Where(u => u.RecipientId == messageParams.UserId);
-                    break;
-                case "Outbox":
-                    messages = messages.Where(u => u.SenderId == messageParams.UserId);
-                    break;
-                default:
-                    messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.IsRead == false);
-                    break;
-            }
-
-            messages = messages.OrderByDescending(d => d.MessageSent);
-            var messaggesToPaginate = _mapper.Map<IEnumerable<MessageToReturnDTO>>(messages);
-            return PagedList<MessageToReturnDTO>.Create(messaggesToPaginate, messageParams.PageNumber, messageParams.PageSize);
+            messages = messages.OrderByDescending(m => m.MessageSent);
+            var messagesToReturn = messages.Distinct(new MessagesComparer());
+            var messaggesToPaginate = _mapper.Map<IEnumerable<MessageToReturnDTO>>(messagesToReturn);
+            
+            return PagedList<MessageToReturnDTO>.Create(messaggesToPaginate,
+                messageParams.PageNumber, messageParams.PageSize);
         }
 
         public async Task<IEnumerable<MessageToReturnDTO>> GetMessageThread(int userId, int recipientId)
@@ -79,7 +70,49 @@ namespace BIL.Services
                                     || (u.RecipientId == recipientId && u.SenderId == userId))
                                     .OrderByDescending(m => m.MessageSent);
             var messagesToReturn = _mapper.Map<IEnumerable<MessageToReturnDTO>>(messages);
+
+            foreach (var message in messagesToReturn)
+            {
+                if (message.IsRead == false && message.RecipientId == userId)
+                {
+                    await MarkMessageAsRead(userId, message.Id);
+                }
+            }
             return messagesToReturn;
+        }
+
+        public async Task<bool> DeleteMessage(int id, int userId)
+        {
+            var messageFromRepo = await _unitOfWork.MessageRepository.GetById(id);
+            if (messageFromRepo.SenderId == userId)
+                messageFromRepo.SenderDeleted = true;
+
+            if (messageFromRepo.RecipientId == userId)
+                messageFromRepo.RecipientDeleted = true;
+
+            if (messageFromRepo.RecipientDeleted == true && messageFromRepo.SenderDeleted == true)
+                _unitOfWork.MessageRepository.Remove(messageFromRepo);
+
+            if (await _unitOfWork.SaveChanges())
+                return true;
+            return false;
+        }
+
+        public async Task<bool> MarkMessageAsRead(int userId, int id)
+        {
+            var messageFromRepo = await _unitOfWork.MessageRepository.GetById(id);
+
+            if (messageFromRepo.RecipientId != userId)
+                throw new Exception("You can't mark not your messages as Read");
+
+            messageFromRepo.IsRead = true;
+            messageFromRepo.DateRead = DateTime.Now;
+
+            if (await _unitOfWork.SaveChanges())
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

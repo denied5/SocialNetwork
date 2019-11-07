@@ -1,8 +1,10 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using api.Helpers;
 using API.Helpers;
 using BIL.DTO;
+using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using CloudinaryDotNet;
 using Microsoft.AspNetCore.Authorization;
@@ -11,6 +13,7 @@ using Microsoft.Extensions.Options;
 
 namespace API.Controllers
 {
+    [ServiceFilter(typeof(UpdateUserActivityFilter))]
     [Authorize]
     [ApiController]
     [Route("api/users/{userId}/photos")]

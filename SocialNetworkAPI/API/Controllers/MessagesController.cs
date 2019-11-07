@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BIL.DTO;
 using BIL.Extensions;
+using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    [ServiceFilter(typeof(UpdateUserActivityFilter))]
     [Route("api/users/{userId}/[controller]")]
     [ApiController]
     [Authorize]
@@ -43,6 +43,8 @@ namespace api.Controllers
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
+            if (messageForCreationDTO.RecipientId == userId)
+                return BadRequest("You can't do this!");
 
             var message = await _messagesService.AddMessage(userId, messageForCreationDTO);
 
@@ -57,7 +59,7 @@ namespace api.Controllers
 
             messageParams.UserId = userId;
 
-            var messagesFromRepo = await _messagesService.GetMessagesForUser(messageParams);
+            var messagesFromRepo = await _messagesService.GetLastMessagesForUser(messageParams);
 
             Response.AddPagination(messagesFromRepo.CurrentPage, messagesFromRepo.PageSize,
                 messagesFromRepo.TotalCount, messagesFromRepo.TotalPages);
@@ -75,6 +77,33 @@ namespace api.Controllers
             var messagesToReturn = await _messagesService.GetMessageThread(userId, recipientId);
 
             return Ok(messagesToReturn);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMessage(int id, int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            if(await _messagesService.DeleteMessage(id, userId))
+            {
+                return NoContent();
+            }
+
+            throw new Exception("Error deleting");
+        }
+
+        [HttpPost("{id}/read")]
+        public async Task<IActionResult> MarkMessageAsRead(int userId, int id)
+        {
+           if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+               return Unauthorized();
+
+            if (await _messagesService.MarkMessageAsRead(userId, id))
+            {
+                return NoContent();
+            }
+            return BadRequest();
         }
     }
 }

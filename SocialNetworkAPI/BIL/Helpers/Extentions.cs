@@ -37,6 +37,7 @@ namespace BIL.Extensions
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<IFrienshipService, FrienshipService>();
             services.AddScoped<IMessagesService, MessagesService>();
+            services.AddScoped<UpdateUserActivityFilter>();
             return services;
         }
 

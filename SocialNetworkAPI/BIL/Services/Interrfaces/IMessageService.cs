@@ -11,8 +11,10 @@ namespace BIL.Services.Interrfaces
     public interface IMessagesService
     {
         Task<MessageToReturnDTO> GetMessage(int id);
-        Task<PagedList<MessageToReturnDTO>> GetMessagesForUser(MessageParams messageParams);
         Task<IEnumerable<MessageToReturnDTO>> GetMessageThread(int userId, int recipientId);
         Task <MessageToReturnDTO> AddMessage(int userId, MessageForCreationDTO messageForCreationDTO);
+        Task<PagedList<MessageToReturnDTO>> GetLastMessagesForUser(MessageParams messageParams);
+        Task<bool> DeleteMessage(int id, int userId);
+        Task<bool> MarkMessageAsRead(int userId, int id);
     }
 }

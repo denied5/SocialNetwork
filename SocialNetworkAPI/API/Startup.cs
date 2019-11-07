@@ -39,7 +39,7 @@ namespace api
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
                             .GetBytes(Configuration.GetSection("AuthKey:Token").Value)),
                         ValidateIssuer = false,
                         ValidateAudience = false

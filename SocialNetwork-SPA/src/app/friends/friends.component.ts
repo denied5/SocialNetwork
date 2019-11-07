@@ -12,15 +12,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FriendsComponent implements OnInit {
   friends: User[];
-  request: User[];
+  followers: User[];
+  followings: User[];
   constructor(private friendshipService: FriendshipService, private authService: AuthService,
     private alertify: AlertifyService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      debugger;
       this.friends = data.users.friends;
-      this.request = data.users.requests;
+      this.followers = data.users.followers;
+      this.followings = data.users.followings;
     })
   }
 
@@ -34,23 +35,33 @@ export class FriendsComponent implements OnInit {
   //     }
   //   );
   //  }
-  addFriend(userid){
+  addFollower(userid){
     this.friendshipService.addFriend(this.authService.decodedToken.nameid , userid)
     .subscribe( () => {
-      debugger;
-      this.friends.push(this.request[this.request.findIndex(m => m.id === userid)]);
-      this.request.splice(this.request.findIndex(m => m.id === userid), 1);
+      this.friends.push(this.followers[this.followers.findIndex(m => m.id === userid)]);
+      this.followers.splice(this.followers.findIndex(m => m.id === userid), 1);
       this.alertify.success("You add friend");
     }, error => {
       this.alertify.error(error);
     });
   }
 
+  unfollow(userid){
+    this.alertify.confirm('Are you sure', () => {
+      this.friendshipService.deleteFriend(this.authService.decodedToken.nameid, userid).subscribe(() => {
+        this.followings.splice(this.followings.findIndex(m => m.id === userid), 1);
+        this.alertify.success('yyou unfollow');
+      }, error => {
+        this.alertify.error(error);
+      })
+    })
+     ;
+   }
 
  deleteFriend(userid){
   this.alertify.confirm('Are you sure', () => {
     this.friendshipService.deleteFriend(this.authService.decodedToken.nameid, userid).subscribe(() => {
-      this.request.push(this.friends[this.friends.findIndex(m => m.id === userid)]);
+      this.followers.push(this.friends[this.friends.findIndex(m => m.id === userid)]);
       this.friends.splice(this.friends.findIndex(m => m.id === userid), 1);
       this.alertify.success('message deleted');
     }, error => {

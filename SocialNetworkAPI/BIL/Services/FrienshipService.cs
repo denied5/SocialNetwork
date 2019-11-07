@@ -66,23 +66,40 @@ namespace BIL.Services
             return friendsToReturn;
         }
 
-        public async Task<IEnumerable<UserForListDTO>> GetRequsts (int userId)
+        public async Task<IEnumerable<UserForListDTO>> GetFollowers (int userId)
         {
             var friendshipsRequsted = await _unitOfWork.FriendshipRepository.GetFriendshipsRequest(userId);
             var friendshipsSent = await _unitOfWork.FriendshipRepository.GetFriendshipsSent(userId);
             var requstsFromRepo = await _unitOfWork.UserRepository.GetUsers();
 
-            var requstsId = friendshipsRequsted.Where(r =>
-                                friendshipsSent.Where(s => s.SenderId == r.RecipientId && s.RecipientId == r.SenderId).FirstOrDefault() == null).Select(i => i.SenderId);
+            var followersId = friendshipsRequsted.Where(r =>
+                                friendshipsSent.Where(s => s.SenderId == r.RecipientId && s.RecipientId == r.SenderId)
+                                    .FirstOrDefault() == null)
+                                .Select(i => i.SenderId);
 
-
-
-            requstsFromRepo = requstsFromRepo.Where(u => requstsId.Contains(u.Id));
+            requstsFromRepo = requstsFromRepo.Where(u => followersId.Contains(u.Id));
 
             var requstsToReturn = _mapper.Map<IEnumerable<UserForListDTO>>(requstsFromRepo);
 
             return requstsToReturn;
+        }
 
+        public async Task<IEnumerable<UserForListDTO>> GetFollowing (int userId)
+        {
+            var friendshipsRequsted = await _unitOfWork.FriendshipRepository.GetFriendshipsRequest(userId);
+            var friendshipsSent = await _unitOfWork.FriendshipRepository.GetFriendshipsSent(userId);
+            var requstsFromRepo = await _unitOfWork.UserRepository.GetUsers();
+
+            var followingId = friendshipsSent.Where(r =>
+                                friendshipsRequsted.Where(s => s.SenderId == r.RecipientId && s.RecipientId == r.SenderId)
+                                    .FirstOrDefault() == null)
+                                .Select(i => i.RecipientId);
+
+            requstsFromRepo = requstsFromRepo.Where(u => followingId.Contains(u.Id));
+
+            var requstsToReturn = _mapper.Map<IEnumerable<UserForListDTO>>(requstsFromRepo);
+
+            return requstsToReturn;
         }
 
         public async Task<bool> DeleteFriendship(int userId, int recipientId)

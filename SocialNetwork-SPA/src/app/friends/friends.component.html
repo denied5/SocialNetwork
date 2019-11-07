@@ -9,11 +9,19 @@
       </div>
     </div>
   </tab>
-  <tab heading="Requsts">
+  <tab heading="Followers">
     <div class="row m-3">
-        <div *ngFor="let user of request" class="col-sm-6 col-md-4 col-lg-4 col-xl-3">
+        <div *ngFor="let user of followers" class="col-sm-6 col-md-4 col-lg-4 col-xl-3">
             <app-member-card [user]="user"></app-member-card>
-            <button type="button" class="btn btn-success btn-sm" (click)="addFriend(user.id)" style="width: 100%;">Add Friend</button>
+            <button type="button" class="btn btn-success btn-sm" (click)="addFollower(user.id)" style="width: 100%;">Add Friend</button>
+          </div>
+    </div>
+  </tab>
+  <tab heading="Followings">
+    <div class="row m-3">
+        <div *ngFor="let user of followings" class="col-sm-6 col-md-4 col-lg-4 col-xl-3">
+            <app-member-card [user]="user"></app-member-card>
+            <button type="button" class="btn btn-danger btn-sm" (click)="unfollow(user.id)" style="width: 100%;">unfollow</button>
           </div>
     </div>
   </tab>

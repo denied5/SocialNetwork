@@ -1,18 +1,16 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using AutoMapper;
 using BIL.DTO;
 using BIL.Extensions;
-using BIL.Services;
+using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    [ServiceFilter(typeof(UpdateUserActivityFilter))]
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]

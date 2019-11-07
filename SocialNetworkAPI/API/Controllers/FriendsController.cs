@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
+using API.Helpers;
 using BIL.DTO;
+using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    [ServiceFilter(typeof(UpdateUserActivityFilter))]
     [Route("api/users/{userId}/friendship")]
     [ApiController]
     [Authorize]
@@ -58,7 +57,8 @@ namespace api.Controllers
             FriendsDTO friends = new FriendsDTO
             {
                 Friends = await _frienshipService.GetFriends(userId),
-                Requests = await _frienshipService.GetRequsts(userId)
+                Followers = await _frienshipService.GetFollowers(userId),
+                Followings = await _frienshipService.GetFollowing(userId),
             };
             return Ok(friends);
         }
