@@ -30,6 +30,8 @@ namespace BIL.Helpers
                 });
             CreateMap<Photo, PhotoForDetailedDTO>();
             CreateMap<Photo, PhotoForReturnDTO>();
+            CreateMap<Post, PostForReturnDTO>();
+            CreateMap<PostForCreatinDTO, Post>();
             CreateMap<PhotoForCreationDTO, Photo>();
             CreateMap<UserForUpdateDTO, User>();
             CreateMap<MessageForCreationDTO, Message>();

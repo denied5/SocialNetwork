@@ -62,6 +62,11 @@ namespace BIL.Services
         {
             var userFromRepo = await _unitOfWork.UserRepository.GetUser(id);
 
+            if (userFromRepo == null)
+            {
+                throw new Exception("User don't exsist");
+            }
+
             var userToReturn = _mapper.Map<UserForDetailedDTO>(userFromRepo);
             return userToReturn;
         }

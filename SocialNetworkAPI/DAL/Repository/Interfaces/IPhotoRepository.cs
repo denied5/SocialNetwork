@@ -5,7 +5,7 @@ namespace DAL.Repository.Interfaces
 {
     public interface IPhotoRepository:IRepository<Photo>
     {
-         Task<Photo> GetMainPhotoForUser(int userId);
+        Task<Photo> GetMainPhotoForUser(int userId);
         Task<Photo> AddPhotoForUser(Photo photo, User user);
 
     }
