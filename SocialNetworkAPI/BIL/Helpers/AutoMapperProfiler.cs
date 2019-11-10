@@ -34,7 +34,19 @@ namespace BIL.Helpers
                 .ForMember(m => m.UserKnownAs, opt => opt
                     .MapFrom(u => u.User.KnownAs))
                 .ForMember(m => m.UserPhotoUrl, opt => opt
-                    .MapFrom(u => u.User.Photos.FirstOrDefault(p => p.IsMain).URL));
+                    .MapFrom(u => u.User.Photos.FirstOrDefault(p => p.IsMain).URL))
+                .ForMember(m => m.Likers, opt => opt 
+                    .MapFrom(l => l.Likes));
+
+            CreateMap<Like, LikersDTO>()
+                .ForMember(m => m.KnownAs, opt =>
+                    opt.MapFrom(u => u.User.KnownAs))
+                .ForMember(m => m.PhotoUrl, opt =>
+                    opt.MapFrom(u => u.User.Photos.FirstOrDefault(p => p.IsMain).URL))
+                .ForMember(m => m.Id, opt => 
+                    opt.MapFrom(u => u.UserId));
+                    
+
             CreateMap<PostForCreatinDTO, Post>();
             CreateMap<PhotoForCreationDTO, Photo>();
             CreateMap<UserForUpdateDTO, User>();

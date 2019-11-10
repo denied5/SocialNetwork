@@ -1,13 +1,17 @@
 <div class="container mt-5">
     <div *ngFor="let post of feed" class="card border-secondary mb-3" style="">
         <div class="card-body" style="padding: 0px;">
-            <div class="card-header">
+            <div class="card-header" >
                 <img src={{post?.userPhotoUrl}} class="img-circle rounded-circle mr-1">
                 <strong>{{post.userKnownAs}}</strong>
-                <p style="display: inline-block; margin-left: 60%;">{{post.dateOfCreation | timeAgo}}</p>
+                <p class="timeAgo">{{post.dateOfCreation | timeAgo}}</p>
+                <span  class="like" (click)="setLike(post.id)" [ngClass]="{liked: isLiked(post.id)}">
+                    <i class="fa fa-heart">{{post.likers.length}}</i>
+                </span>
             </div>
-            <p class="card-text" style="margin: 20px;">{{post.content}}</p>
         </div>
+        <p class="card-text" style="margin: 20px;">{{post.content}}</p>
+
     </div>
 </div>
 

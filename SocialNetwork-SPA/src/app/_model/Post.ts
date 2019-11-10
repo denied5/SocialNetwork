@@ -1,3 +1,5 @@
+import { Likers } from './likers';
+
 export class Post {
     id: number;
     content: string;
@@ -5,4 +7,5 @@ export class Post {
     dateOfCreation: Date;
     userKnownAs: string;
     userPhotoUrl: string;
+    likers: Likers[];
 }

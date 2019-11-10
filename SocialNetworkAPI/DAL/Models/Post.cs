@@ -11,5 +11,6 @@ namespace DAL.Models
         public User User { get; set; }
         public int UserId { get; set; }
         public DateTime DateOfCreation { get; set; }
+        public ICollection<Like> Likes { get; set; }
     }
 }

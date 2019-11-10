@@ -29,6 +29,7 @@ namespace DAL.Repository
             var postsForReturn = _context.Posts
                                          .Where(p => p.UserId == userId)
                                          .Include(u => u.User)
+                                         .Include(l => l.Likes)
                                          .OrderByDescending(p => p.DateOfCreation);
 
             return postsForReturn;

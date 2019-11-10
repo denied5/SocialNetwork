@@ -11,6 +11,7 @@ namespace DAL.Data
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<Post>  Posts { get; set; }
+        public DbSet<Like> Like { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -37,6 +38,21 @@ namespace DAL.Data
                 .HasOne(u => u.Recipient)
                 .WithMany(f => f.FriendshipsSent)
                 .HasForeignKey(u => u.RecipientId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Like>()
+                .HasKey(k => new { k.PostId, k.UserId });
+
+            builder.Entity<Like>()
+                .HasOne(u => u.User)
+                .WithMany(l => l.Likes)
+                .HasForeignKey(u => u.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Like>()
+                .HasOne(p => p.Post)
+                .WithMany(l => l.Likes)
+                .HasForeignKey(p => p.PostId)
                 .OnDelete(DeleteBehavior.Restrict);
         }  
     }

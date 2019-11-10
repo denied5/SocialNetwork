@@ -12,3 +12,28 @@ table{
     margin-left: auto;
     box-shadow: 5px 5px 10px black;
 }
+
+.timeAgo {
+    position: absolute;
+    right: 20px; 
+    top: 95px;
+}
+
+.like {
+    cursor:pointer;
+    font-size: 30px;
+    position: absolute;
+    right: 20px; 
+    top: 15px;
+}
+
+.like :hover{
+    cursor:pointer;
+    font-size: 32px;
+    right: 18px;
+    top: 17px;
+}
+
+.liked {
+    color: red ;
+}

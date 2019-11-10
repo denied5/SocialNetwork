@@ -14,6 +14,7 @@ namespace DAL.UnitOfWork
         private IPhotoRepository _photoRepository;
         private IFriendshipRepository _friendshipRepository;
         private IPostRepository _postRepository;
+        private ILikeRepository _likeRepository;
 
 
         public UnitOfWork(DataContext context)
@@ -60,6 +61,13 @@ namespace DAL.UnitOfWork
             }
         }
 
+        public ILikeRepository LikeRepository
+        {
+            get
+            {
+                return _likeRepository = _likeRepository ?? new LikeRepository(_context);
+            }
+        }
 
         public void Dispose()
         {

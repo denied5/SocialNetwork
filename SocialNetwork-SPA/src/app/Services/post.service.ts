@@ -45,4 +45,8 @@ constructor(private http: HttpClient) { }
         })
       );
   }
+
+  setLike(postId: number, userId){
+    return this.http.post(this.baseUrl + 'posts/' + postId + '/like/' + userId, {});
+  }
 }

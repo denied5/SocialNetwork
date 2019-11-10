@@ -34,7 +34,7 @@ namespace BIL.Services
                 return _mapper.Map<PostForReturnDTO>(postToCreate);
             }
 
-            throw new Exception("Fail on save your post"); 
+            throw new Exception("Fail on save your post");
         }
 
         public async Task<PagedList<PostForReturnDTO>> GetFeed(PagedListParams param)

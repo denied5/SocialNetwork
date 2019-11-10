@@ -12,5 +12,6 @@ namespace BIL.DTO
         public DateTime DateOfCreation { get; set; }
         public string UserKnownAs { get; set; }
         public string UserPhotoUrl { get; set; }
+        public ICollection<LikersDTO> Likers { get; set; }
     }
 }

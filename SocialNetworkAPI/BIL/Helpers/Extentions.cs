@@ -38,6 +38,7 @@ namespace BIL.Extensions
             services.AddScoped<IFrienshipService, FrienshipService>();
             services.AddScoped<IMessagesService, MessagesService>();
             services.AddScoped<IPostService, PostService>();
+            services.AddScoped<ILikeService, LikeService>();
             services.AddScoped<UpdateUserActivityFilter>();
             return services;
         }

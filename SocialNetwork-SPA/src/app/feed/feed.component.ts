@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../_model/Post';
+import { Likers} from '../_model/likers';
 import { PostService } from '../Services/post.service';
 import { AlertifyService } from '../Services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
@@ -41,5 +42,33 @@ export class FeedComponent implements OnInit {
   pageChanged(event: any): void {
     this.pagination.CurrentPage = event.page;
     this.loadFeed();
+  }
+
+  setLike(postId: number){
+    debugger;
+    const post = this.feed.filter(p => p.id === postId)[0];
+    let liker: Likers = {
+      id: this.authService.currentUser.id,
+      knownAs: this.authService.currentUser.knownAs,
+      photoUrl: this.authService.currentUser.photoUrl
+    };
+
+    if (!this.isLiked(postId)) {
+      this.postService.setLike(postId, this.authService.decodedToken.nameid).
+        subscribe( () => {
+          post.likers.push(liker);
+        }, error => {
+          this.alertify.error(error);
+        })
+    }
+    else{
+      
+    }
+  }
+
+  isLiked(postId: number) {
+    const userId = this.authService.decodedToken.nameid;
+    const post = this.feed.filter(p => p.id === postId)[0];
+    return post.likers.filter(p => p.id == userId).length > 0;
   }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.Models
 {
-    class Like
+    public class Like
     {
         public int PostId { get; set; }
         public int UserId { get; set; }

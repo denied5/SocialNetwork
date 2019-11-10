@@ -11,6 +11,7 @@ namespace DAL.UnitOfWork
         IPhotoRepository PhotoRepository {get;}
         IFriendshipRepository FriendshipRepository { get; }
         IPostRepository PostRepository { get; }
+        ILikeRepository LikeRepository { get;  }
 
         Task<bool> SaveChanges();
     }
