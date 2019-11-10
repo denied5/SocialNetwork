@@ -1,4 +1,5 @@
 import { Photo } from './Photo';
+import { Post } from './Post';
 
 export interface User {
     id: number;
@@ -15,4 +16,5 @@ export interface User {
     introduction?: string;
     lookingFor?: string;
     photos?: Photo[];
+    posts?: Post[];
 }

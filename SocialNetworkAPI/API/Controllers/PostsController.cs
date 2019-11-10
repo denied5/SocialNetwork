@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BIL.DTO;
+using BIL.Extensions;
+using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -11,9 +13,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-    [Route("api/users/{userId}/[controller]")]
+    [ServiceFilter(typeof(UpdateUserActivityFilter))]
     [ApiController]
     [Authorize]
+    [Route("api/users/{userId}/[controller]")]
     public class PostsController : ControllerBase 
     {
         private readonly IPostService _postService;
@@ -28,7 +31,7 @@ namespace api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPosts(int userId)
         {
-            var userFromRepo = _userService.GetUser(userId);
+            var userFromRepo = await _userService.GetUser(userId);
             if (userFromRepo == null)
             {
                 return BadRequest("User don't exsist");
@@ -41,14 +44,30 @@ namespace api.Controllers
         [HttpGet("{id}", Name = "GetPost")]
         public async Task<IActionResult> GetPost(int userId, int id)
         {
-            var userFromRepo = _userService.GetUser(userId);
+            var userFromRepo = await _userService.GetUser(userId);
             if (userFromRepo == null)
             {
                 return BadRequest("User don't exsist");
             }
 
-            var postToRetrun = _postService.GetPost(id);
+            var postToRetrun = await _postService.GetPost(id);
             return Ok(postToRetrun);
+        }
+
+        [HttpGet("feed")]
+        public async Task<IActionResult> GetFeed(int userId, [FromQuery]PagedListParams postParams)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            postParams.UserId = userId;
+
+            var feedFromRepo = await _postService.GetFeed(postParams);
+            Response.AddPagination(feedFromRepo.CurrentPage, feedFromRepo.PageSize,
+                feedFromRepo.TotalCount, feedFromRepo.TotalPages);
+
+            List<PostForReturnDTO> feedToReturn = feedFromRepo;
+            return Ok(feedToReturn);
         }
 
         [HttpPost]

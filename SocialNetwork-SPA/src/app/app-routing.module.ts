@@ -11,20 +11,24 @@ import { MemberListResolver } from './_resolver/member-list.resolver';
 import { FriendsComponent } from './friends/friends.component';
 import { FriendsResolver } from './_resolver/friends.resolver';
 import { MessagesResolver } from './_resolver/messages.resolver';
+import { FeedComponent } from './feed/feed.component';
+import { FeedResolver } from './_resolver/feed.resolver';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'members', component: PeoplesComponent,
-      resolve: {users: MemberListResolver}},
-  {path: 'members/:id', component: MemberDetailComponent,
-      resolve: {user: MemberDetailResolver}},
-  {path: 'member/edit', component: MemberEditComponent,
-      resolve: {user: MemberEditResolver}},
-  {path: 'messages', component: MessagesComponent, 
-      resolve: {messages: MessagesResolver}},
-  {path: 'friends', component: FriendsComponent,
-      resolve: {users: FriendsResolver}},
-  {path: '**', redirectTo: '', pathMatch: 'full'},
+    {path: '', component: HomeComponent},
+    {path: 'members', component: PeoplesComponent,
+        resolve: {users: MemberListResolver}},
+    {path: 'members/:id', component: MemberDetailComponent,
+        resolve: {user: MemberDetailResolver}},
+    {path: 'member/edit', component: MemberEditComponent,
+        resolve: {user: MemberEditResolver}},
+    {path: 'messages', component: MessagesComponent,
+        resolve: {messages: MessagesResolver}},
+    {path: 'friends', component: FriendsComponent,
+        resolve: {users: FriendsResolver}},
+    {path: 'feed', component: FeedComponent,
+        resolve: {feed: FeedResolver}},
+    {path: '**', redirectTo: '', pathMatch: 'full'},
 ];
 
 @NgModule({

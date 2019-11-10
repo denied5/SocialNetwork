@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BIL.DTO;
+using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using DAL.Models;
 using DAL.UnitOfWork;
@@ -13,11 +15,13 @@ namespace BIL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IFrienshipService _frienshipService;
 
-        public PostService(IUnitOfWork unitOfWork, IMapper mapper)
+        public PostService(IUnitOfWork unitOfWork, IMapper mapper, IFrienshipService frienshipService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _frienshipService = frienshipService;
         }
 
         public async Task<PostForReturnDTO> CreatePost(PostForCreatinDTO post)
@@ -33,9 +37,20 @@ namespace BIL.Services
             throw new Exception("Fail on save your post"); 
         }
 
-        public async Task<IEnumerable<PostForReturnDTO>> GetFeed(int userId)
+        public async Task<PagedList<PostForReturnDTO>> GetFeed(PagedListParams param)
         {
-            throw new System.NotImplementedException();
+            var feedFromRepo = _unitOfWork.PostRepository.GetPosts(param.UserId);
+            var friendsId = (await _frienshipService.GetFriends(param.UserId)).Select(f => f.Id);
+
+            foreach (var id in friendsId)
+            {
+                feedFromRepo = feedFromRepo.Concat(_unitOfWork.PostRepository.GetPosts(id));
+            }
+            feedFromRepo = feedFromRepo.OrderByDescending(p => p.DateOfCreation);
+
+            var feedToReturn = _mapper.Map<IEnumerable<PostForReturnDTO>>(feedFromRepo);
+
+            return PagedList<PostForReturnDTO>.Create(feedToReturn, param.CurrentPage, param.PageSize);
         }
 
         public async Task<PostForReturnDTO> GetPost(int id)
@@ -45,7 +60,7 @@ namespace BIL.Services
             return _mapper.Map<PostForReturnDTO>(postForReturn);
         }
 
-        public async Task<IEnumerable<PostForReturnDTO>> GetPosts(int userId)
+        public IEnumerable<PostForReturnDTO> GetPosts(int userId)
         {
             var postsForReturn = _unitOfWork.PostRepository.GetPosts(userId);
 

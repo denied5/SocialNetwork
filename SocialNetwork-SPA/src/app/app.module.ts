@@ -35,7 +35,10 @@ import { FriendsResolver } from './_resolver/friends.resolver';
 import { MessagesResolver } from './_resolver/messages.resolver';
 import { MessageService } from './Services/message.service';
 import { MemberMessagesComponent } from './member/member-messages/member-messages.component';
-import {TimeAgoPipe} from 'time-ago-pipe';
+import { TimeAgoPipe } from 'time-ago-pipe';
+import { FeedComponent } from './feed/feed.component';
+import { PostsEditorComponent } from './member/posts-editor/posts-editor.component';
+import { FeedResolver } from './_resolver/feed.resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -56,6 +59,8 @@ export function tokenGetter() {
       FriendsComponent,
       MemberMessagesComponent,
       TimeAgoPipe,
+      FeedComponent,
+      PostsEditorComponent, 
    ],
    imports: [
       BrowserModule,
@@ -90,7 +95,8 @@ export function tokenGetter() {
       MemberEditResolver,
       MemberListResolver,
       FriendsResolver,
-      MessagesResolver
+      MessagesResolver,
+      FeedResolver
    ],
    bootstrap: [
       AppComponent

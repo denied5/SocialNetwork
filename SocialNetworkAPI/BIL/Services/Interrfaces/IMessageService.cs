@@ -13,7 +13,7 @@ namespace BIL.Services.Interrfaces
         Task<MessageToReturnDTO> GetMessage(int id);
         Task<IEnumerable<MessageToReturnDTO>> GetMessageThread(int userId, int recipientId);
         Task <MessageToReturnDTO> AddMessage(int userId, MessageForCreationDTO messageForCreationDTO);
-        Task<PagedList<MessageToReturnDTO>> GetLastMessagesForUser(MessageParams messageParams);
+        Task<PagedList<MessageToReturnDTO>> GetLastMessagesForUser(PagedListParams messageParams);
         Task<bool> DeleteMessage(int id, int userId);
         Task<bool> MarkMessageAsRead(int userId, int id);
     }

@@ -20,17 +20,18 @@ namespace DAL.Repository
 
         public Task<Post> GetPost(int id)
         {
-            var postForRetrun = _context.Posts
-                                              .FirstOrDefaultAsync(p => p.Id == id);
+            var postForRetrun = _context.Posts.FirstOrDefaultAsync(p => p.Id == id);
             return postForRetrun;
         }
 
         public IEnumerable<Post> GetPosts(int userId)
         {
             var postsForReturn = _context.Posts
-                                         .Where(p => p.UserId == userId);
+                                         .Where(p => p.UserId == userId)
+                                         .Include(u => u.User)
+                                         .OrderByDescending(p => p.DateOfCreation);
 
-            return (IEnumerable<Post>)postsForReturn;
+            return postsForReturn;
         }
     }
 }

@@ -8,8 +8,9 @@ namespace BIL.DTO
     {
         public int Id { get; set; }
         public string Content { get; set; }
-        public IEnumerable<UserForListDTO> Likes { get; set; }
         public int UserId { get; set; }
         public DateTime DateOfCreation { get; set; }
+        public string UserKnownAs { get; set; }
+        public string UserPhotoUrl { get; set; }
     }
 }

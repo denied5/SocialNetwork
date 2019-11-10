@@ -30,7 +30,11 @@ namespace BIL.Helpers
                 });
             CreateMap<Photo, PhotoForDetailedDTO>();
             CreateMap<Photo, PhotoForReturnDTO>();
-            CreateMap<Post, PostForReturnDTO>();
+            CreateMap<Post, PostForReturnDTO>()
+                .ForMember(m => m.UserKnownAs, opt => opt
+                    .MapFrom(u => u.User.KnownAs))
+                .ForMember(m => m.UserPhotoUrl, opt => opt
+                    .MapFrom(u => u.User.Photos.FirstOrDefault(p => p.IsMain).URL));
             CreateMap<PostForCreatinDTO, Post>();
             CreateMap<PhotoForCreationDTO, Photo>();
             CreateMap<UserForUpdateDTO, User>();

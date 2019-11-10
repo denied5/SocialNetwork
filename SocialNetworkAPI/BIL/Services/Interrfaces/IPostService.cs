@@ -1,4 +1,5 @@
 ﻿using BIL.DTO;
+using BIL.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +11,7 @@ namespace BIL.Services.Interrfaces
     {
         Task<PostForReturnDTO> GetPost(int id);
         Task<PostForReturnDTO> CreatePost(PostForCreatinDTO post);
-        Task<IEnumerable<PostForReturnDTO>> GetFeed(int userId);
-        Task<IEnumerable<PostForReturnDTO>> GetPosts(int userId);
+        Task<PagedList<PostForReturnDTO>> GetFeed(PagedListParams param);
+        IEnumerable<PostForReturnDTO> GetPosts(int userId);
     }
 }

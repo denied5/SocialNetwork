@@ -1,0 +1,14 @@
+table{ 
+    margin-top: 15px;
+}
+
+.img-circle{
+    max-height: 50px;
+}
+
+.card {
+    max-width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 5px 5px 10px black;
+}

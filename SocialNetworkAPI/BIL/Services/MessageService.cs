@@ -49,7 +49,7 @@ namespace BIL.Services
             return messageToReturn;
         }
 
-        public async Task<PagedList<MessageToReturnDTO>> GetLastMessagesForUser(MessageParams messageParams)
+        public async Task<PagedList<MessageToReturnDTO>> GetLastMessagesForUser(PagedListParams messageParams)
         {
             var messages = await _unitOfWork.MessageRepository.GetMessages(messageParams.UserId);
 
@@ -58,7 +58,7 @@ namespace BIL.Services
             var messaggesToPaginate = _mapper.Map<IEnumerable<MessageToReturnDTO>>(messagesToReturn);
             
             return PagedList<MessageToReturnDTO>.Create(messaggesToPaginate,
-                messageParams.PageNumber, messageParams.PageSize);
+                messageParams.CurrentPage, messageParams.PageSize);
         }
 
         public async Task<IEnumerable<MessageToReturnDTO>> GetMessageThread(int userId, int recipientId)

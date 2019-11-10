@@ -63,6 +63,9 @@
               <app-photo-editor [photos]="user.photos"
               (getMemberPhotoChenge)="updateMainPhoto($event)"></app-photo-editor>
           </tab>
+          <tab heading="Your Posts">
+              <app-posts-editor></app-posts-editor>
+          </tab>
         </tabset> 
       </div>
     </div>

@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AlertifyService } from 'src/app/Services/alertify.service';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { TabsetComponent } from 'ngx-bootstrap';
+import { PostService } from 'src/app/Services/post.service';
+import { Post } from 'src/app/_model/Post';
 
 @Component({
   selector: 'app-member-detail',
@@ -16,8 +18,9 @@ export class MemberDetailComponent implements OnInit {
   user: User;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  constructor(private userService: UserService, private route: ActivatedRoute, 
-    private alertify: AlertifyService) { }
+  posts: Post[];
+  constructor(private userService: UserService, private route: ActivatedRoute,
+    private alertify: AlertifyService, private postService: PostService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -28,7 +31,7 @@ export class MemberDetailComponent implements OnInit {
       const selectTab = params['tab'];
       this.memberTabs.tabs[selectTab > 0 ? selectTab: 0].active = true;
     })
-
+    this.loadPosts();
     this.galleryOptions = [
       {
         width: '500px',
@@ -57,5 +60,16 @@ export class MemberDetailComponent implements OnInit {
 
   selectTab(tabId: number) {
     this.memberTabs.tabs[tabId].active = true;
+  }
+
+  loadPosts(){
+    this.postService.getPosts(this.user.id).subscribe(
+      posts => {
+        this.posts = posts;
+      },
+      error => {
+        this.alertify.error(error);
+      }
+    )
   }
 }
