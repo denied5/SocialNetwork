@@ -31,12 +31,12 @@ namespace DAL.Repository
 
         public async Task<User> GetMainUser(string username)
         {
-            return await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower());
+            return await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(x => x.UserName.ToLower() == username.ToLower());
         }
 
         public async Task<bool> UserExsist(string username)
         {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Username == username) == null ? false : true;
+            return await _context.Users.FirstOrDefaultAsync(x => x.UserName == username) == null ? false : true;
         }
     }
 }

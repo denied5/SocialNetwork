@@ -31,6 +31,7 @@ namespace api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+            Mapper.Reset();
             services.AddAutoMapper();
             services.SetUpAppDependencies(Configuration.GetConnectionString("BloggingDatabase"));
             services.SetUpScopes();

@@ -27,13 +27,11 @@ namespace api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDTO user)
         {
-            if (await _userService.UserExsist(user.Username))
-                return BadRequest("Username already exsist");
-
             var createdUser = await _authService.Register(user);
             if (createdUser is null)
                 return BadRequest("Fail to create user");
-            return Ok(createdUser);
+            return CreatedAtRoute("GetUser",
+                new { controller = "Users", id = createdUser.Id}, createdUser);
         }
 
         [HttpPost("login")]
