@@ -60,7 +60,7 @@ export function tokenGetter() {
       MemberMessagesComponent,
       TimeAgoPipe,
       FeedComponent,
-      PostsEditorComponent, 
+      PostsEditorComponent,
    ],
    imports: [
       BrowserModule,

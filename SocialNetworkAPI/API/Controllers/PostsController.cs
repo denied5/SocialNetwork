@@ -63,6 +63,10 @@ namespace api.Controllers
             postParams.UserId = userId;
 
             var feedFromRepo = await _postService.GetFeed(postParams);
+            if (feedFromRepo == null)
+            {
+                return NoContent();
+            }
             Response.AddPagination(feedFromRepo.CurrentPage, feedFromRepo.PageSize,
                 feedFromRepo.TotalCount, feedFromRepo.TotalPages);
 

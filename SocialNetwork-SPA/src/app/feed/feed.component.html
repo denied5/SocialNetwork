@@ -1,3 +1,7 @@
+<div *ngIf="feed.length === 0">
+    <p>Add friemds to see new posts</p>
+</div>
+
 <div class="container mt-5">
     <div *ngFor="let post of feed" class="card border-secondary mb-3" style="">
         <div class="card-body" style="padding: 0px;">

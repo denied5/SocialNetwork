@@ -49,4 +49,8 @@ constructor(private http: HttpClient) { }
   setLike(postId: number, userId){
     return this.http.post(this.baseUrl + 'posts/' + postId + '/like/' + userId, {});
   }
+
+  deleteLike(postId: number, userId: number) {
+    return this.http.delete(this.baseUrl + 'posts/' + postId + '/like/' + userId);
+  }
 }

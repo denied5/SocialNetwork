@@ -17,19 +17,19 @@ namespace DAL.Repository
             _context = context;
         }
 
-        public async Task<Friendship> GetFriendship(int senderId, int recipientId)
+        public Friendship GetFriendship(int senderId, int recipientId)
         {
             return _context.Friendships.FirstOrDefault(u => u.SenderId == senderId && u.RecipientId == recipientId);
         }
 
-        public async Task<IEnumerable<Friendship>> GetFriendshipsSent(int userid)
+        public IEnumerable<Friendship> GetFriendshipsSent(int userid)
         {
-            return _context.Friendships.Where(u => u.SenderId == userid );
+            return _context.Friendships.Where(u => u.SenderId == userid);
         }
 
-        public async Task<IEnumerable<Friendship>> GetFriendshipsRequest(int userid)
+        public IEnumerable<Friendship> GetFriendshipsRequest(int userid)
         {
-            return _context.Friendships.Where(u =>  u.RecipientId == userid);
+            return _context.Friendships.Where(u => u.RecipientId == userid);
         }
 
     }

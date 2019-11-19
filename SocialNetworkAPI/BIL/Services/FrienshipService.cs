@@ -24,7 +24,7 @@ namespace BIL.Services
 
         public async Task<bool> IsFriendshipExsist (int senderId, int recipientId)
         {
-            var friendship = await _unitOfWork.FriendshipRepository.GetFriendship(senderId, recipientId);
+            var friendship = _unitOfWork.FriendshipRepository.GetFriendship(senderId, recipientId);
             if (friendship == null)
             {
                 return false;
@@ -50,8 +50,8 @@ namespace BIL.Services
 
         public async Task<IEnumerable<UserForListDTO>> GetFriends(int userId)
         {
-            var friendshipsRequsted = (await _unitOfWork.FriendshipRepository.GetFriendshipsRequest(userId)).ToList();
-            var friendshipsSent = (await _unitOfWork.FriendshipRepository.GetFriendshipsSent(userId)).ToList();
+            var friendshipsRequsted = (_unitOfWork.FriendshipRepository.GetFriendshipsRequest(userId)).ToList();
+            var friendshipsSent = (_unitOfWork.FriendshipRepository.GetFriendshipsSent(userId)).ToList();
             var friendsFromRepo = await _unitOfWork.UserRepository.GetUsers();
 
             var friendsId = friendshipsSent.Where(s =>
@@ -68,8 +68,8 @@ namespace BIL.Services
 
         public async Task<IEnumerable<UserForListDTO>> GetFollowers (int userId)
         {
-            var friendshipsRequsted = await _unitOfWork.FriendshipRepository.GetFriendshipsRequest(userId);
-            var friendshipsSent = await _unitOfWork.FriendshipRepository.GetFriendshipsSent(userId);
+            var friendshipsRequsted = _unitOfWork.FriendshipRepository.GetFriendshipsRequest(userId);
+            var friendshipsSent = _unitOfWork.FriendshipRepository.GetFriendshipsSent(userId);
             var requstsFromRepo = await _unitOfWork.UserRepository.GetUsers();
 
             var followersId = friendshipsRequsted.Where(r =>
@@ -86,8 +86,8 @@ namespace BIL.Services
 
         public async Task<IEnumerable<UserForListDTO>> GetFollowing (int userId)
         {
-            var friendshipsRequsted = await _unitOfWork.FriendshipRepository.GetFriendshipsRequest(userId);
-            var friendshipsSent = await _unitOfWork.FriendshipRepository.GetFriendshipsSent(userId);
+            var friendshipsRequsted = _unitOfWork.FriendshipRepository.GetFriendshipsRequest(userId);
+            var friendshipsSent = _unitOfWork.FriendshipRepository.GetFriendshipsSent(userId);
             var requstsFromRepo = await _unitOfWork.UserRepository.GetUsers();
 
             var followingId = friendshipsSent.Where(r =>

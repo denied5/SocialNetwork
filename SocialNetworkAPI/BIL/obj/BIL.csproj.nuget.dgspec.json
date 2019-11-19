@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj": {
-                "projectPath": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj"
+              "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj"
               }
             }
           }
@@ -48,6 +48,14 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[4.0.1, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.3.1, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.1.1, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -75,12 +83,12 @@
         }
       }
     },
-    "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj": {
+    "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj",
-        "projectName": "dal",
-        "projectPath": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj",
+        "projectUniqueName": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj",
+        "projectName": "DAL",
+        "projectPath": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\lstel\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\obj\\",
         "projectStyle": "PackageReference",

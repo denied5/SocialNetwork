@@ -9,8 +9,8 @@ namespace DAL.Repository.Interfaces
 {
     public interface IFriendshipRepository : IRepository<Friendship>
     {
-        Task<Friendship> GetFriendship(int senderId, int recipientId);
-        Task<IEnumerable<Friendship>> GetFriendshipsSent(int userid);
-        Task<IEnumerable<Friendship>> GetFriendshipsRequest(int userid);
+        Friendship GetFriendship(int senderId, int recipientId);
+        IEnumerable<Friendship> GetFriendshipsSent(int userid);
+        IEnumerable<Friendship> GetFriendshipsRequest(int userid);
     }
 }

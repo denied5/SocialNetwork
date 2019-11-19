@@ -47,6 +47,8 @@ namespace BIL.Services
                 feedFromRepo = feedFromRepo.Concat(_unitOfWork.PostRepository.GetPosts(id));
             }
             feedFromRepo = feedFromRepo.OrderByDescending(p => p.DateOfCreation);
+            if (feedFromRepo.Count() == 0)
+                return null;
 
             var feedToReturn = _mapper.Map<IEnumerable<PostForReturnDTO>>(feedFromRepo);
 

@@ -11,6 +11,7 @@ export class PhotoService {
   constructor(private http: HttpClient) { }
 
   setMainPhoto(userId: number, id: number) {
+    debugger;
     return this.http.post( this.baseUrl + 'users/' + userId + '/photos/' + id + '/setMain', {});
   }
 
