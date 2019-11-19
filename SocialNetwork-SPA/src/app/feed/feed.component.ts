@@ -17,17 +17,18 @@ export class FeedComponent implements OnInit {
   pagination: Pagination;
   userId: number;
   constructor(private postService: PostService, private alertify: AlertifyService,
-              private route: ActivatedRoute, private authService: AuthService) { }
+    private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
     this.route.data.subscribe( data => {
       this.feed = data.feed.result;
       this.pagination = data.feed.pagination;
-    });
+    })
     this.userId = this.authService.decodedToken.nameid;
   }
 
-  loadFeed() {
+  loadFeed()
+  {
     this.postService.getFeed(this.userId, this.pagination.CurrentPage, this.pagination.ItemsPerPage)
       .subscribe((res: PaginatedResult<Post[]>) => {
         debugger;
@@ -43,29 +44,25 @@ export class FeedComponent implements OnInit {
     this.loadFeed();
   }
 
-  setLike(postId: number) {
-    const userid = this.authService.decodedToken.nameid;
+  setLike(postId: number){
+    debugger;
     const post = this.feed.filter(p => p.id === postId)[0];
-    const liker: Likers = {
+    let liker: Likers = {
       id: this.authService.currentUser.id,
       knownAs: this.authService.currentUser.knownAs,
       photoUrl: this.authService.currentUser.photoUrl
     };
 
     if (!this.isLiked(postId)) {
-      this.postService.setLike(postId, userid).
+      this.postService.setLike(postId, this.authService.decodedToken.nameid).
         subscribe( () => {
           post.likers.push(liker);
         }, error => {
           this.alertify.error(error);
-        });
-    } else {
-      this.postService.deleteLike(postId, userid).
-        subscribe(() => {
-          post.likers.splice(post.likers.findIndex(p => p.id == userid, 1));
-        }, error => {
-          this.alertify.error(error);
-        });
+        })
+    }
+    else{
+      
     }
   }
 

@@ -35,5 +35,3 @@ D:\education\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.dll
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.pdb
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Mvc.Abstractions.dll
 D:\education\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Mvc.Abstractions.xml
-C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Mvc.Abstractions.dll
-C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Mvc.Abstractions.xml

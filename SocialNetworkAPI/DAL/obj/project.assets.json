@@ -3124,9 +3124,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj",
-      "projectName": "DAL",
-      "projectPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj",
+      "projectUniqueName": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj",
+      "projectName": "dal",
+      "projectPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj",
       "packagesPath": "C:\\Users\\Udav 2\\.nuget\\packages\\",
       "outputPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\DAL\\obj\\",
       "projectStyle": "PackageReference",
@@ -3163,23 +3163,16 @@
             "version": "[2.1.0, )"
           },
           "Microsoft.NETCore.App": {
-            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
           }
         },
         "imports": [
-          "net461",
-          "net462",
-          "net47",
-          "net471",
-          "net472",
-          "net48"
+          "net461"
         ],
         "assetTargetFallback": true,
-        "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "warn": true
       }
     }
   }
