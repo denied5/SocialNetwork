@@ -3,6 +3,8 @@ using BIL.DTO;
 using BIL.Services.Interrfaces;
 using DAL.Models;
 using DAL.UnitOfWork;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -18,11 +20,16 @@ namespace BIL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public AuthService(IUnitOfWork unitOfWork, IMapper mapper)
+        public AuthService(IUnitOfWork unitOfWork, IMapper mapper, 
+            UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public string GenerateToken(UserForListDTO user, string keyWord)
@@ -52,36 +59,36 @@ namespace BIL.Services
 
         public async Task<UserForListDTO> LogIn(UserForLoginDTO user)
         {
-            var mainUser = await _unitOfWork.UserRepository.GetMainUser(user.Username);
+            var mainUser = await _userManager.FindByNameAsync(user.Username);
             if (mainUser == null)
                 return null;
 
-            Rfc2898DeriveBytes passwordHasher = new Rfc2898DeriveBytes(user.Password, mainUser.PasswordSalt, 1000);
-            byte[] tempHash = passwordHasher.GetBytes(16);
-            for (int i = 0; i < tempHash.Length; i++)
+            var result = await _signInManager
+                .CheckPasswordSignInAsync(mainUser, user.Password, false);
+
+            if (result.Succeeded)
             {
-                if (tempHash[i] != mainUser.PasswordHash[i])
-                    return null;
+                var appUser = await _userManager.Users.Include(p => p.Photos)
+                    .FirstOrDefaultAsync(u => u.NormalizedUserName == mainUser.UserName.ToUpper());
+
+                return _mapper.Map<UserForListDTO>(appUser);
             }
-            return _mapper.Map<UserForListDTO>(mainUser);
+
+            return null;
         }
 
-        public async Task<UserForRegisterDTO> Register(UserForRegisterDTO user)
+        public async Task<UserForDetailedDTO> Register(UserForRegisterDTO user)
         {
-            byte[] salt;
-            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
-
-            Rfc2898DeriveBytes passwordHasher = new Rfc2898DeriveBytes(user.Password, salt, 1000);
             var userToCreate = _mapper.Map<User>(user);
-            userToCreate.PasswordSalt = salt;
-            userToCreate.PasswordHash = passwordHasher.GetBytes(16);
-            userToCreate.Username = user.Username.ToLower();
 
-            _unitOfWork.UserRepository.Add(userToCreate);
+            var result = await _userManager.CreateAsync(userToCreate, user.Password);
 
-            if (await _unitOfWork.SaveChanges())
-                return user;
+            var userToReturn = _mapper.Map<UserForDetailedDTO>(userToCreate);
 
+            if (result.Succeeded)
+            {
+                return userToReturn;
+            }
             return null;
         }
     }
