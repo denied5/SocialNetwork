@@ -19,6 +19,9 @@
             <li class="nav-item" routerLinkActive="active">
               <a class="nav-link" [routerLink]="['/feed/']">Feed</a>
             </li>
+            <li *appHasRole="['Admin', 'Moderator']" class="nav-item" routerLinkActive="active">
+              <a class="nav-link" [routerLink]="['/admin']">Admin</a>
+            </li>
         </ul>
         <form *ngIf="!loggedIn()" class="form-inline my-2 my-lg-0">
             <button class="btn btn-secondary my-2 my-sm-0 mr-2" type="button" (click)="openModal(template)">SignIn</button>
@@ -31,8 +34,8 @@
             Hello {{authService.decodedToken?.unique_name}}
           </a>
           <div class="dropdown-menu  dropdown-menu-right" *dropdownMenu>
-            <a [routerLink]="['/member/edit']" type="button"  class="btn btn-outline-secondary dropdown-item"><i class="fa fa-user"></i>Edit Profile</a>
-            <a href="" class="dropdown-item btn btn-outline-secondary" type="button" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
+            <button [routerLink]="['/member/edit']" type="button"  class="btn btn-outline-secondary dropdown-item"><i class="fa fa-user"></i>Edit Profile</button>
+              <a href="" class="dropdown-item btn btn-outline-secondary" type="button" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
           </div>
         </div>
         
@@ -51,8 +54,8 @@
             <input class="form-control mr-sm-2 mt-2" type="text" name="username"
             placeholder="Username" required [(ngModel)]="model.username">
             <input class="form-control mr-sm-2 mt-2 mb-2" type="text" name="password"
-            placeholder="Password" required [(ngModel)]="model.password">       
-            <button class="btn btn-outline-success mr-2 my-2 my-sm-0 mt-2" (click)="modalRef.hide()" type="submit" >LogIn</button>
+            placeholder="Password" required [(ngModel)]="model.password">
+            <button [disabled]="!loginForm.valid" class="btn btn-outline-success mr-2 my-2 my-sm-0 mt-2" type="submit">Login</button>
           </form>
     </div>
   </ng-template>

@@ -1,3 +1,5 @@
 SocialNetwork-SPA/node_modules
 SocialNetworkAPI/API/appsettings.json
 /SocialNetworkAPI/.vs/SocialNetwork/v15/Server/sqlite3/db.lock
+.cache
+

@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿using DAL.Data;
+using DAL.Models;
 using DAL.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,9 +10,9 @@ namespace DAL.Repository
 {
     public class LikeRepository : Repository<Like>, ILikeRepository
     {
-        private readonly DbContext _context;
+        private readonly DataContext _context;
 
-        public LikeRepository(DbContext context) : base(context)
+        public LikeRepository(DataContext context) : base(context)
         {
             _context = context;
         }

@@ -59,6 +59,8 @@ namespace BIL.Extensions
             services.AddScoped<IMessagesService, MessagesService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<ILikeService, LikeService>();
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<Seed>();
             services.AddScoped<UpdateUserActivityFilter>();
             return services;
         }

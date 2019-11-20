@@ -15,6 +15,7 @@ namespace DAL.UnitOfWork
         private IFriendshipRepository _friendshipRepository;
         private IPostRepository _postRepository;
         private ILikeRepository _likeRepository;
+        private IRoleRepository _roleRepository;
 
 
         public UnitOfWork(DataContext context)
@@ -66,6 +67,14 @@ namespace DAL.UnitOfWork
             get
             {
                 return _likeRepository = _likeRepository ?? new LikeRepository(_context);
+            }
+        }
+
+        public IRoleRepository RoleRepository
+        {
+            get
+            {
+                return _roleRepository = _roleRepository ?? new RoleRepository(_context);
             }
         }
 

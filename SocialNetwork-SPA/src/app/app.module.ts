@@ -39,6 +39,13 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { FeedComponent } from './feed/feed.component';
 import { PostsEditorComponent } from './member/posts-editor/posts-editor.component';
 import { FeedResolver } from './_resolver/feed.resolver';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { AuthGuard } from './_resolver/auth.guard';
+import { PhotoMenegmentComponent } from './admin/photo-menegment/photo-menegment.component';
+import { UserMenegmentComponent } from './admin/user-menegment/user-menegment.component';
+import { AdminService } from './Services/admin.service';
+import { RoleModalComponent } from './admin/role-modal/role-modal.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -60,7 +67,12 @@ export function tokenGetter() {
       MemberMessagesComponent,
       TimeAgoPipe,
       FeedComponent,
-      PostsEditorComponent, 
+      PostsEditorComponent,
+      AdminPanelComponent,
+      HasRoleDirective,
+      PhotoMenegmentComponent,
+      UserMenegmentComponent,
+      RoleModalComponent
    ],
    imports: [
       BrowserModule,
@@ -96,7 +108,12 @@ export function tokenGetter() {
       MemberListResolver,
       FriendsResolver,
       MessagesResolver,
-      FeedResolver
+      FeedResolver,
+      AuthGuard,
+      AdminService
+   ],
+   entryComponents: [
+      RoleModalComponent,
    ],
    bootstrap: [
       AppComponent

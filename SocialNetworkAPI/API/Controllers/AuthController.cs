@@ -43,7 +43,7 @@ namespace api.Controllers
                 return Unauthorized();
 
             //generate token
-            var userToken = _authService.GenerateToken(userFromDb, 
+            var userToken = await _authService.GenerateToken(userFromDb, 
                 _configuration.GetSection("AuthKey:Token").Value);
 
             //return MainUserDTo

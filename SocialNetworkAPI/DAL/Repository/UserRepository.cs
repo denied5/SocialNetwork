@@ -18,7 +18,8 @@ namespace DAL.Repository
         public async Task<IEnumerable<User>> GetUsers(){
             return _context.Users.Include(p => p.Photos)
                 .Include(f => f.FriendshipsSent)
-                .Include(f => f.FriendshipsReceived);
+                .Include(f => f.FriendshipsReceived)
+                .Include(r => r.UserRoles);
         }
 
         public async Task<User> GetUser(int id){

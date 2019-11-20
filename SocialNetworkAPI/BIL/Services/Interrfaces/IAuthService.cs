@@ -8,6 +8,6 @@ namespace BIL.Services.Interrfaces
     {
         Task<UserForDetailedDTO> Register(UserForRegisterDTO user);
         Task<UserForListDTO> LogIn(UserForLoginDTO user);
-        string GenerateToken(UserForListDTO user, string keyWord);
+        Task<string> GenerateToken(UserForListDTO user, string keyWord);
     }
 }

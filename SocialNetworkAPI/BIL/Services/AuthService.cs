@@ -32,13 +32,20 @@ namespace BIL.Services
             _signInManager = signInManager;
         }
 
-        public string GenerateToken(UserForListDTO user, string keyWord)
+        public async Task<string> GenerateToken(UserForListDTO user, string keyWord)
         {
-            var claims = new[]
-           {
+            var claims = new List<Claim>
+            {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username)
             };
+
+            var roles = await _userManager.GetRolesAsync(_mapper.Map<User>(user));
+
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyWord));
 
@@ -87,6 +94,8 @@ namespace BIL.Services
 
             if (result.Succeeded)
             {
+                var usertoAddRole = _userManager.FindByNameAsync(userToReturn.Username).Result;
+                _userManager.AddToRolesAsync(usertoAddRole, new[] { "Admin" }).Wait();
                 return userToReturn;
             }
             return null;

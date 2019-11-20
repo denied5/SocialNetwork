@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\BIL\\BIL.csproj": {}
+    "D:\\education\\SocialNetwork\\SocialNetworkAPI\\BIL\\BIL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\BIL\\BIL.csproj": {
+    "D:\\education\\SocialNetwork\\SocialNetworkAPI\\BIL\\BIL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\BIL\\BIL.csproj",
+        "projectUniqueName": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\BIL\\BIL.csproj",
         "projectName": "BIL",
-        "projectPath": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\BIL\\BIL.csproj",
-        "packagesPath": "C:\\Users\\lstel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\BIL\\obj\\",
+        "projectPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\BIL\\BIL.csproj",
+        "packagesPath": "C:\\Users\\Udav 2\\.nuget\\packages\\",
+        "outputPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\BIL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\lstel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Udav 2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj": {
-                "projectPath": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj"
+              "D:\\education\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj"
               }
             }
           }
@@ -49,6 +49,18 @@
               "target": "Package",
               "version": "[4.0.1, )"
             },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.3.1, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[2.1.0, )"
@@ -62,33 +74,40 @@
               "version": "[2.1.1, )"
             },
             "Microsoft.NETCore.App": {
+              "suppressParent": "All",
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj": {
+    "D:\\education\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj",
-        "projectName": "dal",
-        "projectPath": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\dal.csproj",
-        "packagesPath": "C:\\Users\\lstel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\DAL\\obj\\",
+        "projectUniqueName": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj",
+        "projectName": "DAL",
+        "projectPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\Udav 2\\.nuget\\packages\\",
+        "outputPath": "D:\\education\\SocialNetwork\\SocialNetworkAPI\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\lstel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Udav 2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -112,21 +131,32 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "target": "Package",
               "version": "[2.1.0, )"
             },
             "Microsoft.NETCore.App": {
+              "suppressParent": "All",
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

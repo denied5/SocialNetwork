@@ -19,7 +19,7 @@ namespace BIL.Helpers
                 })
                 .ForMember( dest => dest.Age, opt => {
                     opt.ResolveUsing(d => d.DateOfBirth.CalculateAge());
-                });
+                }).ReverseMap();
             CreateMap<User, UserForRegisterDTO>().ReverseMap();
             CreateMap<User, UserForDetailedDTO>()
                 .ForMember( dest => dest.PhotoUrl, opt => {
