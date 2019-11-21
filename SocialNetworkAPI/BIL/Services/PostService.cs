@@ -47,6 +47,8 @@ namespace BIL.Services
                 feedFromRepo = feedFromRepo.Concat(_unitOfWork.PostRepository.GetPosts(id));
             }
             feedFromRepo = feedFromRepo.OrderByDescending(p => p.DateOfCreation);
+            if (feedFromRepo.Count() == 0)
+                return null;
 
             var feedToReturn = _mapper.Map<IEnumerable<PostForReturnDTO>>(feedFromRepo);
 
@@ -65,6 +67,15 @@ namespace BIL.Services
             var postsForReturn = _unitOfWork.PostRepository.GetPosts(userId);
 
             return _mapper.Map<IEnumerable<PostForReturnDTO>>(postsForReturn);
+        }
+
+        public async Task<bool> DeletePost(int id)
+        {
+            var postToDelete = await _unitOfWork.PostRepository.GetPost(id);
+
+            _unitOfWork.PostRepository.Remove(postToDelete);
+
+            return await _unitOfWork.SaveChanges();
         }
     }
 }

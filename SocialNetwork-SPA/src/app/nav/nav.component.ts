@@ -13,6 +13,7 @@ export class NavComponent implements OnInit {
   modalRef: BsModalRef;
   photoUrl: string;
   model: any = {};
+  userId: number;
   
   constructor(private modalService: BsModalService, public authService: AuthService,
               private alertifyService: AlertifyService, public router: Router) {}
@@ -25,7 +26,6 @@ export class NavComponent implements OnInit {
     this.authService.login(this.model).subscribe(next => {
       this.alertifyService.success('Login succses');
       this.modalRef.hide();
-      this.router.navigate(['/admin']);
     },
     error => {
       console.log(error)
@@ -47,6 +47,7 @@ export class NavComponent implements OnInit {
     this.authService.currentPhotoUrl.subscribe(photoUrl => {
       this.photoUrl = photoUrl;
     });
+    this.userId = this.authService.decodedToken.nameid;
   }
 
 }

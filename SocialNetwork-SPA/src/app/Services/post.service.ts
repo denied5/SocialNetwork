@@ -18,9 +18,12 @@ constructor(private http: HttpClient) { }
     return this.http.get<Post[]>(this.baseUrl + 'users/' + userId + '/posts/');
   }
 
-  createPost(userId: number, post: Post)
-  {
+  createPost(userId: number, post: Post){
     return this.http.post(this.baseUrl + 'users/' + userId + '/posts/', post);
+  }
+
+  deletePost(userId: number, postId: number){
+    return this.http.delete(this.baseUrl + 'users/' + userId + '/posts/' + postId);
   }
 
   getFeed(userId: number, page?, itemsPerPage?){
@@ -48,5 +51,9 @@ constructor(private http: HttpClient) { }
 
   setLike(postId: number, userId){
     return this.http.post(this.baseUrl + 'posts/' + postId + '/like/' + userId, {});
+  }
+
+  deleteLike(postId: number, userId: number) {
+    return this.http.delete(this.baseUrl + 'posts/' + postId + '/like/' + userId);
   }
 }

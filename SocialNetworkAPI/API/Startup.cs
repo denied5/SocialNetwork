@@ -39,6 +39,7 @@ namespace api
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper();
             services.SetUpAppDependencies(Configuration.GetConnectionString("BloggingDatabase"));
+            services.SetUpRoles();
             services.SetUpScopes();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {

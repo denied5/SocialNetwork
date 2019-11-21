@@ -1,5 +1,5 @@
 {
-  "FilePath": "d:\\education\\SocialNetwork\\SocialNetworkAPI\\API\\api.csproj",
+  "FilePath": "c:\\Users\\lstel\\studying\\SocialNetwork\\SocialNetworkAPI\\API\\api.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -2872,7 +2872,7 @@
         }
       }
     ],
-    "CSharpLanguageVersion": 703
+    "CSharpLanguageVersion": 800
   },
   "RootNamespace": "api",
   "Documents": [],

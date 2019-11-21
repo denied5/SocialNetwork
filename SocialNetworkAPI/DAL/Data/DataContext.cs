@@ -74,7 +74,7 @@ namespace DAL.Data
                 .HasOne(p => p.Post)
                 .WithMany(l => l.Likes)
                 .HasForeignKey(p => p.PostId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }  
     }
 }

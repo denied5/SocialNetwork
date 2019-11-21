@@ -29,6 +29,8 @@ namespace api.Controllers
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
+            if (userId == id)
+                return BadRequest();
 
             var messageFromRepo = await _messagesService.GetMessage(id);
 
@@ -73,6 +75,8 @@ namespace api.Controllers
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
+            if (userId == recipientId)
+                return BadRequest();
 
             var messagesToReturn = await _messagesService.GetMessageThread(userId, recipientId);
 
@@ -84,8 +88,10 @@ namespace api.Controllers
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
+            if (userId == id)
+                return BadRequest();
 
-            if(await _messagesService.DeleteMessage(id, userId))
+            if (await _messagesService.DeleteMessage(id, userId))
             {
                 return NoContent();
             }
@@ -96,8 +102,10 @@ namespace api.Controllers
         [HttpPost("{id}/read")]
         public async Task<IActionResult> MarkMessageAsRead(int userId, int id)
         {
-           if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                return Unauthorized();
+            if (userId == id)
+                return BadRequest();
 
             if (await _messagesService.MarkMessageAsRead(userId, id))
             {

@@ -95,7 +95,7 @@ namespace BIL.Services
             if (result.Succeeded)
             {
                 var usertoAddRole = _userManager.FindByNameAsync(userToReturn.Username).Result;
-                _userManager.AddToRolesAsync(usertoAddRole, new[] { "Admin" }).Wait();
+                _userManager.AddToRolesAsync(usertoAddRole, new[] { "Member" }).Wait();
                 return userToReturn;
             }
             return null;

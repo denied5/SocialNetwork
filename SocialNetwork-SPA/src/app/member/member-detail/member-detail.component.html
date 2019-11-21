@@ -21,7 +21,7 @@
             <p>{{user?.created | date: 'mediumDate'}}</p>
           </div>
         </div>
-        <div class="card-footer">
+        <div class="card-footer" [ngClass]="{disabledTab: sameUser()}">
           <div class="btn-group d-flex">
             <button class="btn btn-primary w-100">Add Friend</button>
             <button class="btn btn-success w-100" (click)="selectTab(3)">Message</button>
@@ -37,16 +37,12 @@
             <p>{{user?.introduction}}</p>
             <h4>Looking For</h4>
             <p>{{user?.lookingFor}}</p>
-          </tab>
-          <tab heading="interests">
             <h4>Interests</h4>
             <p>{{user?.interests}}</p>
           </tab>
+          
           <tab heading="Photo">
             <ngx-gallery [options]='galleryOptions' [images]='galleryImages'></ngx-gallery>
-          </tab>
-          <tab heading="Messages">
-            <app-member-messages [recipientId]="user.id"></app-member-messages>
           </tab>
           <tab heading="Posts">
             <div *ngFor="let post of posts" class="card border-dark mb-3" style="max-width: 800px; margin-top: 20px;">
@@ -58,6 +54,11 @@
               </div>
             </div>
           </tab>
+          <div [ngClass]="{disabledTab: sameUser()}">
+            <tab heading="Messages" >
+                <app-member-messages [recipientId]="user.id"></app-member-messages>
+            </tab>
+          </div>
         </tabset>
       </div>
     </div>

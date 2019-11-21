@@ -23,7 +23,7 @@ export class FeedComponent implements OnInit {
     this.route.data.subscribe( data => {
       this.feed = data.feed.result;
       this.pagination = data.feed.pagination;
-    })
+    });
     this.userId = this.authService.decodedToken.nameid;
   }
 
@@ -46,6 +46,7 @@ export class FeedComponent implements OnInit {
 
   setLike(postId: number){
     debugger;
+    const userid = this.authService.decodedToken.nameid;
     const post = this.feed.filter(p => p.id === postId)[0];
     let liker: Likers = {
       id: this.authService.currentUser.id,
@@ -54,7 +55,7 @@ export class FeedComponent implements OnInit {
     };
 
     if (!this.isLiked(postId)) {
-      this.postService.setLike(postId, this.authService.decodedToken.nameid).
+      this.postService.setLike(postId, userid).
         subscribe( () => {
           post.likers.push(liker);
         }, error => {
@@ -62,12 +63,17 @@ export class FeedComponent implements OnInit {
         })
     }
     else{
-      
+      this.postService.deleteLike(postId, userid).
+        subscribe(() => {
+          post.likers.splice(post.likers.findIndex(p => p.id == userid, 1));
+        }, error => {
+          this.alertify.error(error);
+        });
     }
   }
 
   isLiked(postId: number) {
-    const userId = this.authService.decodedToken.nameid;
+     const userId = this.authService.decodedToken.nameid;
     const post = this.feed.filter(p => p.id === postId)[0];
     return post.likers.filter(p => p.id == userId).length > 0;
   }

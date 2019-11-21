@@ -318,7 +318,7 @@ namespace api.Migrations
                     b.HasOne("DAL.Models.Post", "Post")
                         .WithMany("Likes")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DAL.Models.User", "User")
                         .WithMany("Likes")

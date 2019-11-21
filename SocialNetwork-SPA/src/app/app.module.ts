@@ -114,6 +114,7 @@ export function tokenGetter() {
    ],
    entryComponents: [
       RoleModalComponent,
+      MemberDetailComponent
    ],
    bootstrap: [
       AppComponent

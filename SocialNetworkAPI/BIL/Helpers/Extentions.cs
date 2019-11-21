@@ -20,8 +20,11 @@ namespace BIL.Extensions
             string connectionString)
         {
             services.AddDbContext<DataContext>(x => x.UseSqlServer(connectionString, b => b.MigrationsAssembly("api")));
+            return services;
+        }
 
-            //---------------------------
+        public static IServiceCollection SetUpRoles(this IServiceCollection services)
+        {
             IdentityBuilder builder = services.AddIdentityCore<User>(opt =>
             {
                 opt.Password.RequireDigit = false;
@@ -34,9 +37,7 @@ namespace BIL.Extensions
             builder.AddEntityFrameworkStores<DataContext>();
             builder.AddRoleValidator<RoleValidator<Role>>();
             builder.AddRoleManager<RoleManager<Role>>();
-            builder.AddSignInManager<SignInManager<User>>(); 
-
-
+            builder.AddSignInManager<SignInManager<User>>();
 
             return services;
         }

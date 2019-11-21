@@ -23,14 +23,27 @@ namespace api.Controllers
         [HttpPost]
         public async Task<IActionResult> SetLike(int postId, int userId)
         {
-            //if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            //    return Unauthorized();
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+               return Unauthorized();
 
             if (await _likeService.SetLike(userId, postId))
             {
                 return NoContent();
             }
             return BadRequest("Fail on save");
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteLike (int postId, int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            if (await _likeService.DeleteLike(userId, postId))
+            {
+                return NoContent();
+            }
+            return BadRequest("Fail To Delete");
         }
     }
 }

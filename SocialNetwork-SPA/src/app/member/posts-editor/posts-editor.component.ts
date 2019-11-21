@@ -42,4 +42,16 @@ export class PostsEditorComponent implements OnInit {
     )
   }
 
+  deletePost(postId: number){
+    this.postService.deletePost(this.authService.decodedToken.nameid, postId).subscribe(
+      () => {
+        this.posts.splice(
+          this.posts.findIndex(p => p.id === postId), 1);
+      },
+      error => {
+        this.alertify.error(error);
+      }
+    )
+  }
+
 }

@@ -36,11 +36,15 @@ export class MessageService {
   }
 
   getMessageThread(id: number, recipientId: number) {
-    return this.http.get<Message[]>(this.baseUrl + id + '/messages/thread/' + recipientId);
+    if (id != recipientId) {
+      return this.http.get<Message[]>(this.baseUrl + id + '/messages/thread/' + recipientId);
+    }
   }
 
   sendMessage(id: number, message: Message) {
-    return this.http.post(this.baseUrl + id + '/messages', message);
+    if (id != message.recipientId) {
+      return this.http.post(this.baseUrl + id + '/messages', message);
+    }
   }
 
   deleteMessage(id: number, userId: number) {

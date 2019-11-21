@@ -7,6 +7,7 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 import { TabsetComponent } from 'ngx-bootstrap';
 import { PostService } from 'src/app/Services/post.service';
 import { Post } from 'src/app/_model/Post';
+import { AuthService } from 'src/app/Services/Auth.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -19,14 +20,13 @@ export class MemberDetailComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   posts: Post[];
-  constructor(private userService: UserService, private route: ActivatedRoute,
+  constructor(public route: ActivatedRoute, private authService: AuthService,
     private alertify: AlertifyService, private postService: PostService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.user = data.user;
-    })
-
+    });
     this.route.queryParams.subscribe(params => {
       const selectTab = params['tab'];
       this.memberTabs.tabs[selectTab > 0 ? selectTab: 0].active = true;
@@ -71,5 +71,10 @@ export class MemberDetailComponent implements OnInit {
         this.alertify.error(error);
       }
     )
+  }
+
+  sameUser(): boolean {
+    debugger;
+    return this.user.id == this.authService.decodedToken.nameid;
   }
 }

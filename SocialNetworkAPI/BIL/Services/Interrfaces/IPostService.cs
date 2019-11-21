@@ -13,5 +13,6 @@ namespace BIL.Services.Interrfaces
         Task<PostForReturnDTO> CreatePost(PostForCreatinDTO post);
         Task<PagedList<PostForReturnDTO>> GetFeed(PagedListParams param);
         IEnumerable<PostForReturnDTO> GetPosts(int userId);
+        Task<bool> DeletePost(int id);
     }
 }
