@@ -10,5 +10,6 @@ namespace BIL.Services.Interrfaces
     {
         Task<List<UserWithRoles>> GetUsersWithRoles();
         Task<IList<string>> EditRoles(string userName, RoleEditDTO roleEditDTO);
+        Task<PhotoForReturnDTO> ApprovePhoto(int photoId);
     }
 }

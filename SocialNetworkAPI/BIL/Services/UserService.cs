@@ -58,18 +58,17 @@ namespace BIL.Services
             return false;
         }
 
-        public async Task<UserForDetailedDTO> GetUser(int id)
+        public async Task<UserForDetailedDTO> GetUser(int id, bool isCurrentUser = false)
         {
-            var userFromRepo = await _unitOfWork.UserRepository.GetUser(id);
-
+            var userFromRepo = await _unitOfWork.UserRepository.GetUser(id, isCurrentUser);
             if (userFromRepo == null)
             {
                 throw new Exception("User don't exsist");
             }
-
             var userToReturn = _mapper.Map<UserForDetailedDTO>(userFromRepo);
             return userToReturn;
         }
+
 
         public async Task<bool> UpdateUserActivity(int userId)
         {

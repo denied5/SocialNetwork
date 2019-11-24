@@ -74,7 +74,6 @@ export class MemberDetailComponent implements OnInit {
   }
 
   sameUser(): boolean {
-    debugger;
     return this.user.id == this.authService.decodedToken.nameid;
   }
 }

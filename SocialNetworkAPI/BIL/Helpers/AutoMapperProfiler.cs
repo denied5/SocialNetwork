@@ -23,7 +23,7 @@ namespace BIL.Helpers
             CreateMap<User, UserForRegisterDTO>().ReverseMap();
             CreateMap<User, UserForDetailedDTO>()
                 .ForMember( dest => dest.PhotoUrl, opt => {
-                    opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).URL);
+                    opt.MapFrom(src => src.Photos.Where(p => p.Approved == true).FirstOrDefault(p => p.IsMain).URL);
                 })
                 .ForMember( dest => dest.Age, opt => {
                     opt.ResolveUsing(d => d.DateOfBirth.CalculateAge());

@@ -4,6 +4,7 @@ using BIL.Services.Interrfaces;
 using DAL.Models;
 using DAL.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -61,6 +62,27 @@ namespace BIL.Services
                 return null;
 
             return await _userManager.GetRolesAsync(user);
+        }
+
+        public async Task<IEnumerable<PhotoForDetailedDTO>> GetPhotosForModerator()
+        {
+            var photos = await _unitOfWork.PhotoRepository.GetAll();
+            var photosForModerator = photos?.Where(p => p.Approved == false);
+
+            return _mapper.Map<IEnumerable<PhotoForDetailedDTO>>(photosForModerator);
+        }
+
+        public async Task<PhotoForReturnDTO> ApprovePhoto(int photoId)
+        {
+            var photoFromRepo = await _unitOfWork.PhotoRepository.GetById(photoId);
+            if (photoFromRepo == null)
+                return null;
+            photoFromRepo.Approved = true;
+            if (await _unitOfWork.SaveChanges())
+            {
+                return _mapper.Map<PhotoForReturnDTO>(photoFromRepo);
+            }
+            throw new Exception("Fail on save photo");
         }
     }
 }

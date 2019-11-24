@@ -8,6 +8,8 @@ namespace BIL.DTO
         public string URL { get; set; }
         public string Dscription { get; set; }
         public DateTime DateAdded { get; set; }
+        public bool Approved { get; set; }
+
         public bool IsMain { get; set; }
     }
 }

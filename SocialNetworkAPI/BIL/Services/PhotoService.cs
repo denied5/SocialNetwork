@@ -69,10 +69,10 @@ namespace BIL.Services
             return photoToReturn;
         }
 
-        public async Task<PhotoForReturnDTO> AddPhotoForUser(int userId, PhotoForCreationDTO photoForCreationDTO)
+        public async Task<PhotoForReturnDTO> AddPhotoFromMember(int userId, PhotoForCreationDTO photoForCreationDTO)
         {
-            var userFromRepo = await _unitOfWork.UserRepository.GetUser(userId);
-
+            var userFromRepo = await _unitOfWork.UserRepository.GetUser(userId, true);
+            
             var photoFromCloudinary = AddPhotoInCloudinary(photoForCreationDTO);
             var photoToUpload = _mapper.Map<Photo>(photoFromCloudinary);
 
@@ -87,7 +87,7 @@ namespace BIL.Services
 
         public async Task<bool> SetMainPhoto(int userId, int photoId)
         {
-            var user = await _unitOfWork.UserRepository.GetUser(userId);
+            var user = await _unitOfWork.UserRepository.GetUser(userId, true);
             if (!user.Photos.ToList().Any(p => p.Id == photoId))
                throw new Exception("Photo don't exsist");
 
@@ -107,7 +107,7 @@ namespace BIL.Services
 
         public async Task<bool> DeletePhoto (int userId, int photoId)
         {
-            var user = await _unitOfWork.UserRepository.GetUser(userId);
+            var user = await _unitOfWork.UserRepository.GetUser(userId, true);
             if (!user.Photos.ToList().Any(p => p.Id == photoId))
                throw new Exception("Photo don't exsist");
 

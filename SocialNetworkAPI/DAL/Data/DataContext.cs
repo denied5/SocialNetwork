@@ -75,6 +75,8 @@ namespace DAL.Data
                 .WithMany(l => l.Likes)
                 .HasForeignKey(p => p.PostId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Photo>().HasQueryFilter(p => p.Approved);
         }  
     }
 }

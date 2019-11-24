@@ -43,6 +43,18 @@ namespace api.Controllers
             return Ok(roles);
         }
 
+        [Authorize(Roles = "Moderator, Admin")]
+        [HttpPut("photos/{photoId}")]
+        public async Task<IActionResult> ApprovePhoto(int photoId)
+        {
+            var photo = await _adminService.ApprovePhoto(photoId);
+            if (photo == null)
+                return BadRequest("Photo doesn't exsist");
+
+            return Ok(photo);
+        }
+
+
         //[Authorize(Roles = "Moderator")]
         //[HttpGet("photosForModeration")]
         //public Task<IActionResult> GetPhotosForModerator()

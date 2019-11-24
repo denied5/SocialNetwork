@@ -82,6 +82,8 @@ namespace api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("Approved");
+
                     b.Property<DateTime>("DateAdded");
 
                     b.Property<string>("Dscription");

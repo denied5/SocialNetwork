@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DAL.Data;
 using DAL.Models;
@@ -22,12 +23,18 @@ namespace DAL.Repository
                 .Include(r => r.UserRoles);
         }
 
-        public async Task<User> GetUser(int id){
-            return await _context.Users
+        public async Task<User> GetUser(int id, bool isCurrentUser = false){
+            var query = _context.Users
                 .Include(p => p.Photos)
                 .Include(f => f.FriendshipsSent)
-                .Include(f => f.FriendshipsReceived)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .Include(f => f.FriendshipsReceived).AsQueryable();
+
+            if (isCurrentUser)
+                query = query.IgnoreQueryFilters();
+
+            var user = await query.FirstOrDefaultAsync(x => x.Id == id);
+
+            return user;
         }
 
         public async Task<User> GetMainUser(string username)

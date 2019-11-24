@@ -35,8 +35,7 @@ namespace API.Controllers
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
-
-            var photoToReturn = await _photoService.AddPhotoForUser(userId, photoForCreationDTO);
+            var photoToReturn = await _photoService.AddPhotoFromMember(userId, photoForCreationDTO);
 
             if(photoToReturn != null)
             {

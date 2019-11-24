@@ -33,7 +33,5 @@ namespace DAL.Repository
         {
             _context.Remove(value);
         }
-
-        
     }
 }

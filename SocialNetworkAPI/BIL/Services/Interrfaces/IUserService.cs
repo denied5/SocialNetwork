@@ -11,7 +11,7 @@ namespace BIL.Services.Interrfaces
     {
         Task<bool> AddUser(UserForListDTO user);
         Task<bool> UserExsist(string username);
-        Task<UserForDetailedDTO> GetUser(int id);
+        Task<UserForDetailedDTO> GetUser(int id, bool isCurrentUser = false);
         Task<PagedList<UserForListDTO>> GetUsers(UserParams userParams);
         Task<bool> UpdateUser(int id, UserForUpdateDTO userForUpdate);
         Task<bool> UpdateUserActivity(int userId);

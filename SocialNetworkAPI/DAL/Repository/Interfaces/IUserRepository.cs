@@ -9,6 +9,6 @@ namespace DAL.Repository.Interfaces
         Task<bool> UserExsist(string username);
         Task<User> GetMainUser(string username);
         Task<IEnumerable<User>> GetUsers();
-        Task<User> GetUser(int id);
+        Task<User> GetUser(int id, bool isCurrentUser = false);
     }
 }

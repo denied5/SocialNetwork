@@ -45,7 +45,8 @@ namespace api.Controllers
         [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
-            var userToReturn = await _userService.GetUser(id);
+            var isCurrentUser = id == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userToReturn = await _userService.GetUser(id, isCurrentUser);
             if (userToReturn == null)
             {
                 return BadRequest("User don't exsist");
