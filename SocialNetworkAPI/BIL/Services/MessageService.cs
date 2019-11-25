@@ -7,12 +7,11 @@ using DAL.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BIL.Services
 {
-    class MessagesService: IMessagesService
+    class MessagesService : IMessagesService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -30,7 +29,9 @@ namespace BIL.Services
             messageForCreationDTO.SenderId = userId;
 
             if (recipient == null)
+            {
                 throw new Exception("Recipient don't exsist");
+            }
 
             var message = _mapper.Map<Message>(messageForCreationDTO);
             _unitOfWork.MessageRepository.Add(message);
@@ -56,7 +57,7 @@ namespace BIL.Services
             messages = messages.OrderByDescending(m => m.MessageSent);
             var messagesToReturn = messages.Distinct(new MessagesComparer());
             var messaggesToPaginate = _mapper.Map<IEnumerable<MessageToReturnDTO>>(messagesToReturn);
-            
+
             return PagedList<MessageToReturnDTO>.Create(messaggesToPaginate,
                 messageParams.CurrentPage, messageParams.PageSize);
         }
@@ -65,9 +66,9 @@ namespace BIL.Services
         {
             var messages = await _unitOfWork.MessageRepository.GetMessages(userId);
 
-            messages =  messages.Where(u =>
-                                    (u.RecipientId == userId && u.SenderId == recipientId)
-                                    || (u.RecipientId == recipientId && u.SenderId == userId))
+            messages = messages.Where(u =>
+                                   (u.RecipientId == userId && u.SenderId == recipientId)
+                                   || (u.RecipientId == recipientId && u.SenderId == userId))
                                     .OrderByDescending(m => m.MessageSent);
             var messagesToReturn = _mapper.Map<IEnumerable<MessageToReturnDTO>>(messages);
 
@@ -85,16 +86,25 @@ namespace BIL.Services
         {
             var messageFromRepo = await _unitOfWork.MessageRepository.GetById(id);
             if (messageFromRepo.SenderId == userId)
+            {
                 messageFromRepo.SenderDeleted = true;
+            }
 
             if (messageFromRepo.RecipientId == userId)
+            {
                 messageFromRepo.RecipientDeleted = true;
+            }
 
             if (messageFromRepo.RecipientDeleted == true && messageFromRepo.SenderDeleted == true)
+            {
                 _unitOfWork.MessageRepository.Remove(messageFromRepo);
+            }
 
             if (await _unitOfWork.SaveChanges())
+            {
                 return true;
+            }
+
             return false;
         }
 
@@ -103,7 +113,9 @@ namespace BIL.Services
             var messageFromRepo = await _unitOfWork.MessageRepository.GetById(id);
 
             if (messageFromRepo.RecipientId != userId)
+            {
                 throw new Exception("You can't mark not your messages as Read");
+            }
 
             messageFromRepo.IsRead = true;
             messageFromRepo.DateRead = DateTime.Now;

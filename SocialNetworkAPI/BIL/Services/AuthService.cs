@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +22,7 @@ namespace BIL.Services
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
-        public AuthService(IUnitOfWork unitOfWork, IMapper mapper, 
+        public AuthService(IUnitOfWork unitOfWork, IMapper mapper,
             UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _unitOfWork = unitOfWork;
@@ -68,7 +67,9 @@ namespace BIL.Services
         {
             var mainUser = await _userManager.FindByNameAsync(user.Username);
             if (mainUser == null)
+            {
                 return null;
+            }
 
             var result = await _signInManager
                 .CheckPasswordSignInAsync(mainUser, user.Password, false);

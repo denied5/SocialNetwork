@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using BIL.DTO;
 using BIL.Helpers;
@@ -10,6 +7,9 @@ using CloudinaryDotNet.Actions;
 using DAL.Models;
 using DAL.UnitOfWork;
 using Microsoft.Extensions.Options;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BIL.Services
 {
@@ -72,7 +72,7 @@ namespace BIL.Services
         public async Task<PhotoForReturnDTO> AddPhotoFromMember(int userId, PhotoForCreationDTO photoForCreationDTO)
         {
             var userFromRepo = await _unitOfWork.UserRepository.GetUser(userId, true);
-            
+
             var photoFromCloudinary = AddPhotoInCloudinary(photoForCreationDTO);
             var photoToUpload = _mapper.Map<Photo>(photoFromCloudinary);
 
@@ -89,32 +89,43 @@ namespace BIL.Services
         {
             var user = await _unitOfWork.UserRepository.GetUser(userId, true);
             if (!user.Photos.ToList().Any(p => p.Id == photoId))
-               throw new Exception("Photo don't exsist");
+            {
+                throw new Exception("Photo don't exsist");
+            }
 
             var photoFromRepo = await _unitOfWork.PhotoRepository.GetById(photoId);
 
             if (photoFromRepo.IsMain == true)
+            {
                 throw new Exception("Photo already main");
+            }
 
             var currentMainPhoto = await _unitOfWork.PhotoRepository.GetMainPhotoForUser(userId);
             currentMainPhoto.IsMain = false;
             photoFromRepo.IsMain = true;
 
             if (await _unitOfWork.SaveChanges())
+            {
                 return true;
+            }
+
             return false;
         }
 
-        public async Task<bool> DeletePhoto (int userId, int photoId)
+        public async Task<bool> DeletePhoto(int userId, int photoId)
         {
             var user = await _unitOfWork.UserRepository.GetUser(userId, true);
             if (!user.Photos.ToList().Any(p => p.Id == photoId))
-               throw new Exception("Photo don't exsist");
+            {
+                throw new Exception("Photo don't exsist");
+            }
 
             var photoFromRepo = await _unitOfWork.PhotoRepository.GetById(photoId);
 
             if (photoFromRepo.IsMain == true)
+            {
                 throw new Exception("This photo is main. Set New Main Photo First");
+            }
 
             var deleteParams = new DeletionParams(photoFromRepo.PublicId);
             var response = _cloudinary.Destroy(deleteParams);
@@ -125,7 +136,9 @@ namespace BIL.Services
             }
 
             if (await _unitOfWork.SaveChanges())
-               return true;
+            {
+                return true;
+            }
 
             return false;
         }

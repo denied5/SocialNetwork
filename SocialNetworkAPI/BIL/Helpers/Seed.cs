@@ -1,9 +1,7 @@
 ﻿using DAL.Models;
 using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BIL.Helpers
 {
@@ -28,7 +26,7 @@ namespace BIL.Helpers
                     new Role {Name = "Member"},
                     new Role {Name = "Moderator"}
                 };
-                
+
                 foreach (var role in roles)
                 {
                     _roleManager.CreateAsync(role).Wait();
@@ -69,7 +67,7 @@ namespace BIL.Helpers
                 if (result.Succeeded)
                 {
                     var moderator = _userManager.FindByNameAsync("Moderator").Result;
-                    _userManager.AddToRolesAsync(moderator, new[] {"Moderator" }).Wait();
+                    _userManager.AddToRolesAsync(moderator, new[] { "Moderator" }).Wait();
                 }
             }
         }

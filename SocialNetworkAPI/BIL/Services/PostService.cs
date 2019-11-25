@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using BIL.DTO;
 using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using DAL.Models;
 using DAL.UnitOfWork;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BIL.Services
 {
-    public class PostService: IPostService
+    public class PostService : IPostService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -48,7 +48,9 @@ namespace BIL.Services
             }
             feedFromRepo = feedFromRepo.OrderByDescending(p => p.DateOfCreation);
             if (feedFromRepo.Count() == 0)
+            {
                 return null;
+            }
 
             var feedToReturn = _mapper.Map<IEnumerable<PostForReturnDTO>>(feedFromRepo);
 

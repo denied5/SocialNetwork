@@ -70,7 +70,10 @@ namespace BIL.Extensions
         {
             var age = System.DateTime.Now.Year - theDateTime.Year;
             if (theDateTime.AddYears(age) > DateTime.Today)
+            {
                 age--;
+            }
+
             return age;
         }
     }

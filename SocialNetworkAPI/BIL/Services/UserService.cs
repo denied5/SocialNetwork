@@ -8,12 +8,11 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BIL.Services
 {
-    public class UserService: IUserService
+    public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -29,12 +28,16 @@ namespace BIL.Services
         public async Task<bool> UpdateUser(int id, UserForUpdateDTO userForUpdate)
         {
             if (userForUpdate == null)
+            {
                 return false;
+            }
 
             var userFromRepo = await _unitOfWork.UserRepository.GetUser(id);
             if (userFromRepo == null)
+            {
                 throw new Exception("User dont't exsist");
-            
+            }
+
             _mapper.Map(userForUpdate, userFromRepo);
 
             if (await _unitOfWork.SaveChanges())
@@ -100,18 +103,18 @@ namespace BIL.Services
 
             usersToReturn = SelectUsers(usersToReturn, userParams);
 
-            return PagedList<UserForListDTO>.Create(usersToReturn, 
+            return PagedList<UserForListDTO>.Create(usersToReturn,
                 userParams.CurrentPage, userParams.PageSize);
         }
 
         private IEnumerable<UserForListDTO> SelectUsers(IEnumerable<UserForListDTO> users, UserParams userParams)
         {
             users = users.Where(u => u.Id != userParams.UserId);
-            if (!String.IsNullOrEmpty(userParams.Gender) && userParams.Gender != "any")
+            if (!string.IsNullOrEmpty(userParams.Gender) && userParams.Gender != "any")
             {
                 users = users.Where(u => u.Gender == userParams?.Gender);
             }
-            if (!String.IsNullOrEmpty(userParams.Name))
+            if (!string.IsNullOrEmpty(userParams.Name))
             {
                 users = users.Where(u => u.KnownAs.ToLower().Contains(userParams.Name.ToLower()));
             }

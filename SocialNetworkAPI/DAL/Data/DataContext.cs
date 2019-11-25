@@ -5,24 +5,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Data
 {
-    public class DataContext: IdentityDbContext<User, Role, int, 
-        IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>, 
+    public class DataContext : IdentityDbContext<User, Role, int,
+        IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>,
         IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
 
-        public DataContext(DbContextOptions<DataContext> options): base(options){}
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        public DbSet<Message> Messages {get; set;}
+        public DbSet<Message> Messages { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
-        public DbSet<Post>  Posts { get; set; }
+        public DbSet<Post> Posts { get; set; }
         public DbSet<Like> Like { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<UserRole>(userRole => {
+            builder.Entity<UserRole>(userRole =>
+            {
                 userRole.HasKey(ur => new { ur.UserId, ur.RoleId });
 
                 userRole.HasOne(ur => ur.Role)
@@ -77,6 +78,6 @@ namespace DAL.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Photo>().HasQueryFilter(p => p.Approved);
-        }  
+        }
     }
 }

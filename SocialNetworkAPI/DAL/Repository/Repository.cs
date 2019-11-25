@@ -1,15 +1,15 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using DAL.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DAL.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-    
+
         private DbSet<T> _context { get; }
-        public Repository (DbContext context)
+        public Repository(DbContext context)
         {
             _context = context.Set<T>();
         }

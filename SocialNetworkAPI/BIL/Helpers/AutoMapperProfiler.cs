@@ -2,30 +2,31 @@
 using BIL.DTO;
 using BIL.Extensions;
 using DAL.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BIL.Helpers
 {
-    public class AutoMapperProfiles: Profile
+    public class AutoMapperProfiles : Profile
     {
         public AutoMapperProfiles()
         {
             CreateMap<User, UserForListDTO>()
-                .ForMember( dest => dest.PhotoUrl, opt => {
+                .ForMember(dest => dest.PhotoUrl, opt =>
+                {
                     opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).URL);
                 })
-                .ForMember( dest => dest.Age, opt => {
+                .ForMember(dest => dest.Age, opt =>
+                {
                     opt.ResolveUsing(d => d.DateOfBirth.CalculateAge());
                 }).ReverseMap();
             CreateMap<User, UserForRegisterDTO>().ReverseMap();
             CreateMap<User, UserForDetailedDTO>()
-                .ForMember( dest => dest.PhotoUrl, opt => {
+                .ForMember(dest => dest.PhotoUrl, opt =>
+                {
                     opt.MapFrom(src => src.Photos.Where(p => p.Approved == true).FirstOrDefault(p => p.IsMain).URL);
                 })
-                .ForMember( dest => dest.Age, opt => {
+                .ForMember(dest => dest.Age, opt =>
+                {
                     opt.ResolveUsing(d => d.DateOfBirth.CalculateAge());
                 });
             CreateMap<Photo, PhotoForDetailedDTO>();
@@ -35,7 +36,7 @@ namespace BIL.Helpers
                     .MapFrom(u => u.User.KnownAs))
                 .ForMember(m => m.UserPhotoUrl, opt => opt
                     .MapFrom(u => u.User.Photos.FirstOrDefault(p => p.IsMain).URL))
-                .ForMember(m => m.Likers, opt => opt 
+                .ForMember(m => m.Likers, opt => opt
                     .MapFrom(l => l.Likes));
 
             CreateMap<Like, LikersDTO>()
@@ -43,9 +44,9 @@ namespace BIL.Helpers
                     opt.MapFrom(u => u.User.KnownAs))
                 .ForMember(m => m.PhotoUrl, opt =>
                     opt.MapFrom(u => u.User.Photos.FirstOrDefault(p => p.IsMain).URL))
-                .ForMember(m => m.Id, opt => 
+                .ForMember(m => m.Id, opt =>
                     opt.MapFrom(u => u.UserId));
-                    
+
 
             CreateMap<PostForCreatinDTO, Post>();
             CreateMap<PhotoForCreationDTO, Photo>();
@@ -59,4 +60,3 @@ namespace BIL.Helpers
         }
     }
 }
- 

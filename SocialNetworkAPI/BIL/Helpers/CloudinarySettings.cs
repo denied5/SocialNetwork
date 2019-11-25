@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BIL.Helpers
+﻿namespace BIL.Helpers
 {
     public class CloudinarySettings
     {

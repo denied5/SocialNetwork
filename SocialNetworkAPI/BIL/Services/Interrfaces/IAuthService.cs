@@ -1,5 +1,4 @@
 ﻿using BIL.DTO;
-using DAL.Models;
 using System.Threading.Tasks;
 
 namespace BIL.Services.Interrfaces

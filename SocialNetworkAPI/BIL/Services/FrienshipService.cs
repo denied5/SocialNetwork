@@ -6,12 +6,11 @@ using DAL.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BIL.Services
 {
-    public class FrienshipService: IFrienshipService
+    public class FrienshipService : IFrienshipService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -22,7 +21,7 @@ namespace BIL.Services
             _mapper = mapper;
         }
 
-        public async Task<bool> IsFriendshipExsist (int senderId, int recipientId)
+        public async Task<bool> IsFriendshipExsist(int senderId, int recipientId)
         {
             var friendship = await _unitOfWork.FriendshipRepository.GetFriendship(senderId, recipientId);
             if (friendship == null)
@@ -66,7 +65,7 @@ namespace BIL.Services
             return friendsToReturn;
         }
 
-        public async Task<IEnumerable<UserForListDTO>> GetFollowers (int userId)
+        public async Task<IEnumerable<UserForListDTO>> GetFollowers(int userId)
         {
             var friendshipsRequsted = await _unitOfWork.FriendshipRepository.GetFriendshipsRequest(userId);
             var friendshipsSent = await _unitOfWork.FriendshipRepository.GetFriendshipsSent(userId);
@@ -84,7 +83,7 @@ namespace BIL.Services
             return requstsToReturn;
         }
 
-        public async Task<IEnumerable<UserForListDTO>> GetFollowing (int userId)
+        public async Task<IEnumerable<UserForListDTO>> GetFollowing(int userId)
         {
             var friendshipsRequsted = await _unitOfWork.FriendshipRepository.GetFriendshipsRequest(userId);
             var friendshipsSent = await _unitOfWork.FriendshipRepository.GetFriendshipsSent(userId);

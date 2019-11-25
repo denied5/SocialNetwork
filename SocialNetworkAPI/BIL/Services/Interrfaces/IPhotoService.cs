@@ -1,6 +1,5 @@
-using System.Threading.Tasks;
 using BIL.DTO;
-using DAL.Models;
+using System.Threading.Tasks;
 
 namespace BIL.Services.Interrfaces
 {
@@ -9,6 +8,6 @@ namespace BIL.Services.Interrfaces
         Task<PhotoForReturnDTO> GetPhoto(int id);
         Task<bool> SetMainPhoto(int userId, int photoId);
         Task<PhotoForReturnDTO> AddPhotoFromMember(int userId, PhotoForCreationDTO photoForCreationDTO);
-        Task<bool> DeletePhoto (int userId, int photoId);
+        Task<bool> DeletePhoto(int userId, int photoId);
     }
 }

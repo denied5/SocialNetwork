@@ -50,7 +50,7 @@ namespace DAL.UnitOfWork
         {
             get
             {
-                return _friendshipRepository = _friendshipRepository ?? new FriendshipRepository(_context); 
+                return _friendshipRepository = _friendshipRepository ?? new FriendshipRepository(_context);
             }
         }
 

@@ -32,16 +32,16 @@ namespace BIL.Services
             var users = await _unitOfWork.UserRepository.GetUsers();
             var roles = await _unitOfWork.RoleRepository.GetAll();
             var userList = (from user in users
-                                  orderby user.UserName
-                                  select new UserWithRoles
-                                  {
-                                      Id = user.Id,
-                                      UserName = user.UserName,
-                                      Roles = (from userRole in user.UserRoles
-                                               join role in roles
-                                               on userRole.RoleId equals role.Id
-                                               select role.Name).ToList()
-                                  }).ToList();
+                            orderby user.UserName
+                            select new UserWithRoles
+                            {
+                                Id = user.Id,
+                                UserName = user.UserName,
+                                Roles = (from userRole in user.UserRoles
+                                         join role in roles
+                                         on userRole.RoleId equals role.Id
+                                         select role.Name).ToList()
+                            }).ToList();
 
             return userList;
         }
@@ -57,12 +57,16 @@ namespace BIL.Services
             var result = await _userManager.AddToRolesAsync(user, selectedRoles.Except(userRoles));
 
             if (!result.Succeeded)
+            {
                 return null;
+            }
 
             result = await _userManager.RemoveFromRolesAsync(user, userRoles.Except(selectedRoles));
 
             if (!result.Succeeded)
+            {
                 return null;
+            }
 
             return await _userManager.GetRolesAsync(user);
         }
@@ -71,7 +75,7 @@ namespace BIL.Services
         {
             var photos = await _unitOfWork.PhotoRepository.GetUnapprovedPhotos();
             var photosForModerator = photos?.Where(p => p.Approved == false);
-            
+
             return _mapper.Map<IEnumerable<PhotoForReturnDTO>>(photosForModerator);
         }
 
@@ -79,7 +83,10 @@ namespace BIL.Services
         {
             var photoFromRepo = await _unitOfWork.PhotoRepository.GetUnapprovedPhoto(photoId);
             if (photoFromRepo == null)
+            {
                 return null;
+            }
+
             photoFromRepo.Approved = true;
             if (await _unitOfWork.SaveChanges())
             {
