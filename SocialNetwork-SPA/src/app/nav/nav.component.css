@@ -6,6 +6,12 @@
     cursor: pointer;
 }
 
+.dropdown {
+    display: flex;
+    flex-direction: row;
+
+}
+
 img {
     max-height: 50px;
     border: 2px solid white;

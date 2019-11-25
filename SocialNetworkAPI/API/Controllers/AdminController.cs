@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BIL.DTO;
+﻿using BIL.DTO;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace api.Controllers
 {
@@ -15,14 +11,16 @@ namespace api.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IAdminService _adminService;
+        private readonly IPhotoService _photoService;
 
-        public AdminController(IAdminService adminService)
+        public AdminController(IAdminService adminService, IPhotoService photoService)
         {
             _adminService = adminService;
+            _photoService = photoService;
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpGet("usersWithRoles")]
+        [HttpGet("users/roles")]
         public async Task<IActionResult> GetUserWithRole()
         {
             var userToReturn = await _adminService.GetUsersWithRoles();
@@ -49,17 +47,36 @@ namespace api.Controllers
         {
             var photo = await _adminService.ApprovePhoto(photoId);
             if (photo == null)
+            {
                 return BadRequest("Photo doesn't exsist");
+            }
 
             return Ok(photo);
         }
 
+        [Authorize(Roles = "Moderator, Admin")]
+        [HttpDelete("photos/{photoId}")]
+        public async Task<IActionResult> DeletePhoto(int photoId)
+        {
+            if (await _adminService.DeletePhoto(photoId))
+            {
+                return Ok();
+            }
+            return BadRequest("Photo doesn't exsist");
+        }
 
-        //[Authorize(Roles = "Moderator")]
-        //[HttpGet("photosForModeration")]
-        //public Task<IActionResult> GetPhotosForModerator()
-        //{
-        //    return Ok("admins see this");
-        //}
+
+        [Authorize(Roles = "Moderator")]
+        [HttpGet("photos/moderation")]
+        public async Task<IActionResult> GetPhotosForModerator()
+        {
+            var photo = await _adminService.GetPhotosForModerator();
+            if (photo == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(photo);
+        }
     }
 }

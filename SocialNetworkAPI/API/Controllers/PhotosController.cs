@@ -1,15 +1,10 @@
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using api.Helpers;
-using API.Helpers;
 using BIL.DTO;
 using BIL.Helpers;
 using BIL.Services.Interrfaces;
-using CloudinaryDotNet;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -23,7 +18,7 @@ namespace API.Controllers
         private readonly IUserService _userService;
 
         public PhotosController(IPhotoService photoService,
-             IUserService  userService)
+             IUserService userService)
         {
             _photoService = photoService;
             _userService = userService;
@@ -34,10 +29,13 @@ namespace API.Controllers
             [FromForm]PhotoForCreationDTO photoForCreationDTO)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
                 return Unauthorized();
+            }
+
             var photoToReturn = await _photoService.AddPhotoFromMember(userId, photoForCreationDTO);
 
-            if(photoToReturn != null)
+            if (photoToReturn != null)
             {
                 return CreatedAtRoute("GetPhoto", new { id = photoToReturn.Id }, photoToReturn);
             }
@@ -56,9 +54,11 @@ namespace API.Controllers
         public async Task<IActionResult> SetMainPhoto(int userId, int id)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
                 return Unauthorized();
+            }
 
-            if(await _photoService.SetMainPhoto(userId, id))
+            if (await _photoService.SetMainPhoto(userId, id))
             {
                 return NoContent();
             }
@@ -67,13 +67,17 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePhoto (int userId, int id)
+        public async Task<IActionResult> DeletePhoto(int userId, int id)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
                 return Unauthorized();
+            }
 
-            if(await _photoService.DeletePhoto(userId, id))
+            if (await _photoService.DeletePhoto(userId, id))
+            {
                 return Ok();
+            }
 
             return BadRequest("Fail to delete");
         }

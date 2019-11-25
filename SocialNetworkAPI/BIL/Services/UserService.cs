@@ -4,6 +4,7 @@ using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using DAL.Models;
 using DAL.UnitOfWork;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,13 @@ namespace BIL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
 
-        public UserService(IUnitOfWork unitOfWork, IMapper mapper)
+        public UserService(IUnitOfWork unitOfWork, IMapper mapper, UserManager<User> userManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
         public async Task<bool> UpdateUser(int id, UserForUpdateDTO userForUpdate)
@@ -81,8 +84,19 @@ namespace BIL.Services
         public async Task<PagedList<UserForListDTO>> GetUsers(UserParams userParams)
         {
             var usersFromRepo = await _unitOfWork.UserRepository.GetUsers();
+            List<User> members = new List<User>();
 
-            var usersToReturn = _mapper.Map<IEnumerable<UserForListDTO>>(usersFromRepo);
+            foreach (var user in usersFromRepo)
+            {
+                bool isAdminContains = (await _userManager.GetRolesAsync(user)).Contains("Admin");
+                bool isModeratorContains = (await _userManager.GetRolesAsync(user)).Contains("Moderator");
+                if (!isAdminContains && !isModeratorContains)
+                {
+                    members.Add(user);
+                }
+            }
+
+            var usersToReturn = _mapper.Map<IEnumerable<UserForListDTO>>(members);
 
             usersToReturn = SelectUsers(usersToReturn, userParams);
 

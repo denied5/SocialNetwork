@@ -1,6 +1,4 @@
-﻿using API.Helpers;
-using BIL.DTO;
-using BIL.Helpers;
+﻿using BIL.DTO;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +14,7 @@ namespace api.Controllers
         private readonly IUserService _userService;
         public readonly IConfiguration _configuration;
 
-        public AuthController(IAuthService authService, 
+        public AuthController(IAuthService authService,
             IUserService userService, IConfiguration configuration)
         {
             _configuration = configuration;
@@ -29,9 +27,12 @@ namespace api.Controllers
         {
             var createdUser = await _authService.Register(user);
             if (createdUser is null)
+            {
                 return BadRequest("Fail to create user");
+            }
+
             return CreatedAtRoute("GetUser",
-                new { controller = "Users", id = createdUser.Id}, createdUser);
+                new { controller = "Users", id = createdUser.Id }, createdUser);
         }
 
         [HttpPost("login")]
@@ -40,10 +41,12 @@ namespace api.Controllers
             //check for valid
             var userFromDb = await _authService.LogIn(user);
             if (userFromDb == null)
+            {
                 return Unauthorized();
+            }
 
             //generate token
-            var userToken = await _authService.GenerateToken(userFromDb, 
+            var userToken = await _authService.GenerateToken(userFromDb,
                 _configuration.GetSection("AuthKey:Token").Value);
 
             //return MainUserDTo

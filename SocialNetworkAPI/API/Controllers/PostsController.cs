@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using BIL.DTO;
+﻿using BIL.DTO;
 using BIL.Extensions;
 using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace api.Controllers
 {
@@ -17,7 +14,7 @@ namespace api.Controllers
     [ApiController]
     [Authorize]
     [Route("api/users/{userId}/[controller]")]
-    public class PostsController : ControllerBase 
+    public class PostsController : ControllerBase
     {
         private readonly IPostService _postService;
         private readonly IUserService _userService;
@@ -58,13 +55,18 @@ namespace api.Controllers
         public async Task<IActionResult> GetFeed(int userId, [FromQuery]PagedListParams postParams)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
                 return Unauthorized();
+            }
 
             postParams.UserId = userId;
 
             var feedFromRepo = await _postService.GetFeed(postParams);
             if (feedFromRepo == null)
+            {
                 return NoContent();
+            }
+
             Response.AddPagination(feedFromRepo.CurrentPage, feedFromRepo.PageSize,
                 feedFromRepo.TotalCount, feedFromRepo.TotalPages);
 
@@ -76,7 +78,10 @@ namespace api.Controllers
         public async Task<IActionResult> CreatePost(int userId, PostForCreatinDTO post)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
                 return Unauthorized();
+            }
+
             post.UserId = userId;
 
             var postToReturn = await _postService.CreatePost(post);
@@ -93,9 +98,11 @@ namespace api.Controllers
         public async Task<IActionResult> DeletePost(int userId, int id)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
                 return Unauthorized();
+            }
 
-            if(await _postService.DeletePost(id))
+            if (await _postService.DeletePost(id))
             {
                 return NoContent();
             }

@@ -1,11 +1,10 @@
-﻿using System.Security.Claims;
-using System.Threading.Tasks;
-using API.Helpers;
-using BIL.DTO;
+﻿using BIL.DTO;
 using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace api.Controllers
 {
@@ -19,7 +18,7 @@ namespace api.Controllers
         private readonly IFrienshipService _frienshipService;
         private readonly IUserService _userService;
 
-        public FriendsController(IFrienshipService frienshipService, IUserService userService )
+        public FriendsController(IFrienshipService frienshipService, IUserService userService)
         {
             _frienshipService = frienshipService;
             _userService = userService;
@@ -29,7 +28,9 @@ namespace api.Controllers
         public async Task<IActionResult> AddFriend(int userId, int recipientId)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))//read value from token
+            {
                 return Unauthorized();
+            }
 
             if (await _frienshipService.IsFriendshipExsist(userId, recipientId))
             {
@@ -52,7 +53,9 @@ namespace api.Controllers
         public async Task<IActionResult> GetFriends(int userId)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))//read value from token
+            {
                 return Unauthorized();
+            }
 
             FriendsDTO friends = new FriendsDTO
             {
@@ -67,7 +70,9 @@ namespace api.Controllers
         public async Task<IActionResult> DeleteFriend(int userId, int recipientId)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))//read value from token
+            {
                 return Unauthorized();
+            }
 
             if (await _frienshipService.DeleteFriendship(userId, recipientId))
             {

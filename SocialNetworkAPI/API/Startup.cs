@@ -1,18 +1,18 @@
-﻿using System.Net;
+﻿using API.Helpers;
 using AutoMapper;
 using BIL.Extensions;
+using BIL.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using BIL.Helpers;
 using Microsoft.Extensions.Configuration;
-using API.Helpers;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Net;
+using System.Text;
 
 namespace api
 {
@@ -42,7 +42,8 @@ namespace api
             services.SetUpRoles();
             services.SetUpScopes();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => {
+                .AddJwtBearer(options =>
+                {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
@@ -63,8 +64,10 @@ namespace api
             }
             else
             {
-                app.UseExceptionHandler(builder =>{
-                    builder.Run(async context =>{
+                app.UseExceptionHandler(builder =>
+                {
+                    builder.Run(async context =>
+                    {
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                         var error = context.Features.Get<IExceptionHandlerFeature>();
@@ -81,6 +84,7 @@ namespace api
             app.UseAuthentication();
             seeder.SeedRole();
             seeder.SeedAdmin();
+            seeder.SeedModerator();
             // app.UseHttpsRedirection();
             app.UseMvc();
         }

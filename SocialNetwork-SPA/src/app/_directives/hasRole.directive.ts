@@ -14,8 +14,7 @@ export class HasRoleDirective implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit() {
-    if(!this.authService.loggedIn())
-    {
+    if (!this.authService.loggedIn()) {
       this.viewContainerRef.clear();
       return;
     }

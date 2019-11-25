@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using BIL.DTO;
+﻿using BIL.DTO;
 using BIL.Extensions;
 using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace api.Controllers
 {
@@ -28,7 +28,7 @@ namespace api.Controllers
         {
             var currentId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             userParams.UserId = currentId;
-           
+
             var usersForPagination = await _userService.GetUsers(userParams);
             if (usersForPagination == null)
             {
@@ -58,15 +58,17 @@ namespace api.Controllers
         public async Task<IActionResult> UpdateUser(int id, UserForUpdateDTO userForUpdate)
         {
             if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))//read value from token
+            {
                 return Unauthorized();
+            }
 
-           if (await _userService.UpdateUser(id, userForUpdate))
-           {
-               return NoContent();
-           }
-           return BadRequest("Some problem in Updating User");
+            if (await _userService.UpdateUser(id, userForUpdate))
+            {
+                return NoContent();
+            }
+            return BadRequest("Some problem in Updating User");
         }
 
-        
+
     }
 }

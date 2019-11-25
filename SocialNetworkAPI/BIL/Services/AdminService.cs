@@ -16,12 +16,15 @@ namespace BIL.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
+        private readonly IPhotoService _photoService;
 
-        public AdminService(IUnitOfWork unitOfWork, IMapper mapper, UserManager<User> userManager)
+        public AdminService(IUnitOfWork unitOfWork, IMapper mapper, UserManager<User> userManager,
+            IPhotoService photoService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _userManager = userManager;
+            _photoService = photoService;
         }
 
         public async Task<List<UserWithRoles>> GetUsersWithRoles()
@@ -64,17 +67,17 @@ namespace BIL.Services
             return await _userManager.GetRolesAsync(user);
         }
 
-        public async Task<IEnumerable<PhotoForDetailedDTO>> GetPhotosForModerator()
+        public async Task<IEnumerable<PhotoForReturnDTO>> GetPhotosForModerator()
         {
-            var photos = await _unitOfWork.PhotoRepository.GetAll();
+            var photos = await _unitOfWork.PhotoRepository.GetUnapprovedPhotos();
             var photosForModerator = photos?.Where(p => p.Approved == false);
-
-            return _mapper.Map<IEnumerable<PhotoForDetailedDTO>>(photosForModerator);
+            
+            return _mapper.Map<IEnumerable<PhotoForReturnDTO>>(photosForModerator);
         }
 
         public async Task<PhotoForReturnDTO> ApprovePhoto(int photoId)
         {
-            var photoFromRepo = await _unitOfWork.PhotoRepository.GetById(photoId);
+            var photoFromRepo = await _unitOfWork.PhotoRepository.GetUnapprovedPhoto(photoId);
             if (photoFromRepo == null)
                 return null;
             photoFromRepo.Approved = true;
@@ -83,6 +86,13 @@ namespace BIL.Services
                 return _mapper.Map<PhotoForReturnDTO>(photoFromRepo);
             }
             throw new Exception("Fail on save photo");
+        }
+
+        public async Task<bool> DeletePhoto(int photoId)
+        {
+            var photo = await _unitOfWork.PhotoRepository.GetUnapprovedPhoto(photoId);
+
+            return await _photoService.DeletePhoto(photo.UserId, photo.Id);
         }
     }
 }

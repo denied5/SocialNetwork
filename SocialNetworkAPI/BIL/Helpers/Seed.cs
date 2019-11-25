@@ -54,5 +54,24 @@ namespace BIL.Helpers
                 }
             }
         }
+
+        public void SeedModerator()
+        {
+            if (_userManager.Users.FirstOrDefault(p => p.UserName == "Moderator") == null)
+            {
+                var adminUser = new User
+                {
+                    UserName = "Moderator"
+                };
+
+                IdentityResult result = _userManager.CreateAsync(adminUser, "password").Result;
+
+                if (result.Succeeded)
+                {
+                    var moderator = _userManager.FindByNameAsync("Moderator").Result;
+                    _userManager.AddToRolesAsync(moderator, new[] {"Moderator" }).Wait();
+                }
+            }
+        }
     }
 }

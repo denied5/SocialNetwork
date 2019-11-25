@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DAL.Data;
@@ -19,7 +20,24 @@ namespace DAL.Repository
         {
             return await _context.Photos.Where(u => u.UserId == userId).FirstOrDefaultAsync(p => p.IsMain == true);
         }
-        
+
+        public async Task<IEnumerable<Photo>> GetUnapprovedPhotos()
+        {
+            var query = _context.Photos.AsQueryable();
+
+            query = query.IgnoreQueryFilters();
+            var photos = query.Where(p => p.Approved == false);
+            return photos;
+        }
+
+        public async Task<Photo> GetUnapprovedPhoto(int id)
+        {
+            var photo = _context.Photos.IgnoreQueryFilters()
+                .FirstOrDefault(p => p.Id == id);
+
+            return photo;
+        }
+
         public async Task<Photo> AddPhotoForUser(Photo photo, User user)
         {
             if (!user.Photos.Any(u => u.IsMain))

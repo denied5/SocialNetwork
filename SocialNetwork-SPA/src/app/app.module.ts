@@ -72,7 +72,7 @@ export function tokenGetter() {
       HasRoleDirective,
       PhotoMenegmentComponent,
       UserMenegmentComponent,
-      RoleModalComponent
+      RoleModalComponent,
    ],
    imports: [
       BrowserModule,
