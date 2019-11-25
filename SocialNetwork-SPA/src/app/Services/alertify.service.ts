@@ -9,28 +9,28 @@ export class AlertifyService {
   constructor() { }
 
   confirm(message: string, okCallback: () => any) {
-    alertify.confirm(message, function(e) {
-        if (e) {
-            okCallback();
-        } else {
+    alertify.confirm(message, e => {
+      if (e) {
+        okCallback();
+      } else {
 
-        }
+      }
     });
   }
 
   success(message: string) {
-      alertify.success(message);
+    alertify.success(message);
   }
 
   error(message: string) {
-      alertify.error(message);
+    alertify.error(message);
   }
 
   warning(message: string) {
-      alertify.warning(message);
+    alertify.warning(message);
   }
 
   message(message: string) {
-      alertify.message(message);
+    alertify.message(message);
   }
 }

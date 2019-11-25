@@ -1,11 +1,11 @@
-.btn-right{
-    margin-left: 87%;
+.btn-right {
+  margin-left: 87%;
 }
 
 .delete {
-    cursor:pointer;
-    font-size: 30px;
-    position: absolute;
-    right: 20px; 
-    top: 15px;
+  cursor: pointer;
+  font-size: 30px;
+  position: absolute;
+  right: 20px;
+  top: 15px;
 }

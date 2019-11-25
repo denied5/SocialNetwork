@@ -12,7 +12,7 @@ export class MessageService {
   baseUrl = environment.apiURL + 'users/';
   constructor(private http: HttpClient) { }
 
-  getMessages(id: number, page?, itemsPerPage?){
+  getMessages(id: number, page?, itemsPerPage?) {
     const paginatedResult: PaginatedResult<Message[]> = new PaginatedResult<Message[]>();
 
     let params = new HttpParams();
@@ -22,17 +22,17 @@ export class MessageService {
       params = params.append('pageSize', itemsPerPage);
     }
 
-    return this.http.get<Message[]>(this.baseUrl + id + '/messages', {observe: 'response', params})
-    .pipe(
-      map(response => {
-        paginatedResult.result = response.body;
-        if (response.headers.get('Pagination') != null) {
-          paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
-        }
-        
-        return paginatedResult;
-      })
-    )
+    return this.http.get<Message[]>(this.baseUrl + id + '/messages', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+
+          return paginatedResult;
+        })
+      );
   }
 
   getMessageThread(id: number, recipientId: number) {
@@ -51,8 +51,8 @@ export class MessageService {
     return this.http.delete(this.baseUrl + userId + '/messages/' + id);
   }
 
-  markAsRead(userId: number, messageId: number){
-    return this.http.post(this.baseUrl  + userId + '/messages/' + messageId + '/read', {})
+  markAsRead(userId: number, messageId: number) {
+    return this.http.post(this.baseUrl + userId + '/messages/' + messageId + '/read', {})
       .subscribe();
   }
 }

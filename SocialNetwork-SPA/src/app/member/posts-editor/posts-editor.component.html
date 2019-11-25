@@ -1,24 +1,23 @@
-<form #postForm="ngForm" (ngSubmit)="postForm.valid && createPost()" 
-  style="max-width: 800px; margin-top: 20px;">
+<form #postForm="ngForm" (ngSubmit)="postForm.valid && createPost()" style="max-width: 800px; margin-top: 20px;">
   <div class="form-group">
-    <textarea required [(ngModel)]="newPost.content" name="content" class="form-control"
-      id="exampleTextarea" rows="3" placeholder="what's on your mind?"></textarea>
+    <textarea required [(ngModel)]="newPost.content" name="content" class="form-control" id="exampleTextarea" rows="3"
+      placeholder="what's on your mind?"></textarea>
   </div>
   <button type="submit" [disabled]="!postForm.valid" class="btn btn-primary btn-right">Post</button>
 </form>
 <br>
 <div *ngFor="let post of posts" class="card border-dark mb-3" style="max-width: 800px;">
   <div class="card-header">
-      <span  class="delete" (click)="deletePost(post.id)">
-          <i class="fa fa-trash"></i>
-      </span>
+    <span class="delete" (click)="deletePost(post.id)">
+      <i class="fa fa-trash"></i>
+    </span>
   </div>
   <div class="card-body" style="padding: 0px;">
     <p class="card-text" style="margin: 20px;">{{post.content}}</p>
-    
+
     <div class="card-footer text-muted">
       {{post.dateOfCreation | timeAgo}}
-      
+
     </div>
   </div>
 </div>

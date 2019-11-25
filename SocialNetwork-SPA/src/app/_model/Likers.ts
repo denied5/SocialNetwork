@@ -1,5 +1,5 @@
 export class Likers {
-    id: number; 
+    id: number;
     knownAs: string;
     photoUrl: string;
 }

@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  loggedIn(){
+  loggedIn() {
     return this.auth.loggedIn();
   }
 

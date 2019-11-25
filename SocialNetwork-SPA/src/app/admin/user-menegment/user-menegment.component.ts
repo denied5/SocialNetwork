@@ -15,7 +15,7 @@ export class UserMenegmentComponent implements OnInit {
   bsModalRef: BsModalRef;
 
   constructor(private adminService: AdminService, private alertify: AlertifyService,
-    private modalService: BsModalService) { }
+              private modalService: BsModalService) { }
 
   ngOnInit() {
     this.getUsersWithRoles();
@@ -30,12 +30,12 @@ export class UserMenegmentComponent implements OnInit {
     });
   }
 
-  editRolesModal(user: User){
+  editRolesModal(user: User) {
     const initialState = {
       user,
       roles: this.getRolesArray(user)
     };
-    this.bsModalRef = this.modalService.show(RoleModalComponent, {initialState});
+    this.bsModalRef = this.modalService.show(RoleModalComponent, { initialState });
     this.bsModalRef.content.updateSelectorRoles.subscribe((values) => {
       const rolesToUpdate = {
         roleNames: [...values.filter(el => el.checked === true).map(el => el.name)]
@@ -45,18 +45,18 @@ export class UserMenegmentComponent implements OnInit {
           user.roles = [...rolesToUpdate.roleNames];
         }, error => {
           this.alertify.error(error);
-        })
+        });
       }
-    })
+    });
   }
 
   private getRolesArray(user) {
     const roles = [];
     const userRoles = user.roles;
     const avalibleRoles: any[] = [
-      {name: 'Admin', value: 'Admin'},
-      {name: 'Moderator', value: 'Moderator'},
-      {name: 'Member', value: 'Member'}
+      { name: 'Admin', value: 'Admin' },
+      { name: 'Moderator', value: 'Moderator' },
+      { name: 'Member', value: 'Member' }
     ];
 
     for (let i = 0; i < avalibleRoles.length; i++) {

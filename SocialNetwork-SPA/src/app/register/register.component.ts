@@ -15,22 +15,22 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor(private authService: AuthService, private fb: FormBuilder, 
-    private alertifyService: AlertifyService) { }
+  constructor(private authService: AuthService, private fb: FormBuilder,
+              private alertifyService: AlertifyService) { }
 
-  register(){
-    debugger;
+  register() {
     if (this.registerForm.valid) {
       this.user = Object.assign({}, this.registerForm.value);
       this.authService.register(this.user).subscribe(() => {
-        this.alertifyService.success("register confirm");
+        this.alertifyService.success('register confirm');
+        this.authService.login(this.user).subscribe();
       }, error => {
         this.alertifyService.error(error);
-      })
+      });
     }
   }
 
-  createRegisterForm(){
+  createRegisterForm() {
     this.registerForm = this.fb.group({
       gender: ['male', ],
       username: ['', Validators.required],
@@ -40,19 +40,18 @@ export class RegisterComponent implements OnInit {
       country: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
       confirmPassword: ['', Validators.required]
-    }, {validator: this.passwordMatchValidator});
+    }, { validator: this.passwordMatchValidator });
   }
 
-  passwordMatchValidator(g: FormGroup){
-    return g.get('password').value == g.get('confirmPassword').value ? null : {'mismatch': true};
+  passwordMatchValidator(g: FormGroup) {
+    return g.get('password').value == g.get('confirmPassword').value ? null : { mismatch: true };
   }
-
 
   ngOnInit() {
     this.bsConfig = {
       containerClass: 'theme-red'
     },
-    this.createRegisterForm();
+      this.createRegisterForm();
   }
 
 }

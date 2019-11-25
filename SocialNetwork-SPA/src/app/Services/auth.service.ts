@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../_model/User';
 import { Router } from '@angular/router';
@@ -23,31 +23,31 @@ export class AuthService {
     this.photoUrl.next(photoUrl);
   }
 
-  login(model: any){
+  login(model: any) {
     return this.http.post(this.baseUrl + "login", model)
-    .pipe(
-      map((response: any) => {
-        const user = response;
-        if (user) {
-          localStorage.setItem('token', user.userToken);
-          localStorage.setItem('user', JSON.stringify(user.userFromDb));
-          this.decodedToken = this.jwtHelper.decodeToken(user.userToken);
-          this.currentUser = user.userFromDb;
-          this.changeMemberPhoto(this.currentUser.photoUrl);
+      .pipe(
+        map((response: any) => {
+          const user = response;
+          if (user) {
+            localStorage.setItem('token', user.userToken);
+            localStorage.setItem('user', JSON.stringify(user.userFromDb));
+            this.decodedToken = this.jwtHelper.decodeToken(user.userToken);
+            this.currentUser = user.userFromDb;
+            this.changeMemberPhoto(this.currentUser.photoUrl);
+          }
         }
-      }
-    ));
+        ));
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.currentUser =null;
+    this.currentUser = null;
     this.decodedToken = null;
     this.router.navigate(['/home']);
   }
 
-  loggedIn(){
+  loggedIn() {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
@@ -56,7 +56,7 @@ export class AuthService {
     return this.http.post(this.baseUrl + 'register', user);
   }
 
-  roleMatch(allowedRoles) : boolean {
+  roleMatch(allowedRoles): boolean {
     let isMatch = false;
     const userRoles = this.decodedToken.role as Array<string>;
 

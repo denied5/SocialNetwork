@@ -17,26 +17,40 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { AuthGuard } from './_resolver/auth.guard';
 
 const routes: Routes = [
-    {path: '', component: HomeComponent},
-    {path: 'members', component: PeoplesComponent,
-        resolve: {users: MemberListResolver}, canActivate: [AuthGuard]},
-    {path: 'members/:id', component: MemberDetailComponent,
-        resolve: {user: MemberDetailResolver}, canActivate: [AuthGuard]},
-    {path: 'member/edit', component: MemberEditComponent,
-        resolve: {user: MemberEditResolver}, canActivate: [AuthGuard]},
-    {path: 'messages', component: MessagesComponent,
-        resolve: {messages: MessagesResolver}, canActivate: [AuthGuard]},
-    {path: 'friends', component: FriendsComponent,
-        resolve: {users: FriendsResolver}, canActivate: [AuthGuard]},
-    {path: 'feed', component: FeedComponent,
-        resolve: {feed: FeedResolver}, canActivate: [AuthGuard]},
-    {path: 'admin', component: AdminPanelComponent,
-        data: {roles: ['Admin', 'Moderator']}, canActivate: [AuthGuard]},
-    {path: '**', redirectTo: '', pathMatch: 'full'},
+    { path: '', component: HomeComponent },
+    {
+        path: 'members', component: PeoplesComponent,
+        resolve: { users: MemberListResolver }, canActivate: [AuthGuard]
+    },
+    {
+        path: 'members/:id', component: MemberDetailComponent,
+        resolve: { user: MemberDetailResolver }, canActivate: [AuthGuard]
+    },
+    {
+        path: 'member/edit', component: MemberEditComponent,
+        resolve: { user: MemberEditResolver }, canActivate: [AuthGuard]
+    },
+    {
+        path: 'messages', component: MessagesComponent,
+        resolve: { messages: MessagesResolver }, canActivate: [AuthGuard]
+    },
+    {
+        path: 'friends', component: FriendsComponent,
+        resolve: { users: FriendsResolver }, canActivate: [AuthGuard]
+    },
+    {
+        path: 'feed', component: FeedComponent,
+        resolve: { feed: FeedResolver }, canActivate: [AuthGuard]
+    },
+    {
+        path: 'admin', component: AdminPanelComponent,
+        data: { roles: ['Admin', 'Moderator'] }, canActivate: [AuthGuard]
+    },
+    { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

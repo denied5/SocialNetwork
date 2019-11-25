@@ -14,9 +14,9 @@ namespace DAL.Repository
             _context = context.Set<T>();
         }
 
-        public void Add(T value)
+        public async void Add(T value)
         {
-            _context.Add(value);
+           await  Task.Run(_context.Add(value));
         }
 
         public async Task<IEnumerable<T>> GetAll()

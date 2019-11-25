@@ -16,13 +16,13 @@ export class MemberMessagesComponent implements OnInit {
   newMessage: any = {};
 
   constructor(private messageService: MessageService, private authService: AuthService,
-      private alertify: AlertifyService) { }
+              private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.loadMessages();
   }
 
-  loadMessages(){
+  loadMessages() {
     this.messageService.getMessageThread(this.authService.decodedToken.nameid, this.recipientId)
       .subscribe(messages => {
         this.messages = messages;
@@ -37,9 +37,9 @@ export class MemberMessagesComponent implements OnInit {
       .subscribe((message: Message) => {
         this.messages.unshift(message);
         this.newMessage.content = '';
-    }, error => {
-      this.alertify.error(error);
-    });
+      }, error => {
+        this.alertify.error(error);
+      });
   }
 
 }

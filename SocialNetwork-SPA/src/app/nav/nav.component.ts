@@ -14,32 +14,31 @@ export class NavComponent implements OnInit {
   photoUrl: string;
   model: any = {};
   userId: number;
-  
+
   constructor(private modalService: BsModalService, public authService: AuthService,
-              private alertifyService: AlertifyService, public router: Router) {}
- 
+              private alertifyService: AlertifyService, public router: Router) { }
+
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
-  login(){
+  login() {
     this.authService.login(this.model).subscribe(next => {
       this.alertifyService.success('Login succses');
       this.modalRef.hide();
     },
-    error => {
-      console.log(error)
-      this.alertifyService.error(error);
-      this.modalRef.hide();
-    });
+      error => {
+        console.log(error);
+        this.alertifyService.error(error);
+        this.modalRef.hide();
+      });
   }
 
-  loggedIn()
-  {
+  loggedIn() {
     return this.authService.loggedIn();
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 

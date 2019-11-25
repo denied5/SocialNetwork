@@ -10,23 +10,22 @@ import { map } from 'rxjs/operators';
 })
 export class PostService {
 
-constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
   baseUrl = environment.apiURL;
 
-  getPosts(userId: number)
-  {
+  getPosts(userId: number) {
     return this.http.get<Post[]>(this.baseUrl + 'users/' + userId + '/posts/');
   }
 
-  createPost(userId: number, post: Post){
+  createPost(userId: number, post: Post) {
     return this.http.post(this.baseUrl + 'users/' + userId + '/posts/', post);
   }
 
-  deletePost(userId: number, postId: number){
+  deletePost(userId: number, postId: number) {
     return this.http.delete(this.baseUrl + 'users/' + userId + '/posts/' + postId);
   }
 
-  getFeed(userId: number, page?, itemsPerPage?){
+  getFeed(userId: number, page?, itemsPerPage?) {
     const paginatedResult: PaginatedResult<Post[]> = new PaginatedResult<Post[]>();
 
     let params = new HttpParams();
@@ -36,20 +35,20 @@ constructor(private http: HttpClient) { }
       params = params.append('pageSize', itemsPerPage);
     }
 
-    return this.http.get<Post[]>(this.baseUrl + 'users/' + userId + '/posts/feed', {observe: 'response', params})
+    return this.http.get<Post[]>(this.baseUrl + 'users/' + userId + '/posts/feed', { observe: 'response', params })
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
           if (response.headers.get('Pagination') != null) {
-            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
           }
-          
+
           return paginatedResult;
         })
       );
   }
 
-  setLike(postId: number, userId){
+  setLike(postId: number, userId) {
     return this.http.post(this.baseUrl + 'posts/' + postId + '/like/' + userId, {});
   }
 

@@ -1,39 +1,39 @@
-table{ 
-    margin-top: 15px;
+table {
+  margin-top: 15px;
 }
 
-.img-circle{
-    max-height: 50px;
+.img-circle {
+  max-height: 50px;
 }
 
 .card {
-    max-width: 70%;
-    margin-right: auto;
-    margin-left: auto;
-    box-shadow: 5px 5px 10px black;
+  max-width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: 5px 5px 10px black;
 }
 
 .timeAgo {
-    position: absolute;
-    right: 20px; 
-    top: 95px;
+  position: absolute;
+  right: 20px;
+  top: 95px;
 }
 
 .like {
-    cursor:pointer;
-    font-size: 30px;
-    position: absolute;
-    right: 20px; 
-    top: 15px;
+  cursor: pointer;
+  font-size: 30px;
+  position: absolute;
+  right: 20px;
+  top: 15px;
 }
 
-.like :hover{
-    cursor:pointer;
-    font-size: 32px;
-    right: 18px;
-    top: 17px;
+.like :hover {
+  cursor: pointer;
+  font-size: 32px;
+  right: 18px;
+  top: 17px;
 }
 
 .liked {
-    color: red ;
+  color: red;
 }

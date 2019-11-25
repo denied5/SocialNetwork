@@ -40,7 +40,7 @@
             <h4>Interests</h4>
             <p>{{user?.interests}}</p>
           </tab>
-          
+
           <tab heading="Photo">
             <ngx-gallery [options]='galleryOptions' [images]='galleryImages'></ngx-gallery>
           </tab>
@@ -54,9 +54,9 @@
               </div>
             </div>
           </tab>
-            <tab heading="Messages"  [ngClass]="{disabledTab: sameUser()}">
-                <app-member-messages [recipientId]="user.id"></app-member-messages>
-            </tab>
+          <tab heading="Messages" [ngClass]="{disabledTab: sameUser()}">
+            <app-member-messages [recipientId]="user.id"></app-member-messages>
+          </tab>
         </tabset>
       </div>
     </div>

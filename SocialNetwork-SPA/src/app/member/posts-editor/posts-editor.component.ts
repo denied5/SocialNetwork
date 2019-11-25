@@ -13,7 +13,7 @@ export class PostsEditorComponent implements OnInit {
   posts: Post[];
   newPost: any = {};
   constructor(private postService: PostService, private authService: AuthService,
-      private alertify: AlertifyService) { }
+              private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.loadPosts();
@@ -21,17 +21,17 @@ export class PostsEditorComponent implements OnInit {
     this.newPost.userId = this.authService.decodedToken.nameid;
   }
 
-  createPost(){
+  createPost() {
     this.postService.createPost(this.authService.decodedToken.nameid, this.newPost)
       .subscribe((post: Post) => {
         this.posts.unshift(post);
         this.newPost.content = '';
     }, error => {
       this.alertify.error(error);
-    });;
+    });
   }
 
-  loadPosts(){
+  loadPosts() {
     this.postService.getPosts(this.authService.decodedToken.nameid).subscribe(
       posts => {
         this.posts = posts;
@@ -39,10 +39,10 @@ export class PostsEditorComponent implements OnInit {
       error => {
         this.alertify.error(error);
       }
-    )
+    );
   }
 
-  deletePost(postId: number){
+  deletePost(postId: number) {
     this.postService.deletePost(this.authService.decodedToken.nameid, postId).subscribe(
       () => {
         this.posts.splice(
@@ -51,7 +51,7 @@ export class PostsEditorComponent implements OnInit {
       error => {
         this.alertify.error(error);
       }
-    )
+    );
   }
 
 }

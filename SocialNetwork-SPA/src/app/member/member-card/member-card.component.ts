@@ -12,18 +12,18 @@ import { AlertifyService } from 'src/app/Services/alertify.service';
 export class MemberCardComponent implements OnInit {
   @Input() user: User;
   constructor(private friendshipService: FriendshipService, private authService: AuthService,
-    private alertyfy: AlertifyService) { }
+              private alertyfy: AlertifyService) { }
 
   ngOnInit() {
   }
 
-  addFriend(){
-    this.friendshipService.addFriend(this.authService.decodedToken.nameid , this.user.id)
-    .subscribe( () => {
-      this.alertyfy.success("You add " + this.user.knownAs);
-    }, error => {
-      this.alertyfy.error(error);
-    });
+  addFriend() {
+    this.friendshipService.addFriend(this.authService.decodedToken.nameid, this.user.id)
+      .subscribe(() => {
+        this.alertyfy.success('You add ' + this.user.knownAs);
+      }, error => {
+        this.alertyfy.error(error);
+      });
   }
 
 }

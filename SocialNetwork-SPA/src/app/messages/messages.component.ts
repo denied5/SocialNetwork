@@ -18,36 +18,36 @@ export class MessagesComponent implements OnInit {
   userId: number;
 
   constructor(private messageService: MessageService, private authService: AuthService,
-    private route: ActivatedRoute, private alertify: AlertifyService) { }
+              private route: ActivatedRoute, private alertify: AlertifyService) { }
 
   ngOnInit() {
-    this.route.data.subscribe( data => {
+    this.route.data.subscribe(data => {
       this.messages = data.messages.result;
       this.pagination = data.messages.pagination;
-    })
+    });
     this.userId = this.authService.decodedToken.nameid;
   }
 
-  loadMessages(){
-    this.messageService.getMessages(this.userId, this.pagination.CurrentPage, 
-        this.pagination.ItemsPerPage)
-          .subscribe((res: PaginatedResult<Message[]>) => {
-            this.messages = res.result;
-            this.pagination = res.pagination;
-          }, error => {
-            this.alertify.error(error);
-          });
+  loadMessages() {
+    this.messageService.getMessages(this.userId, this.pagination.CurrentPage,
+      this.pagination.ItemsPerPage)
+      .subscribe((res: PaginatedResult<Message[]>) => {
+        this.messages = res.result;
+        this.pagination = res.pagination;
+      }, error => {
+        this.alertify.error(error);
+      });
   }
 
-  deleteMessage(id: number){
+  deleteMessage(id: number) {
     this.alertify.confirm('Are you sure', () => {
       this.messageService.deleteMessage(id, this.authService.decodedToken.nameid).subscribe(() => {
         this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
         this.alertify.success('message deleted');
       }, error => {
         this.alertify.error(error);
-      })
-    })
+      });
+    });
   }
 
   pageChanged(event: any): void {

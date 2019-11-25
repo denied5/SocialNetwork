@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { User } from '../_model/User';
 import { UserService } from '../Services/user.service';
@@ -20,7 +20,7 @@ export class MemberDetailResolver implements Resolve<User> {
             catchError(error => {
                 this.alertify.error('Problem Retreiving data');
                 this.router.navigate(['/members']);
-                return of (null);
+                return of(null);
             })
         );
     }

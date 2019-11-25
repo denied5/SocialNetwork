@@ -11,12 +11,12 @@
         <th style="width: 20%">Time</th>
       </tr>
       <tr *ngFor="let message of messages" [routerLink]="['/members', 
-        message.senderId == userId ? message.recipientId : message.senderId]"
-          [queryParams]="{tab: 3}" [ngClass]="{unread: message?.isRead != true && message.recipientId == userId}">
+        message.senderId == userId ? message.recipientId : message.senderId]" [queryParams]="{tab: 3}"
+        [ngClass]="{unread: message?.isRead != true && message.recipientId == userId}">
         <td>
-          <div *ngIf="message.senderId == userId" >
-                <img src={{message?.recipientPhotoUrl}} class="img-circle rounded-circle mr-1">
-                <strong>{{message.recipientKnownAs}}</strong>
+          <div *ngIf="message.senderId == userId">
+            <img src={{message?.recipientPhotoUrl}} class="img-circle rounded-circle mr-1">
+            <strong>{{message.recipientKnownAs}}</strong>
           </div>
           <div *ngIf="message.recipientId == userId">
             <img src={{message?.senderPhotoUrl}} class="img-circle rounded-circle mr-1">
@@ -35,11 +35,8 @@
 </div>
 
 <div class="d-flex justify-content-center">
-    <pagination [boundaryLinks]="true" 
-                [totalItems]="pagination.TotalItems"
-                [itemsPerPage]="pagination.ItemsPerPage"
-                [(ngModel)]="pagination.CurrentPage"
-                (pageChanged)="pageChanged($event)"
-              previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+  <pagination [boundaryLinks]="true" [totalItems]="pagination.TotalItems" [itemsPerPage]="pagination.ItemsPerPage"
+    [(ngModel)]="pagination.CurrentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+    firstText="&laquo;" lastText="&raquo;">
   </pagination>
-  </div>
+</div>

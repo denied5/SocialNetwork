@@ -15,17 +15,17 @@ export class PeoplesComponent implements OnInit {
   pagination: Pagination;
   userParams: any = {};
   user: User = JSON.parse(localStorage.getItem('user'));
-  genderList = [{value: 'male', display: 'Males'}, {value: 'female', display: 'Females'}, {value: 'any', display: 'any'}];
-  
+  genderList = [{ value: 'male', display: 'Males' }, { value: 'female', display: 'Females' }, { value: 'any', display: 'any' }];
+
 
   constructor(private userService: UserService, private route: ActivatedRoute,
-    private alertify: AlertifyService) { }
+              private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.users = data.users.result;
       this.pagination = data.users.pagination;
-    })
+    });
 
     this.userParams.gender = 'any';
     this.userParams.minAge = 14;
@@ -47,13 +47,13 @@ export class PeoplesComponent implements OnInit {
 
   loadUsers() {
     this.userService.getUsers(this.pagination.CurrentPage, this.pagination.ItemsPerPage, this.userParams)
-       .subscribe((res: PaginatedResult<User[]>) => {
-      this.users = res.result;
-      this.pagination = res.pagination;
-    }, error => {
-      this.alertify.error(error);
-    });
- }
+      .subscribe((res: PaginatedResult<User[]>) => {
+        this.users = res.result;
+        this.pagination = res.pagination;
+      }, error => {
+        this.alertify.error(error);
+      });
+  }
 
 
 

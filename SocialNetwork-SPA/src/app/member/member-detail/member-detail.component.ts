@@ -21,16 +21,16 @@ export class MemberDetailComponent implements OnInit {
   galleryImages: NgxGalleryImage[];
   posts: Post[];
   constructor(public route: ActivatedRoute, private authService: AuthService,
-    private alertify: AlertifyService, private postService: PostService) { }
+              private alertify: AlertifyService, private postService: PostService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.user = data.user;
     });
     this.route.queryParams.subscribe(params => {
-      const selectTab = params['tab'];
-      this.memberTabs.tabs[selectTab > 0 ? selectTab: 0].active = true;
-    })
+      const selectTab = params.tab;
+      this.memberTabs.tabs[selectTab > 0 ? selectTab : 0].active = true;
+    });
     this.loadPosts();
     this.galleryOptions = [
       {
@@ -42,7 +42,7 @@ export class MemberDetailComponent implements OnInit {
         preview: false
       }
     ];
-    this.galleryImages = this.getImages ();
+    this.galleryImages = this.getImages();
   }
 
   getImages() {
@@ -62,7 +62,7 @@ export class MemberDetailComponent implements OnInit {
     this.memberTabs.tabs[tabId].active = true;
   }
 
-  loadPosts(){
+  loadPosts() {
     this.postService.getPosts(this.user.id).subscribe(
       posts => {
         this.posts = posts;
@@ -70,7 +70,7 @@ export class MemberDetailComponent implements OnInit {
       error => {
         this.alertify.error(error);
       }
-    )
+    );
   }
 
   sameUser(): boolean {
