@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BIL.Services
 {
-    class AdminService : IAdminService
+    public class AdminService : IAdminService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

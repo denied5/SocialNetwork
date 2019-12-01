@@ -68,7 +68,5 @@ namespace api.Controllers
             }
             return BadRequest("Some problem in Updating User");
         }
-
-
     }
 }
