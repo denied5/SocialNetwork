@@ -6,7 +6,6 @@ C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\dal.dll
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\bin\Debug\netcoreapp2.1\dal.pdb
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.csprojAssemblyReference.cache
-C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.csproj.CoreCompileInputs.cache
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.AssemblyInfoInputs.cache
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.AssemblyInfo.cs
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\BIL\obj\Debug\netcoreapp2.1\BIL.csproj.CopyComplete

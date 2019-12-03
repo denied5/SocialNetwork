@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\API\api.csproj" />
+    <ProjectReference Include="..\BIL\BIL.csproj" />
   </ItemGroup>
 
 </Project>

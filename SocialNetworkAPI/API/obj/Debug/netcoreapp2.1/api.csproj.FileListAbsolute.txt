@@ -8,7 +8,6 @@ C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\BIL.pdb
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\dal.pdb
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\API\obj\Debug\netcoreapp2.1\api.csprojAssemblyReference.cache
-C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\API\obj\Debug\netcoreapp2.1\api.csproj.CoreCompileInputs.cache
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\API\obj\Debug\netcoreapp2.1\api.RazorAssemblyInfo.cache
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\API\obj\Debug\netcoreapp2.1\api.RazorAssemblyInfo.cs
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\API\obj\Debug\netcoreapp2.1\api.AssemblyInfoInputs.cache
@@ -38,3 +37,6 @@ D:\education\SocialNetwork\SocialNetworkAPI\API\obj\Debug\netcoreapp2.1\api.pdb
 D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\appsettings.Development.json
 D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\appsettings.json
 D:\education\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\API\bin\Debug\netcoreapp2.1\appsettings.Development.json

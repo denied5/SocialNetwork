@@ -4,7 +4,6 @@ C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\DAL\bin\Debug\netcoreapp2
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\DAL\bin\Debug\netcoreapp2.1\dal.dll
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\DAL\bin\Debug\netcoreapp2.1\dal.pdb
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\DAL\obj\Debug\netcoreapp2.1\dal.csprojAssemblyReference.cache
-C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\DAL\obj\Debug\netcoreapp2.1\dal.csproj.CoreCompileInputs.cache
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\DAL\obj\Debug\netcoreapp2.1\dal.AssemblyInfoInputs.cache
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\DAL\obj\Debug\netcoreapp2.1\dal.AssemblyInfo.cs
 C:\Users\lstel\studying\SocialNetwork\SocialNetworkAPI\DAL\obj\Debug\netcoreapp2.1\dal.dll

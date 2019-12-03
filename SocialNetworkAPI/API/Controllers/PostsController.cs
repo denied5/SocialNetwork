@@ -54,6 +54,10 @@ namespace api.Controllers
         [HttpGet("feed")]
         public async Task<IActionResult> GetFeed(int userId, [FromQuery]PagedListParams postParams)
         {
+            if (postParams == null)
+            {
+                return BadRequest();
+            }
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
                 return Unauthorized();
