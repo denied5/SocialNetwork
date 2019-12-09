@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\lstel\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\lstel\\.nuget\\packages"
-    ]
-  }
-}
