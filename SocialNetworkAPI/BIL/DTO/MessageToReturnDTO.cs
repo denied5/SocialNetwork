@@ -4,7 +4,7 @@ namespace BIL.DTO
 {
     public class MessageToReturnDTO
     {
-        public int Id { get; set; }//message id
+        public int Id { get; set; }
         public int SenderId { get; set; }
         public string SenderKnownAs { get; set; }
         public string SenderPhotoUrl { get; set; }

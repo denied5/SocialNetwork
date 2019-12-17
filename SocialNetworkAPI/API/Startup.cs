@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.Net;
 using System.Text;
@@ -18,11 +19,13 @@ namespace api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+            _logger = logger;
         }
 
+        public ILogger<Startup> _logger { get; }
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -73,19 +76,18 @@ namespace api
                         var error = context.Features.Get<IExceptionHandlerFeature>();
                         if (error != null)
                         {
+                            _logger.LogError("{0} /n", error.Error.Message, error.Error.StackTrace);
                             context.Response.AddAplicationError(error.Error.Message);
                             await context.Response.WriteAsync(error.Error.Message);
                         }
                     });
                 });
-                // app.UseHsts();
             }
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
             seeder.SeedRole();
             seeder.SeedAdmin();
             seeder.SeedModerator();
-            // app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

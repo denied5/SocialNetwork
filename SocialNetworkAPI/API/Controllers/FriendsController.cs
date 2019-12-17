@@ -3,6 +3,7 @@ using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -52,7 +53,7 @@ namespace api.Controllers
         [HttpGet()]
         public async Task<IActionResult> GetFriends(int userId)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))//read value from token
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
                 return Unauthorized();
             }
@@ -69,7 +70,7 @@ namespace api.Controllers
         [HttpDelete("{recipientId}")]
         public async Task<IActionResult> DeleteFriend(int userId, int recipientId)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))//read value from token
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
                 return Unauthorized();
             }
