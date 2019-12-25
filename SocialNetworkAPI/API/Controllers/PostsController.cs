@@ -4,8 +4,11 @@ using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace api.Controllers
@@ -34,7 +37,8 @@ namespace api.Controllers
                 return BadRequest("User don't exsist");
             }
 
-            var postsToRetrun = _postService.GetPosts(userId);
+            var postsToRetrun = await _postService.GetPosts(userId);
+            
             return Ok(postsToRetrun);
         }
 
@@ -64,7 +68,6 @@ namespace api.Controllers
             }
 
             postParams.UserId = userId;
-
             var feedFromRepo = await _postService.GetFeed(postParams);
             if (feedFromRepo == null)
             {

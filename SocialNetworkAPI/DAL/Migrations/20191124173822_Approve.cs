@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace api.Migrations
+namespace DAL.Migrations
 {
     public partial class Approve : Migration
     {

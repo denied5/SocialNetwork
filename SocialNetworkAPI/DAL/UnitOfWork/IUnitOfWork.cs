@@ -13,6 +13,7 @@ namespace DAL.UnitOfWork
         IPostRepository PostRepository { get; }
         ILikeRepository LikeRepository { get; }
         IRoleRepository RoleRepository { get; }
+        ICommentRepository CommentRepository { get; }
 
         Task<bool> SaveChanges();
     }

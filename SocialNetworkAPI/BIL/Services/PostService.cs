@@ -39,7 +39,7 @@ namespace BIL.Services
 
         public async Task<PagedList<PostForReturnDTO>> GetFeed(PagedListParams param)
         {
-            var feedFromRepo = _unitOfWork.PostRepository.GetPosts(param.UserId);
+            var feedFromRepo =  _unitOfWork.PostRepository.GetPosts(param.UserId);
             var friendsId = (await _frienshipService.GetFriends(param.UserId)).Select(f => f.Id);
 
             foreach (var id in friendsId)
@@ -64,9 +64,13 @@ namespace BIL.Services
             return _mapper.Map<PostForReturnDTO>(postForReturn);
         }
 
-        public IEnumerable<PostForReturnDTO> GetPosts(int userId)
+        public async  Task<IEnumerable<PostForReturnDTO>> GetPosts(int userId)
         {
             var postsForReturn = _unitOfWork.PostRepository.GetPosts(userId);
+            foreach (var item in postsForReturn)
+            {
+                item.Comments.OrderBy(x => x.DateOfCreation);
+            }
 
             return _mapper.Map<IEnumerable<PostForReturnDTO>>(postsForReturn);
         }

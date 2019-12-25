@@ -46,6 +46,9 @@ import { UserMenegmentComponent } from './admin/user-menegment/user-menegment.co
 import { AdminService } from './Services/admin.service';
 import { RoleModalComponent } from './admin/role-modal/role-modal.component';
 import { HasRoleDirective } from './_directives/hasRole.directive';
+import { CommentComponent } from './comment/comment.component';
+import { SendCommentComponent } from './sendComment/sendComment.component';
+
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -73,6 +76,8 @@ export function tokenGetter() {
       PhotoMenegmentComponent,
       UserMenegmentComponent,
       RoleModalComponent,
+      CommentComponent,
+      SendCommentComponent
    ],
    imports: [
       BrowserModule,

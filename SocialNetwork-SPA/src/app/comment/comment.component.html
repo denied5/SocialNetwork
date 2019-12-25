@@ -1,0 +1,42 @@
+<div class="list-group">
+  <div *ngIf="!isFull">
+    <div  *ngFor="let comment of comments.slice(0,2)" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 mb-2">
+        <img src="{{comment?.userPhotoUrl || '../../../assets/user.png'}}" class="img-circle rounded-circle mr-2">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{comment.userKnownAs}}</h5>
+          <small class="mt-1" >{{comment.dateOfCreation | timeAgo}}</small>
+        </div>
+        <p *ngIf="comment.userKnownAs == userKnownAs" class="trash ml-1" (click)="deleteComment(comment.id)"><i class="fa fa-trash"></i></p>
+      </div>
+      <p class="mb-1">{{comment.content}}</p>
+    </div>
+  </div>
+  <div *ngIf="isFull">
+    <div  *ngFor="let comment of comments" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 mb-2">
+        <img src="{{comment?.userPhotoUrl || '../../../assets/user.png'}}" class="img-circle rounded-circle mr-2">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{comment.userKnownAs}}</h5>
+          <small class="mt-1" >{{comment.dateOfCreation | timeAgo}}</small>
+        </div>
+        <p *ngIf="comment.userKnownAs == userKnownAs" class="trash ml-1" (click)="deleteComment(comment.id)"><i class="fa fa-trash"></i></p>
+      </div>
+      <p class="mb-1">{{comment.content}}</p>
+    </div>
+  </div>
+  
+  <div *ngIf="comments.length > 2" (click)="changeCommentsList()" class="list-group-item list-group-item-action">
+    <div *ngIf="!isFull" class="d-flex w-100 justify-content-between">
+      <i class="fa fa-arrow-down"></i>
+      <i class="fa fa-arrow-down"></i>
+    </div>
+    <div *ngIf="isFull" class="d-flex w-100 justify-content-between">
+      <i class="fa fa-arrow-up"></i>
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+</div>
+
+
+

@@ -17,6 +17,7 @@ namespace DAL.Data
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Like> Like { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -76,6 +77,19 @@ namespace DAL.Data
                 .WithMany(l => l.Likes)
                 .HasForeignKey(p => p.PostId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Comment>()
+                .HasOne(p => p.Post)
+                .WithMany(c => c.Comments)
+                .HasForeignKey(p => p.PostId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Comment>()
+                .HasOne(u => u.User)
+                .WithMany(c => c.Comments)
+                .HasForeignKey(u => u.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
             builder.Entity<Photo>().HasQueryFilter(p => p.Approved);
         }

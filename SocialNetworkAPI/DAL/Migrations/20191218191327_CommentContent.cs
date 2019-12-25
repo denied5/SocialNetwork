@@ -2,22 +2,21 @@
 
 namespace DAL.Migrations
 {
-    public partial class PhotosApproved : Migration
+    public partial class CommentContent : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<bool>(
-                name: "Approved",
-                table: "Photos",
-                nullable: false,
-                defaultValue: false);
+            migrationBuilder.AddColumn<string>(
+                name: "Content",
+                table: "Comment",
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Approved",
-                table: "Photos");
+                name: "Content",
+                table: "Comment");
         }
     }
 }

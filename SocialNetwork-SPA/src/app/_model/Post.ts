@@ -1,4 +1,5 @@
 import { Likers } from './likers';
+import { PostComment } from './PostComment';
 
 export class Post {
     id: number;
@@ -8,4 +9,5 @@ export class Post {
     userKnownAs: string;
     userPhotoUrl: string;
     likers: Likers[];
+    comments: PostComment[];
 }

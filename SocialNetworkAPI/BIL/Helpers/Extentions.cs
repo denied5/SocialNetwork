@@ -19,7 +19,7 @@ namespace BIL.Extensions
         public static IServiceCollection SetUpAppDependencies(this IServiceCollection services,
             string connectionString)
         {
-            services.AddDbContext<DataContext>(x => x.UseSqlServer(connectionString, b => b.MigrationsAssembly("api")));
+            services.AddDbContext<DataContext>(x => x.UseSqlServer(connectionString));
             return services;
         }
 
@@ -59,6 +59,7 @@ namespace BIL.Extensions
             services.AddScoped<IFrienshipService, FrienshipService>();
             services.AddScoped<IMessagesService, MessagesService>();
             services.AddScoped<IPostService, PostService>();
+            services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<ILikeService, LikeService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<Seed>();

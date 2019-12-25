@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace api.Migrations
+namespace DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20191124173822_Approve")]

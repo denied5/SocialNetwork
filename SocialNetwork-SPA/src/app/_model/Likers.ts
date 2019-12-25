@@ -1,4 +1,4 @@
-export class Likers {
+export interface  Likers {
     id: number;
     knownAs: string;
     photoUrl: string;

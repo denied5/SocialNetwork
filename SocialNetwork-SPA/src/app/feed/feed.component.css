@@ -4,7 +4,9 @@ table {
 
 .img-circle {
   max-height: 50px;
+  max-width: 50px;
 }
+
 
 .card {
   max-width: 70%;

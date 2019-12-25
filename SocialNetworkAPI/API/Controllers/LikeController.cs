@@ -1,10 +1,12 @@
-﻿using BIL.Services.Interrfaces;
+﻿using BIL.Helpers;
+using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace api.Controllers
 {
+    [ServiceFilter(typeof(UpdateUserActivityFilter))]
     [Route("api/posts/{postId}/like/{userId}")]
     [ApiController]
     public class LikeController : ControllerBase

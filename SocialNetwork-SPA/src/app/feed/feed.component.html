@@ -3,19 +3,25 @@
 </div>
 
 <div class="container mt-5">
-    <div *ngFor="let post of feed" class="card border-secondary mb-3">
-        <div class="card-body" style="padding: 0px;">
-            <div class="card-header">
-                <img src={{post?.userPhotoUrl}} class="img-circle rounded-circle mr-1">
-                <strong>{{post.userKnownAs}}</strong>
-                <p class="timeAgo">{{post.dateOfCreation | timeAgo}}</p>
-                <span class="like" (click)="setLike(post.id)" [ngClass]="{liked: isLiked(post.id)}">
-                    <i class="fa fa-heart">{{post.likers.length}}</i>
-                </span>
+    <div *ngFor="let post of feed">
+        <div  class="card border-secondary mb-1">
+            <div class="card-body" style="padding: 0px;">
+                <div class="card-header">
+                    <img  src="{{post?.userPhotoUrl || '../../../assets/user.png'}}" class="img-circle rounded-circle mr-1">
+                    <strong>{{post.userKnownAs}}</strong>
+                    <span class="like" (click)="setLike(post.id)" [ngClass]="{liked: isLiked(post.id)}">
+                        <i class="fa fa-heart">{{post.likers.length}}</i>
+                    </span>
+                </div>
             </div>
+            <p class="card-text" style="margin: 20px;">{{post.content}}</p>
+            <div class="card-footer text-muted">
+                {{post.dateOfCreation | timeAgo}}
+                <i class="ml-2 fa fa-comment">{{post.comments.length}}</i>
+            </div>
+            <app-comment [comments]="post.comments"></app-comment>
         </div>
-        <p class="card-text" style="margin: 20px;">{{post.content}}</p>
-
+        <app-sendComment (updateComments)="addComment($event, post.id)" [postId]="post.id"></app-sendComment>
     </div>
 </div>
 

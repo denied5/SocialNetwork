@@ -6,6 +6,7 @@ import { AlertifyService } from '../Services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { Pagination, PaginatedResult } from '../_model/pagination';
 import { AuthService } from '../Services/Auth.service';
+import { PostComment } from '../_model/PostComment';
 
 @Component({
   selector: 'app-feed',
@@ -16,6 +17,7 @@ export class FeedComponent implements OnInit {
   feed: Post[];
   pagination: Pagination;
   userId: number;
+  
   constructor(private postService: PostService, private alertify: AlertifyService,
               private route: ActivatedRoute, private authService: AuthService) { }
 
@@ -66,6 +68,10 @@ export class FeedComponent implements OnInit {
           this.alertify.error(error);
         });
     }
+  }
+
+  addComment(comment: PostComment, id: number){
+    this.feed.find(x => x.id == id).comments.unshift(comment);
   }
 
   isLiked(postId: number) {
