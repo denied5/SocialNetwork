@@ -22,10 +22,8 @@ namespace DAL.Models
         [MaxLength(200)]
         public string Interests { get; set; }
         [MaxLength(50)]
-        [Required]
         public string City { get; set; }
         [MaxLength(50)]
-        [Required]
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
         public ICollection<Post> Posts { get; set; }

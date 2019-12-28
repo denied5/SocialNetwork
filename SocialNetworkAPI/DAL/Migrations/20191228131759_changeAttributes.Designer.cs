@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DAL.Migrations
+namespace dal.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191124173822_Approve")]
-    partial class Approve
+    [Migration("20191228131759_changeAttributes")]
+    partial class changeAttributes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,31 @@ namespace DAL.Migrations
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DAL.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(500);
+
+                    b.Property<DateTime>("DateOfCreation");
+
+                    b.Property<int>("PostId");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
 
             modelBuilder.Entity("DAL.Models.Friendship", b =>
                 {
@@ -53,7 +78,9 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Content");
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(500);
 
                     b.Property<DateTime?>("DateRead");
 
@@ -111,7 +138,9 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Content");
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(1000);
 
                     b.Property<DateTime>("DateOfCreation");
 
@@ -157,12 +186,14 @@ namespace DAL.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("City");
+                    b.Property<string>("City")
+                        .HasMaxLength(50);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<string>("Country");
+                    b.Property<string>("Country")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("Created");
 
@@ -173,13 +204,18 @@ namespace DAL.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("Gender");
+                    b.Property<string>("Gender")
+                        .IsRequired();
 
-                    b.Property<string>("Interests");
+                    b.Property<string>("Interests")
+                        .HasMaxLength(200);
 
-                    b.Property<string>("Introduction");
+                    b.Property<string>("Introduction")
+                        .HasMaxLength(200);
 
-                    b.Property<string>("KnownAs");
+                    b.Property<string>("KnownAs")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.Property<DateTime>("LastActive");
 
@@ -187,7 +223,8 @@ namespace DAL.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("LookingFor");
+                    b.Property<string>("LookingFor")
+                        .HasMaxLength(200);
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -302,6 +339,19 @@ namespace DAL.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("DAL.Models.Comment", b =>
+                {
+                    b.HasOne("DAL.Models.Post", "Post")
+                        .WithMany("Comments")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAL.Models.User", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("DAL.Models.Friendship", b =>

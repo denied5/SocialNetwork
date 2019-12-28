@@ -2,6 +2,7 @@
 using BIL.DTO;
 using BIL.Helpers;
 using BIL.Services.Interrfaces;
+using DAL.Data;
 using DAL.Models;
 using DAL.UnitOfWork;
 using System;
@@ -31,6 +32,11 @@ namespace BIL.Services
             if (recipient == null)
             {
                 throw new Exception("Recipient don't exsist");
+            }
+            if (messageForCreationDTO.Content.Length > EntitysRestrictions.MESSAGE_MAX_LENGTH)
+            {
+                messageForCreationDTO.Content = messageForCreationDTO.Content.Substring(0, 
+                    EntitysRestrictions.MESSAGE_MAX_LENGTH);
             }
 
             var message = _mapper.Map<Message>(messageForCreationDTO);

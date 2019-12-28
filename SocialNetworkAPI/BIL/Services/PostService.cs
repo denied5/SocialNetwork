@@ -2,6 +2,7 @@
 using BIL.DTO;
 using BIL.Helpers;
 using BIL.Services.Interrfaces;
+using DAL.Data;
 using DAL.Models;
 using DAL.UnitOfWork;
 using System;
@@ -28,6 +29,12 @@ namespace BIL.Services
         {
             var postToCreate = _mapper.Map<Post>(post);
             _unitOfWork.PostRepository.Add(postToCreate);
+
+            if (postToCreate.Content.Length > EntitysRestrictions.POST_MAX_LENGTH)
+            {
+                postToCreate.Content = postToCreate.Content.Substring(0,
+                    EntitysRestrictions.POST_MAX_LENGTH);
+            }
 
             if (await _unitOfWork.SaveChanges())
             {

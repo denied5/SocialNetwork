@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BIL.DTO;
 using BIL.Services.Interrfaces;
+using DAL.Data;
 using DAL.Models;
 using DAL.UnitOfWork;
 using System;
@@ -41,12 +42,17 @@ namespace BIL.Services
         {
             var commentToAdd = _mapper.Map<Comment>(comment);
 
+            if (commentToAdd.Content.Length > EntitysRestrictions.COMMENT_MAX_LENGTH)
+            {
+                commentToAdd.Content = commentToAdd.Content.Substring(0,
+                    EntitysRestrictions.COMMENT_MAX_LENGTH);
+            }
+
             _unitOfWork.CommentRepository.Add(commentToAdd);
 
             if (await _unitOfWork.SaveChanges())
             {
                 var commentToReturn = await _unitOfWork.CommentRepository.GetComment(commentToAdd.Id);
-                var dewjnd = _mapper.Map<CommentDTO>(commentToReturn);
                 return _mapper.Map<CommentDTO>(commentToReturn);
             }
 

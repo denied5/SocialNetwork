@@ -27,7 +27,7 @@ namespace dal.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(150);
+                        .HasMaxLength(500);
 
                     b.Property<DateTime>("DateOfCreation");
 
@@ -78,7 +78,7 @@ namespace dal.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(150);
+                        .HasMaxLength(500);
 
                     b.Property<DateTime?>("DateRead");
 
@@ -138,7 +138,7 @@ namespace dal.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(150);
+                        .HasMaxLength(1000);
 
                     b.Property<DateTime>("DateOfCreation");
 
@@ -185,14 +185,12 @@ namespace dal.Migrations
                     b.Property<int>("AccessFailedCount");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("Created");

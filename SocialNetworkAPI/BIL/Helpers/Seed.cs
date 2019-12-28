@@ -40,7 +40,9 @@ namespace BIL.Helpers
             {
                 var adminUser = new User
                 {
-                    UserName = "Admin"
+                    UserName = "Admin",
+                    Gender = "male",
+                    KnownAs = "Admin"
                 };
 
                 IdentityResult result = _userManager.CreateAsync(adminUser, "password").Result;
@@ -59,7 +61,9 @@ namespace BIL.Helpers
             {
                 var adminUser = new User
                 {
-                    UserName = "Moderator"
+                    UserName = "Moderator",
+                     Gender = "male",
+                    KnownAs = "Moderator"
                 };
 
                 IdentityResult result = _userManager.CreateAsync(adminUser, "password").Result;

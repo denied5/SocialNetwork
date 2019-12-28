@@ -12,7 +12,7 @@ namespace DAL.Models
         public User User { get; set; }
         public int PostId { get; set; }
         public Post Post { get; set; }
-        [MaxLength(150)]
+        [MaxLength(500)]
         [Required]
         public string Content { get; set; }
         public DateTime DateOfCreation { get; set; }

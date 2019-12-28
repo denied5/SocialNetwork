@@ -1,6 +1,6 @@
 <form #postForm="ngForm" (ngSubmit)="postForm.valid && createPost()" style="max-width: 800px; margin-top: 20px;">
   <div class="form-group">
-    <textarea required [(ngModel)]="newPost.content" name="content" class="form-control" id="exampleTextarea" rows="3"
+    <textarea required [(ngModel)]="newPost.content" maxlength="1000" name="content" class="form-control" id="exampleTextarea" rows="3"
       placeholder="what's on your mind?"></textarea>
   </div>
   <button type="submit" [disabled]="!postForm.valid" class="btn btn-primary btn-right">Post</button>

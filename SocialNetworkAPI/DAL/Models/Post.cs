@@ -7,7 +7,7 @@ namespace DAL.Models
     public class Post
     {
         public int Id { get; set; }
-        [MaxLength(150)]
+        [MaxLength(1000)]
         [Required]
         public string Content { get; set; }
         public User User { get; set; }

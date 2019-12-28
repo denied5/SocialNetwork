@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DAL.Migrations
+namespace dal.Migrations
 {
-    public partial class Approve : Migration
+    public partial class changeAttributes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

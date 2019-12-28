@@ -10,7 +10,7 @@ namespace DAL.Models
         public User Sender { get; set; }
         public int RecipientId { get; set; }
         public User Recipient { get; set; }
-        [MaxLength(150)]
+        [MaxLength(500)]
         [Required]
         public string Content { get; set; }
         public bool IsRead { get; set; }
