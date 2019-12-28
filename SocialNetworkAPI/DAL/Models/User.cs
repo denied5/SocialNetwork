@@ -1,20 +1,31 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
     public class User : IdentityUser<int>
     {
+        [Required]
         public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
+        [Required]
+        [MaxLength(20)]
         public string KnownAs { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
+        [MaxLength(200)]
         public string Introduction { get; set; }
+        [MaxLength(200)]
         public string LookingFor { get; set; }
+        [MaxLength(200)]
         public string Interests { get; set; }
+        [MaxLength(50)]
+        [Required]
         public string City { get; set; }
+        [MaxLength(50)]
+        [Required]
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
         public ICollection<Post> Posts { get; set; }

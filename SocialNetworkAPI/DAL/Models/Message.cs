@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
@@ -9,6 +10,8 @@ namespace DAL.Models
         public User Sender { get; set; }
         public int RecipientId { get; set; }
         public User Recipient { get; set; }
+        [MaxLength(150)]
+        [Required]
         public string Content { get; set; }
         public bool IsRead { get; set; }
         public DateTime? DateRead { get; set; }
