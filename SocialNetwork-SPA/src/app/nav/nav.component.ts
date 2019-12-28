@@ -3,6 +3,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthService } from '../Services/Auth.service';
 import { AlertifyService } from '../Services/alertify.service';
 import { Router } from '@angular/router';
+import { PushNotificationService } from '../Services/push-notification.service';
 
 @Component({
   selector: 'app-nav',
@@ -16,7 +17,8 @@ export class NavComponent implements OnInit {
   userId: number;
 
   constructor(private modalService: BsModalService, public authService: AuthService,
-              private alertifyService: AlertifyService, public router: Router) { }
+              private alertifyService: AlertifyService, public router: Router,
+              private pushNot: PushNotificationService) { }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
@@ -43,6 +45,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pushNot.receiveMessage();
     this.authService.currentPhotoUrl.subscribe(photoUrl => {
       this.photoUrl = photoUrl;
     });

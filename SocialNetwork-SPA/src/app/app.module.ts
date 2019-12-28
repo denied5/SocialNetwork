@@ -48,6 +48,8 @@ import { RoleModalComponent } from './admin/role-modal/role-modal.component';
 import { HasRoleDirective } from './_directives/hasRole.directive';
 import { CommentComponent } from './comment/comment.component';
 import { SendCommentComponent } from './sendComment/sendComment.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
 
 
 export function tokenGetter() {
@@ -99,6 +101,16 @@ export function tokenGetter() {
             blacklistedRoutes: ['localhost:5000/api/auth']
          }
       }),
+      AngularFireModule.initializeApp({
+         apiKey: 'AIzaSyAB-PTzdcLbJxyPW4zE-faDabEUJ3cFMUs',
+         authDomain: 'socializer-7f68d.firebaseapp.com',
+         databaseURL: 'https://socializer-7f68d.firebaseio.com',
+         projectId: 'socializer-7f68d',
+         storageBucket: 'socializer-7f68d.appspot.com',
+         messagingSenderId: '155560449491',
+         appId: '1:155560449491:web:d2b02d98aa57f2d5164b26'
+       }),
+       AngularFireMessagingModule,
       PaginationModule.forRoot(),
    ],
    providers: [
