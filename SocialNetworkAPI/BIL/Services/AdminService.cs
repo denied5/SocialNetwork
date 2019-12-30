@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BIL.DTO;
+using BIL.Helpers;
 using BIL.Services.Interrfaces;
 using DAL.Models;
 using DAL.UnitOfWork;
@@ -17,19 +18,22 @@ namespace BIL.Services
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly IPhotoService _photoService;
+        private readonly IUserService _userService;
 
         public AdminService(IUnitOfWork unitOfWork, IMapper mapper, UserManager<User> userManager,
-            IPhotoService photoService)
+            IPhotoService photoService, IUserService userService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _userManager = userManager;
             _photoService = photoService;
+            _userService = userService;
         }
 
-        public async Task<List<UserWithRoles>> GetUsersWithRoles()
+        public async Task<PagedList<UserWithRoles>> GetUsersWithRoles(UserParams userParams)
         {
             var users = await _unitOfWork.UserRepository.GetUsers();
+            users = SelectUsersForAdmin(users, userParams);
             var roles = await _unitOfWork.RoleRepository.GetAll();
             var userList = (from user in users
                             orderby user.UserName
@@ -43,7 +47,28 @@ namespace BIL.Services
                                          select role.Name).ToList()
                             }).ToList();
 
-            return userList;
+
+
+            return PagedList<UserWithRoles>.Create(userList,
+                userParams.CurrentPage, userParams.PageSize);
+        }
+
+        private IEnumerable<User> SelectUsersForAdmin(IEnumerable<User> users, UserParams userParams)
+        {
+            if (!string.IsNullOrEmpty(userParams.Gender) && userParams.Gender != "any")
+            {
+                users = users.Where(u => u.Gender == userParams?.Gender);
+            }
+            if (!string.IsNullOrEmpty(userParams.Name))
+            {
+                users = users.Where(u => u.KnownAs.ToLower().Contains(userParams.Name.ToLower()));
+            }
+            if (userParams.MinAge != 14 || userParams.MaxAge != 99)
+            {
+                users = users.Where(u => (DateTime.Now.Year - u.DateOfBirth.Year) >= userParams.MinAge && (DateTime.Now.Year - u.DateOfBirth.Year) <= userParams.MaxAge);
+            }
+
+            return users;
         }
 
         public async Task<IList<string>> EditRoles(string userName, RoleEditDTO roleEditDTO)

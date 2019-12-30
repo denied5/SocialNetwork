@@ -16,11 +16,13 @@ namespace BIL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IPushNotification _pushNotification;
 
-        public MessagesService(IUnitOfWork unitOfWork, IMapper mapper)
+        public MessagesService(IUnitOfWork unitOfWork, IMapper mapper, IPushNotification pushNotification)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _pushNotification = pushNotification;
         }
 
         public async Task<MessageToReturnDTO> AddMessage(int userId, MessageForCreationDTO messageForCreationDTO)
@@ -28,6 +30,12 @@ namespace BIL.Services
             var recipient = await _unitOfWork.UserRepository.GetUser(messageForCreationDTO.RecipientId);
             var sernder = await _unitOfWork.UserRepository.GetUser(userId);
             messageForCreationDTO.SenderId = userId;
+
+
+            if (recipient.FairbaseToken != null)
+            {
+                await _pushNotification.NewMessage(sernder.KnownAs, recipient.FairbaseToken);
+            }
 
             if (recipient == null)
             {

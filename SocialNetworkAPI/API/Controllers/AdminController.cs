@@ -1,7 +1,9 @@
 ﻿using BIL.DTO;
+using BIL.Extensions;
 using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace api.Controllers
@@ -21,11 +23,15 @@ namespace api.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet("users/roles")]
-        public async Task<IActionResult> GetUserWithRole()
+        public async Task<IActionResult> GetUserWithRole([FromQuery]UserParams userParams)
         {
-            var userToReturn = await _adminService.GetUsersWithRoles();
+            var usersForPagination = await _adminService.GetUsersWithRoles(userParams);
 
-            return Ok(userToReturn);
+
+            Response.AddPagination(usersForPagination.CurrentPage, usersForPagination.PageSize,
+                usersForPagination.TotalCount, usersForPagination.TotalPages);
+            List<UserWithRoles> usersForReturn = usersForPagination;
+            return Ok(usersForReturn);
         }
 
         [Authorize(Roles = "Admin")]

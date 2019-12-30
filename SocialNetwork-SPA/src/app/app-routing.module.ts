@@ -15,6 +15,7 @@ import { FeedComponent } from './feed/feed.component';
 import { FeedResolver } from './_resolver/feed.resolver';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { AuthGuard } from './_resolver/auth.guard';
+import { UserMenegmentResolver } from './_resolver/user-menegment.resolver';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -44,6 +45,7 @@ const routes: Routes = [
     },
     {
         path: 'admin', component: AdminPanelComponent,
+        resolve: {users: UserMenegmentResolver},
         data: { roles: ['Admin', 'Moderator'] }, canActivate: [AuthGuard]
     },
     { path: '**', redirectTo: '', pathMatch: 'full' },

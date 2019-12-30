@@ -14,11 +14,13 @@ namespace BIL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IPushNotification _pushNotification;
 
-        public FrienshipService(IUnitOfWork unitOfWork, IMapper mapper)
+        public FrienshipService(IUnitOfWork unitOfWork, IMapper mapper, IPushNotification pushNotification)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _pushNotification = pushNotification;
         }
 
         public async Task<bool> IsFriendshipExsist(int senderId, int recipientId)
@@ -38,6 +40,10 @@ namespace BIL.Services
                 RecipientId = recipientId,
                 SenderId = senderId
             };
+
+            var recipientToken = (await _unitOfWork.UserRepository.GetById(recipientId)).FairbaseToken;
+
+            await _pushNotification.NewFriendRequest(recipientToken);
 
             _unitOfWork.FriendshipRepository.Add(friendship);
             if (await _unitOfWork.SaveChanges())

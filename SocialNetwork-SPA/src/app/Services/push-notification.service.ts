@@ -2,17 +2,21 @@ import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { mergeMapTo } from 'rxjs/operators';
 import { take } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, Observable } from 'rxjs'
+import { UserService } from './user.service';
+import { User } from '../_model/User';
+import { AlertifyService } from './alertify.service';
+import { PayloadNotification } from '../_model/payloadNotification';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PushNotificationService {
-
+  user: User;
   currentMessage = new BehaviorSubject(null);
 
-  constructor(
-    private angularFireMessaging: AngularFireMessaging) {
+  constructor(private angularFireMessaging: AngularFireMessaging, private userService: UserService,
+    private alertify: AlertifyService) {
     this.angularFireMessaging.messaging.subscribe(
       (_messaging) => {
         _messaging.onMessage = _messaging.onMessage.bind(_messaging);
@@ -23,14 +27,18 @@ export class PushNotificationService {
 
 
   updateToken(userId, token) {
-   
+    debugger;
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.user.fairbaseToken = token;
+    this.userService.putUser(userId, this.user).subscribe( () => {
+      console.log("set token");
+    });
   }
 
   
   requestPermission(userId) {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
-        console.log(token);
         this.updateToken(userId, token);
       },
       (err) => {
@@ -44,8 +52,9 @@ export class PushNotificationService {
    */
   receiveMessage() {
     this.angularFireMessaging.messages.subscribe(
-      (payload) => {
-        console.log("new message received. ", payload);
+      (payload : PayloadNotification) => {
+        console.log(payload);
+        this.alertify.message(payload.notification.body);
         this.currentMessage.next(payload);
       })
   }

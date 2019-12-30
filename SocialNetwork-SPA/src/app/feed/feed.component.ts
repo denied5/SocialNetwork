@@ -14,7 +14,7 @@ import { PostComment } from '../_model/PostComment';
   styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
-  feed: Post[];
+  feed: Post[] = [];
   pagination: Pagination;
   userId: number;
   

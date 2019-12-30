@@ -18,4 +18,5 @@ export interface User {
     photos?: Photo[];
     posts?: Post[];
     roles?: string[];
+    fairbaseToken: string;
 }

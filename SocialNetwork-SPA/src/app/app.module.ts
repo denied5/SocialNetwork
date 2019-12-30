@@ -50,6 +50,7 @@ import { CommentComponent } from './comment/comment.component';
 import { SendCommentComponent } from './sendComment/sendComment.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { UserMenegmentResolver } from './_resolver/user-menegment.resolver';
 
 
 export function tokenGetter() {
@@ -125,6 +126,7 @@ export function tokenGetter() {
       MemberListResolver,
       FriendsResolver,
       MessagesResolver,
+      UserMenegmentResolver,
       FeedResolver,
       AuthGuard,
       AdminService

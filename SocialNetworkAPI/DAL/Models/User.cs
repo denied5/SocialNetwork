@@ -25,6 +25,7 @@ namespace DAL.Models
         public string City { get; set; }
         [MaxLength(50)]
         public string Country { get; set; }
+        public string FairbaseToken { get; set; }
         public ICollection<Photo> Photos { get; set; }
         public ICollection<Post> Posts { get; set; }
         public ICollection<Like> Likes { get; set; }
