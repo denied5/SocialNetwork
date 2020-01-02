@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace dal.Migrations
+namespace DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191228131759_changeAttributes")]
-    partial class changeAttributes
+    [Migration("20191230212734_AtributesChange")]
+    partial class AtributesChange
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -204,14 +204,16 @@ namespace dal.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("FairbaseToken");
+
                     b.Property<string>("Gender")
                         .IsRequired();
 
                     b.Property<string>("Interests")
-                        .HasMaxLength(200);
+                        .HasMaxLength(2000);
 
                     b.Property<string>("Introduction")
-                        .HasMaxLength(200);
+                        .HasMaxLength(2000);
 
                     b.Property<string>("KnownAs")
                         .IsRequired()
@@ -224,7 +226,7 @@ namespace dal.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
                     b.Property<string>("LookingFor")
-                        .HasMaxLength(200);
+                        .HasMaxLength(2000);
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);

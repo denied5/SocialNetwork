@@ -15,11 +15,11 @@ namespace DAL.Models
         public string KnownAs { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
-        [MaxLength(200)]
+        [MaxLength(2000)]
         public string Introduction { get; set; }
-        [MaxLength(200)]
+        [MaxLength(2000)]
         public string LookingFor { get; set; }
-        [MaxLength(200)]
+        [MaxLength(2000)]
         public string Interests { get; set; }
         [MaxLength(50)]
         public string City { get; set; }

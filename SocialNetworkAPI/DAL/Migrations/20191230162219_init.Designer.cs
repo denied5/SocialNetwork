@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace dal.Migrations
+namespace DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191228213859_FairbaseToken")]
-    partial class FairbaseToken
+    [Migration("20191230162219_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

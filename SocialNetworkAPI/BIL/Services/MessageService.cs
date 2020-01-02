@@ -66,7 +66,10 @@ namespace BIL.Services
 
         public async Task<PagedList<MessageToReturnDTO>> GetLastMessagesForUser(PagedListParams messageParams)
         {
-            var messages = await _unitOfWork.MessageRepository.GetMessages(messageParams.UserId);
+            var userId = messageParams.UserId;
+            var messages = await _unitOfWork.MessageRepository.GetMessages(userId);
+            messages = messages.Where(m => (userId == m.RecipientId && !m.RecipientDeleted)
+                                    || (userId == m.SenderId && !m.SenderDeleted));
 
             messages = messages.OrderByDescending(m => m.MessageSent);
             var messagesToReturn = messages.Distinct(new MessagesComparer());
@@ -84,6 +87,8 @@ namespace BIL.Services
                                    (u.RecipientId == userId && u.SenderId == recipientId)
                                    || (u.RecipientId == recipientId && u.SenderId == userId))
                                     .OrderByDescending(m => m.MessageSent);
+            messages = messages.Where(u => (u.SenderId == userId && !u.SenderDeleted)
+                || (u.RecipientId == userId && !u.RecipientDeleted));
             var messagesToReturn = _mapper.Map<IEnumerable<MessageToReturnDTO>>(messages);
 
             foreach (var message in messagesToReturn)

@@ -2,6 +2,7 @@
 using BIL.DTO;
 using BIL.Helpers;
 using BIL.Services.Interrfaces;
+using DAL.Data;
 using DAL.Models;
 using DAL.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
@@ -30,6 +31,13 @@ namespace BIL.Services
             if (userForUpdate == null)
             {
                 return false;
+            }
+
+            if (userForUpdate.LookingFor.Length > EntitysRestrictions.USER_LOOKINGFOR_MAXLENGTH ||
+                userForUpdate.Introduction.Length > EntitysRestrictions.USER_INTRODUCTION_MAXLENGTH ||
+                userForUpdate.Interests.Length > EntitysRestrictions.USER_INTERESTS_MAXLENGTH)
+            {
+                throw new Exception("Invalid Data");
             }
 
             var userFromRepo = await _unitOfWork.UserRepository.GetUser(id);

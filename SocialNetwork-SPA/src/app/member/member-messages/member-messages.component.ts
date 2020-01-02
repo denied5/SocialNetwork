@@ -42,4 +42,15 @@ export class MemberMessagesComponent implements OnInit {
       });
   }
 
+  deleteMessage(id: number) {
+    this.messageService.deleteMessage(id, this.authService.decodedToken.nameid)
+      .subscribe( () => {
+        this.messages.splice(this.messages.findIndex(x => x.id == id), 1);
+        this.alertify.success("Message deleted");
+
+      }, error => {
+        this.alertify.error(error);
+      })
+  }
+
 }

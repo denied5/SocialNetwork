@@ -64,8 +64,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "sslKey": "d:/certificates/localhost.key",
-            "sslCert": "d:/certificates/localhost.crt",
+            "sslKey": "../ssl_certificate/localhost.key",
+            "sslCert": "../ssl_certificate/localhost.crt",
             "browserTarget": "SocialNetwork-SPA:build"
           },
           "configurations": {

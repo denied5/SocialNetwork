@@ -42,8 +42,10 @@ namespace BIL.Services
             };
 
             var recipientToken = (await _unitOfWork.UserRepository.GetById(recipientId)).FairbaseToken;
-
-            await _pushNotification.NewFriendRequest(recipientToken);
+            if (recipientToken != null)
+            {
+                await _pushNotification.NewFriendRequest(recipientToken);
+            }
 
             _unitOfWork.FriendshipRepository.Add(friendship);
             if (await _unitOfWork.SaveChanges())

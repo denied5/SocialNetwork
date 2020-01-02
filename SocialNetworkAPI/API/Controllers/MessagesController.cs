@@ -112,11 +112,6 @@ namespace api.Controllers
                 return Unauthorized();
             }
 
-            if (userId == id)
-            {
-                return BadRequest();
-            }
-
             if (await _messagesService.DeleteMessage(id, userId))
             {
                 return NoContent();

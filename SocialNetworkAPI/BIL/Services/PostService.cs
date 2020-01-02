@@ -47,8 +47,13 @@ namespace BIL.Services
         public async Task<PagedList<PostForReturnDTO>> GetFeed(PagedListParams param)
         {
             var feedFromRepo =  _unitOfWork.PostRepository.GetPosts(param.UserId);
+            var followingsId = (await _frienshipService.GetFollowing(param.UserId)).Select(f => f.Id);
             var friendsId = (await _frienshipService.GetFriends(param.UserId)).Select(f => f.Id);
 
+            foreach (var id in followingsId)
+            {
+                feedFromRepo = feedFromRepo.Concat(_unitOfWork.PostRepository.GetPosts(id));
+            }
             foreach (var id in friendsId)
             {
                 feedFromRepo = feedFromRepo.Concat(_unitOfWork.PostRepository.GetPosts(id));

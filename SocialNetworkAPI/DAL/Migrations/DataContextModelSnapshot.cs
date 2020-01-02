@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace dal.Migrations
+namespace DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
@@ -208,10 +208,10 @@ namespace dal.Migrations
                         .IsRequired();
 
                     b.Property<string>("Interests")
-                        .HasMaxLength(200);
+                        .HasMaxLength(2000);
 
                     b.Property<string>("Introduction")
-                        .HasMaxLength(200);
+                        .HasMaxLength(2000);
 
                     b.Property<string>("KnownAs")
                         .IsRequired()
@@ -224,7 +224,7 @@ namespace dal.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
                     b.Property<string>("LookingFor")
-                        .HasMaxLength(200);
+                        .HasMaxLength(2000);
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
