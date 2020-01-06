@@ -50,6 +50,7 @@ export class NavComponent implements OnInit {
       this.photoUrl = photoUrl;
     });
     this.userId = this.authService.decodedToken.nameid;
+    
   }
 
 }

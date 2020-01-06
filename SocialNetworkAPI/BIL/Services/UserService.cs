@@ -33,9 +33,9 @@ namespace BIL.Services
                 return false;
             }
 
-            if (userForUpdate.LookingFor.Length > EntitysRestrictions.USER_LOOKINGFOR_MAXLENGTH ||
-                userForUpdate.Introduction.Length > EntitysRestrictions.USER_INTRODUCTION_MAXLENGTH ||
-                userForUpdate.Interests.Length > EntitysRestrictions.USER_INTERESTS_MAXLENGTH)
+            if (userForUpdate.LookingFor?.Length > EntitysRestrictions.USER_LOOKINGFOR_MAXLENGTH ||
+                userForUpdate.Introduction?.Length > EntitysRestrictions.USER_INTRODUCTION_MAXLENGTH ||
+                userForUpdate.Interests?.Length > EntitysRestrictions.USER_INTERESTS_MAXLENGTH)
             {
                 throw new Exception("Invalid Data");
             }

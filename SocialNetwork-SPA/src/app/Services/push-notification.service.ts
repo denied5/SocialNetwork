@@ -39,6 +39,7 @@ export class PushNotificationService {
   requestPermission(userId) {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
+        console.log(token);
         this.updateToken(userId, token);
       },
       (err) => {
