@@ -82,7 +82,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePost(int userId, PostForCreatinDTO post)
+        public async Task<IActionResult> CreatePost(int userId, PostForCreationDTO post)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {

@@ -27,7 +27,7 @@ namespace BIL.Services
 
         public async Task<MessageToReturnDTO> AddMessage(int userId, MessageForCreationDTO messageForCreationDTO)
         {
-            var recipient = await _unitOfWork.UserRepository.GetUser(messageForCreationDTO.RecipientId);
+            var recipient = await _unitOfWork.UserRepository.GetUser(messageForCreationDTO.RecipientId.GetValueOrDefault());
             var sernder = await _unitOfWork.UserRepository.GetUser(userId);
             messageForCreationDTO.SenderId = userId;
 

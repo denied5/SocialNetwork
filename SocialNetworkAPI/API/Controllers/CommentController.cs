@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using api.Helpers;
 using BIL.DTO;
 using BIL.Helpers;
 using BIL.Services.Interrfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +16,7 @@ namespace api.Controllers
     [ServiceFilter(typeof(UpdateUserActivityFilter))]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CommentController : ControllerBase
     {
         private readonly ICommentService _commentService;

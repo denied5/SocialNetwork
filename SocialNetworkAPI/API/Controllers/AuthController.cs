@@ -3,6 +3,7 @@ using BIL.Services.Interrfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace api.Controllers
@@ -12,15 +13,13 @@ namespace api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-        private readonly IUserService _userService;
         public readonly IConfiguration _configuration;
         private readonly ILogger<AuthController> _logger;
 
         public AuthController(IAuthService authService,
-            IUserService userService, IConfiguration configuration, ILogger<AuthController> logger)
+            IConfiguration configuration, ILogger<AuthController> logger)
         {
             _configuration = configuration;
-            _userService = userService;
             _authService = authService;
             _logger = logger;
         }
@@ -28,6 +27,9 @@ namespace api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDTO user)
         {
+            if (user == null)
+                return BadRequest();
+            
             _logger.LogInformation("Logon by user:{0}", user.Username);
             var createdUser = await _authService.Register(user);
             if (createdUser is null)
@@ -52,9 +54,15 @@ namespace api.Controllers
                 return Unauthorized();
             }
 
+            var key = _configuration.GetSection("AuthKey:Token").Value;
+            if (key == null)
+            {
+                _logger.LogError("AuthKey Is Invalid");
+                throw new Exception("AuthKey Is Invalid");
+            }
+
             //generate token
-            var userToken = await _authService.GenerateToken(userFromDb,
-                _configuration.GetSection("AuthKey:Token").Value);
+            var userToken = await _authService.GenerateToken(userFromDb, key);
 
             _logger.LogInformation("Success to LogIn User: {}", user.Username);
             //return MainUserDTo

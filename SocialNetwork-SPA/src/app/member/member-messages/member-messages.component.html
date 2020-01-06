@@ -4,22 +4,22 @@
       <p>No messages yet</p>
     </div>
     <div *ngFor="let message of messages">
-      <div *ngIf="message.senderId != recipientId" class="incoming_msg">
+      <div *ngIf="message.senderId == recipientId" class="incoming_msg">
         <div class="incoming_msg_img"> <img src="{{message.senderPhotoUrl || '../../../assets/user.png'}}" alt="{{message.senderKnownAs}}"> </div>
         <div class="received_msg">
           <div class="received_withd_msg">
             <p>{{message.content}}</p>
             <span style="display: inline-block;" class="time_date"> {{message.messageSent | timeAgo}}</span>
-            <span style="display: inline-block;" *ngIf="!message.isRead" class="time_date text-danger">(unread)</span>
-            <span style="display: inline-block;" *ngIf="message.isRead" class="time_date text-success">(Read {{message.dateRead | timeAgo}})</span>
             <span (click)="deleteMessage(message.id)" ><i style="font-size: 20px;" class=" ml-1 fa fa-trash"></i></span>
           </div>
         </div>
       </div>
-      <div *ngIf="message.senderId == recipientId" class="outgoing_msg">
+      <div *ngIf="message.senderId != recipientId" class="outgoing_msg">
         <div class="sent_msg">
           <p>{{message.content}}</p>
           <span style="display: inline-block;" class="time_date">{{message.messageSent | timeAgo}}</span>
+          <span style="display: inline-block;" *ngIf="!message.isRead" class="time_date text-danger">(unread)</span>
+            <span style="display: inline-block;" *ngIf="message.isRead" class="time_date text-success">(Read {{message.dateRead | timeAgo}})</span>
           <span style="display: inline-block;" (click)="deleteMessage(message.id)" ><i style="font-size: 20px;" class=" ml-1 fa fa-trash"></i></span>
          </div>
       </div>
@@ -32,76 +32,3 @@
     </form>
   </div>
 </div>
-
-
-
-
-
-<!-- <div class="card">
-  <div class="card-body">
-    
-    
-    
-    
-    
-    
-    
-    <div *ngIf="messages?.length === 0">
-      <p>No messages yet</p>
-    </div>
-
-
-
-
-    <ul class="chat">
-      <li *ngFor="let message of messages">
-        
-        <div *ngIf="message.senderId == recipientId">
-          <span class="chat-img float-left mr-2">
-            <img src="{{message.senderPhotoUrl || '../../../assets/user.png'}}" class="rounded-circle">
-          </span>
-          <div class="chat-body">
-            <div class="header">
-              <strong class="primary-font">{{message.senderKnownAs}}</strong>
-              <small class="text-muted float-right">
-                <span class="fa fa-clock-o">{{message.messageSent | timeAgo}}</span>
-                <i style="font-size: 20px;" class=" ml-1 fa fa-trash"></i>
-              </small>
-            </div>
-            <p>{{message.content}}</p>
-          </div>
-        </div>
-
-        
-        <div *ngIf="message.senderId != recipientId">
-          <span class="chat-img float-right">
-            <img src="{{message.senderPhotoUrl || '../../../assets/user.png'}}" alt="{{message.senderKnownAs}}" class="rounded-circle">
-          </span>
-          <div class="chat-body">
-            <div class="header">
-              <small class="text-muted ">
-                <span class="fa fa-clock-o">{{message.messageSent | timeAgo}}</span>
-                <span *ngIf="!message.isRead" class="text-danger">(unread)</span>
-                <span *ngIf="message.isRead" class="text-success">(Read {{message.dateRead | timeAgo}})</span>
-              </small>
-              <strong class="primary-font float-right">{{message.senderKnownAs}}</strong>
-            </div>
-            <p>{{message.content}}</p>
-          </div>
-        </div>
-      </li>
-    </ul>
-
-  </div>
-  <div class="card-footer">
-    <form #messageForm='ngForm' (ngSubmit)="messageForm.valid && sendMessage()">
-      <div class="input-group">
-        <input type="text"  class="form-control input-sm"
-          placeholder="send a private message">
-        <div class="input-group-append">
-          <button class="btn btn-primary" [disabled]="!messageForm.valid">Send</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div> -->

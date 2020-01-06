@@ -52,7 +52,7 @@ export class MemberDetailComponent implements OnInit {
         small: this.user.photos[i].url,
         medium: this.user.photos[i].url,
         big: this.user.photos[i].url,
-        descriprion: this.user.photos[i].description
+        descriprion: 'this.user.photos[i].description'
       });
     }
     return imagesUrls;

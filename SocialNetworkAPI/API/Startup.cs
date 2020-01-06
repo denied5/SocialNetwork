@@ -1,4 +1,5 @@
-﻿using API.Helpers;
+﻿using api.Helpers;
+using API.Helpers;
 using AutoMapper;
 using BIL.Extensions;
 using BIL.Helpers;
@@ -42,7 +43,7 @@ namespace api
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper();
             services.SetUpAppDependencies(Configuration.GetConnectionString("BloggingDatabase"));
-            services.SetUpRoles();
+            services.SetUpIdentity();
             services.SetUpScopes();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -76,7 +77,7 @@ namespace api
                         var error = context.Features.Get<IExceptionHandlerFeature>();
                         if (error != null)
                         {
-                            _logger.LogError("{0} /n", error.Error.Message, error.Error.StackTrace);
+                            _logger.LogError("{0} /n", error.Error.Message);
                             context.Response.AddAplicationError(error.Error.Message);
                             await context.Response.WriteAsync(error.Error.Message);
                         }

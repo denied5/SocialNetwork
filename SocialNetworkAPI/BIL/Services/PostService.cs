@@ -25,7 +25,7 @@ namespace BIL.Services
             _frienshipService = frienshipService;
         }
 
-        public async Task<PostForReturnDTO> CreatePost(PostForCreatinDTO post)
+        public async Task<PostForReturnDTO> CreatePost(PostForCreationDTO post)
         {
             var postToCreate = _mapper.Map<Post>(post);
             _unitOfWork.PostRepository.Add(postToCreate);

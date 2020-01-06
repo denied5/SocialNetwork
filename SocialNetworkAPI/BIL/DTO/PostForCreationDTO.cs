@@ -1,16 +1,18 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BIL.DTO
 {
-    public class PostForCreatinDTO
+    public class PostForCreationDTO
     {
-        public PostForCreatinDTO()
+        public PostForCreationDTO()
         {
             DateOfCreation = DateTime.Now;
         }
-
+        [Required]
         public string Content { get; set; }
-        public int UserId { get; set; }
+        [Required]
+        public int? UserId { get; set; }
         public DateTime DateOfCreation { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace BIL.Helpers
                     opt.MapFrom(u => u.UserId));
 
 
-            CreateMap<PostForCreatinDTO, Post>();
+            CreateMap<PostForCreationDTO, Post>();
             CreateMap<PhotoForCreationDTO, Photo>();
             CreateMap<UserForUpdateDTO, User>();
             CreateMap<MessageForCreationDTO, Message>();

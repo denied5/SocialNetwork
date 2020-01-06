@@ -19,8 +19,8 @@ namespace ApiTest
         Mock<IPostService> _moqPost;
         Mock<IUserService> _moqUser;
         PostsController _controller;
-        PostForCreatinDTO postForCreatin = new PostForCreatinDTO() { };
-        PostForCreatinDTO PostForCreatinFail = new PostForCreatinDTO() { };
+        PostForCreationDTO postForCreatin = new PostForCreationDTO() { };
+        PostForCreationDTO PostForCreatinFail = new PostForCreationDTO() { };
         PostForReturnDTO postForReturnDTO = new PostForReturnDTO() { };
         PagedListParams pagedListParams = new PagedListParams() { };
         PagedListParams pagedListParamsFail = new PagedListParams() { };

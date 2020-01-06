@@ -91,10 +91,9 @@ namespace BIL.Services
 
             var result = await _userManager.CreateAsync(userToCreate, user.Password);
 
-            var userToReturn = _mapper.Map<UserForDetailedDTO>(userToCreate);
-
             if (result.Succeeded)
             {
+                var userToReturn = _mapper.Map<UserForDetailedDTO>(userToCreate);
                 var usertoAddRole = _userManager.FindByNameAsync(userToReturn.Username).Result;
                 _userManager.AddToRolesAsync(usertoAddRole, new[] { "Member" }).Wait();
                 return userToReturn;

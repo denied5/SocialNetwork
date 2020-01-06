@@ -23,7 +23,7 @@ namespace BIL.Extensions
             return services;
         }
 
-        public static IServiceCollection SetUpRoles(this IServiceCollection services)
+        public static IServiceCollection SetUpIdentity(this IServiceCollection services)
         {
             IdentityBuilder builder = services.AddIdentityCore<User>(opt =>
             {
@@ -65,6 +65,7 @@ namespace BIL.Extensions
             services.AddScoped<IPushNotification, PushNotification>();
             services.AddScoped<Seed>();
             services.AddScoped<UpdateUserActivityFilter>();
+            
             return services;
         }
 

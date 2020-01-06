@@ -95,7 +95,7 @@ export function tokenGetter() {
       TabsModule.forRoot(),
       NgxGalleryModule,
       FileUploadModule,
-      JwtModule.forRoot({// автоматически подставляет токен в хедеры всех запросов
+      JwtModule.forRoot({
          config: {
             tokenGetter,
             whitelistedDomains: ['localhost:5000'],
